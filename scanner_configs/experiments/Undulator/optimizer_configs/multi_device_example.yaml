@@ -1,0 +1,84 @@
+# Example optimization configuration using MultiDeviceScanEvaluator
+#
+# This example demonstrates the new simplified pattern for creating
+# optimization evaluators. The key improvements are:
+#
+# 1. No manual device_requirements - auto-generated from analyzers
+# 2. Minimal Python code - just implement compute_objective()
+# 3. Config-driven analyzer setup
+# 4. Support for multiple devices/analyzers
+# 5. Automatic image averaging via 'per_bin' mode
+#
+# To use this pattern:
+# 1. Create a small Python subclass implementing compute_objective()
+# 2. Configure analyzers in this YAML file
+# 3. Run optimization - device_requirements auto-generated!
+
+# VOCS: Define optimization problem
+vocs:
+  variables:
+    # Example: optimize triplet magnet currents
+    U_EMQTripletBipolar:Current_Limit.Ch1: [0.5, 2.0]
+    U_EMQTripletBipolar:Current_Limit.Ch2: [-1.4, -0.5]
+    U_EMQTripletBipolar:Current_Limit.Ch3: [-0.1, 1.0]
+
+  objectives:
+    f: MINIMIZE  # Minimize the objective function
+
+  constraints: {}  # Optional constraints can be added here
+
+# Evaluator: Specify the evaluator class and configuration
+evaluator:
+  # Module path to your custom evaluator
+  # (Create a subclass of MultiDeviceScanEvaluator)
+  module: geecs_scanner.optimization.evaluators.beam_size_evaluator
+  class: BeamSizeEvaluator
+
+  kwargs:
+    # Custom evaluator parameters
+    calibration: 24.4e-3  # Spatial calibration in mm/pixel
+
+    # Analyzer configurations (list of SingleDeviceScanAnalyzerConfig)
+    analyzers:
+      # Single device example: UC_ALineEBeam3 camera
+      - device_name: UC_ALineEBeam3
+        analyzer_type: Array2DScanAnalyzer  # or Array1DScanAnalyzer
+        file_tail: .png  # File extension for data files
+
+        # ImageAnalyzer configuration
+        image_analyzer:
+          module: image_analysis.offline_analyzers.beam_analyzer
+          class: BeamAnalyzer
+          kwargs: {}  # Usually empty - analyzers auto-configure
+
+        # Analysis mode (per_bin recommended for optimization)
+        analysis_mode: per_bin
+
+      # Multi-device example (commented out):
+      # Add more analyzers to combine data from multiple devices
+      # - device_name: UC_HiResMagCam
+      #   analyzer_type: Array2DScanAnalyzer
+      #   file_tail: .png
+      #   image_analyzer:
+      #     module: image_analysis.offline_analyzers.Undulator.hi_res_mag_cam_analyzer
+      #     class: HiResMagCamAnalyzer
+      #     kwargs:
+      #       camera_name: UC_HiResMagCam
+
+# Generator: Optimization algorithm
+generator:
+  name: bayes_default  # Options: random, cnsga, upper_confidence_bound, etc.
+
+# Optional: Xopt configuration overrides
+xopt_config_overrides: {}
+
+# Note: device_requirements is AUTO-GENERATED from the analyzers list above!
+# No need to manually specify:
+# device_requirements:
+#   Devices:
+#     UC_ALineEBeam3:
+#       add_all_variables: false
+#       save_nonscalar_data: true
+#       synchronous: true
+#       variable_list:
+#         - acq_timestamp
