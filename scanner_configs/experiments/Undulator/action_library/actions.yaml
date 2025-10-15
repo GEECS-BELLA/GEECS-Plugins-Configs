@@ -37,6 +37,8 @@ actions:
       device: U_GaiaSVEReader
       value: 0
       variable: InternalShutterA
+    - action: wait
+      wait: 1.0
     - action: set
       device: U_GaiaSVEReader
       value: 0
@@ -47,6 +49,8 @@ actions:
       device: U_GaiaSVEReader
       expected_value: 0
       variable: InternalShutterA
+    - action: wait
+      wait: 1.0
     - action: get
       device: U_GaiaSVEReader
       expected_value: 0
@@ -109,6 +113,8 @@ actions:
       device: U_148_PLC
       value: 'on'
       variable: DO.Ch1
+    - action: wait
+      wait: 0.5
     - action: set
       device: U_148_PLC
       value: 'on'
@@ -119,6 +125,8 @@ actions:
       device: U_148_PLC
       expected_value: 'on'
       variable: DI.Ch1
+    - action: wait
+      wait: 0.5
     - action: get
       device: U_148_PLC
       expected_value: 'on'
@@ -129,6 +137,8 @@ actions:
       device: U_GaiaSVEReader
       value: 1
       variable: InternalShutterA
+    - action: wait
+      wait: 1.0
     - action: set
       device: U_GaiaSVEReader
       value: 1
@@ -139,6 +149,8 @@ actions:
       device: U_GaiaSVEReader
       expected_value: 1
       variable: InternalShutterA
+    - action: wait
+      wait: 1.0
     - action: get
       device: U_GaiaSVEReader
       expected_value: 1
@@ -165,6 +177,8 @@ actions:
       device: U_148_PLC
       value: 'off'
       variable: DO.Ch1
+    - action: wait
+      wait: 0.5
     - action: set
       device: U_148_PLC
       value: 'off'
@@ -175,6 +189,8 @@ actions:
       device: U_148_PLC
       expected_value: 'on'
       variable: DI.Ch2
+    - action: wait
+      wait: 0.5
     - action: get
       device: U_148_PLC
       expected_value: 'on'

@@ -49,7 +49,7 @@ evaluator:
         image_analyzer:
           module: image_analysis.offline_analyzers.beam_analyzer
           class: BeamAnalyzer
-          kwargs: {}  # Usually empty - analyzers auto-configure
+          kwargs: {"camera_config_name":"UC_ALineEBeam3"}
 
         # Analysis mode (per_bin recommended for optimization)
         analysis_mode: per_bin
