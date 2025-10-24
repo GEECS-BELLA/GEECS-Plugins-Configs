@@ -1,7 +1,7 @@
 # Example optimization configuration using MultiDeviceScanEvaluator
 vocs:
   variables:
-    S1H:Current: [-0.5, 0.5]   # control
+    U_S1H:Current: [-1.5, 1.5]   # control
     U_EMQTripletBipolar:Current_Limit.Ch1: [ .5, 2 ]
   objectives:
     f: MINIMIZE                # filled post-update with VO
@@ -42,7 +42,7 @@ generator:
 
 xopt_config_overrides:
   multipoint_bax_alignment:
-    control_names: ["S1H:Current"]
+    control_names: ["U_S1H:Current"]
     measurement_name: "U_EMQTripletBipolar:Current_Limit.Ch1"
     observable_name: "x_CoM"
     probe_nominal: 1.20
