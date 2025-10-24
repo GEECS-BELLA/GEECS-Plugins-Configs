@@ -8,7 +8,7 @@ vocs:
   constraints: {}
   constants: {}
   observables:
-    - x_cen
+    - x_CoM
 
 # Evaluator: Specify the evaluator class and configuration
 evaluator:
