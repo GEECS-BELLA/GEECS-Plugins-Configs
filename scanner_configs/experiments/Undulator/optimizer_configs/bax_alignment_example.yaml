@@ -3,10 +3,7 @@ vocs:
   variables:
     U_S1H:Current: [-1.5, 1.5]   # control
     U_EMQTripletBipolar:Current_Limit.Ch1: [ .5, 2 ]
-  objectives:
-    f: MINIMIZE                # filled post-update with VO
-  constraints: {}
-  constants: {}
+  objectives: {}  # EMPTY - BAX doesn't use objectives!
   observables:
     - x_CoM
 
@@ -14,12 +11,12 @@ vocs:
 evaluator:
   # Module path to your custom evaluator
   # (Create a subclass of MultiDeviceScanEvaluator)
-  module: geecs_scanner.optimization.evaluators.beam_position_evaluator
+  module: geecs_scanner.optimization.evaluators.beam_position_evaluator_simulation
   class: BeamPositionEvaluator
 
   kwargs:
     # Custom evaluator parameters
-    calibration: 24.4e-3  # Spatial calibration in mm/pixel
+    calibration: 1.0  # Spatial calibration in mm/pixel
 
     # Analyzer configurations (list of SingleDeviceScanAnalyzerConfig)
     analyzers:
@@ -38,15 +35,17 @@ evaluator:
         analysis_mode: per_bin
 
 generator:
-  name: multipoint_bax_alignment
+  name: multipoint_bax_alignment_simluated
 
 xopt_config_overrides:
   multipoint_bax_alignment:
     control_names: ["U_S1H:Current"]
     measurement_name: "U_EMQTripletBipolar:Current_Limit.Ch1"
     observable_name: "x_CoM"
-    probe_nominal: 1.20
-    probe_grid_absolute: [-0.20, 0.0, +0.20]
-    n_control_mesh: 41
+    probe_nominal: 1.25
+    probe_grid_absolute: [-0.25, 0.0, +0.25]
+    n_control_mesh: 21
+    mesh_measurement: true
+    n_measurement_mesh: 21  # adjust as needed
     n_monte_carlo_samples: 128
     use_low_noise_prior: false
