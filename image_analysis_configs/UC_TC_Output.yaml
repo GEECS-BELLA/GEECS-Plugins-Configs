@@ -8,7 +8,7 @@ description: image of target chamber output port
 background:
   enabled: true
   method: constant
-  constant_level: 20.0
+  constant_level: 100.0
 
 metadata:
   location: "B-cave"
@@ -28,7 +28,7 @@ filtering:
   median_kernel_size: 3
 
 roi:
-  x_max: 800
-  x_min: 1
-  y_max: 800
-  y_min: 1
+  x_max: 350
+  x_min: 250
+  y_max: 215
+  y_min: 115

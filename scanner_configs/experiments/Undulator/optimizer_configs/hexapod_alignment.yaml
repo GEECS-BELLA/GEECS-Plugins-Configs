@@ -18,8 +18,8 @@
 vocs:
   variables:
     # Example: optimize triplet magnet currents
-    U_Hexapod:ypos: [17, 19]
-    U_Hexapod:zpos: [-1, 1]
+    U_Hexapod:ypos: [17, 18]
+    U_Hexapod:zpos: [-.5, .5]
     U_Hexapod:vangle: [-.1, .1]
     U_Hexapod:wangle: [-.1, .1]
 
