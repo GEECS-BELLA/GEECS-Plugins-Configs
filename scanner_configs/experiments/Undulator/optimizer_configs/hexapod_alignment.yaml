@@ -1,0 +1,61 @@
+# Example optimization configuration using MultiDeviceScanEvaluator
+#
+# This example demonstrates the new simplified pattern for creating
+# optimization evaluators. The key improvements are:
+#
+# 1. No manual device_requirements - auto-generated from analyzers
+# 2. Minimal Python code - just implement compute_objective()
+# 3. Config-driven analyzer setup
+# 4. Support for multiple devices/analyzers
+# 5. Automatic image averaging via 'per_bin' mode
+#
+# To use this pattern:
+# 1. Create a small Python subclass implementing compute_objective()
+# 2. Configure analyzers in this YAML file
+# 3. Run optimization - device_requirements auto-generated!
+
+# VOCS: Define optimization problem
+vocs:
+  variables:
+    # Example: optimize triplet magnet currents
+    U_Hexapod:ypos: [17, 19]
+    U_Hexapod:zpos: [-1, 1]
+    U_Hexapod:vangle: [-.1, .1]
+    U_Hexapod:wangle: [-.1, .1]
+
+  objectives:
+    f: MINIMIZE  # Minimize the objective function
+
+  constraints: {}  # Optional constraints can be added here
+
+# Evaluator: Specify the evaluator class and configuration
+evaluator:
+  # Module path to your custom evaluator
+  # (Create a subclass of MultiDeviceScanEvaluator)
+  module: geecs_scanner.optimization.evaluators.beam_sum_counts_evaluator
+  class: MaxCountsEvaluator
+
+  kwargs:
+    # Custom evaluator parameters
+    calibration: 24.4e-3  # Spatial calibration in mm/pixel
+
+    # Analyzer configurations (list of SingleDeviceScanAnalyzerConfig)
+    analyzers:
+      # Single device example: UC_ALineEBeam3 camera
+      - device_name: UC_TC_Output
+        analyzer_type: Array2DScanAnalyzer  # or Array1DScanAnalyzer
+        file_tail: .png  # File extension for data files
+
+        # ImageAnalyzer configuration
+        image_analyzer:
+          module: image_analysis.offline_analyzers.beam_analyzer
+          class: BeamAnalyzer
+          kwargs: {"camera_config_name":"UC_TC_Output"}
+
+        # Analysis mode (per_bin recommended for optimization)
+        analysis_mode: per_bin
+
+# Generator: Optimization algorithm
+generator:
+  name: bayes_default  # Options: random, cnsga, upper_confidence_bound, etc.
+
