@@ -1,5 +1,7 @@
 single_scan_devices:
+  BCaveMagSepecCurrent: U_BCaveMagSpecPS:Current_Limit.Ch1
   Centtronic DUT position: U_ASSERT_Stages:Position.Ch2
+  DonDQ12: U_DonD_Q12_Gap:Position
   EMQ1 Current: U_EMQTripletBipolar:Current_Limit.Ch1
   EMQ2 Current: U_EMQTripletBipolar:Current_Limit.Ch2
   EMQ3 Current: U_EMQTripletBipolar:Current_Limit.Ch3
