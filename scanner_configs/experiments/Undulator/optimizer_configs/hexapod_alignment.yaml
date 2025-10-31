@@ -18,10 +18,10 @@
 vocs:
   variables:
     # Example: optimize triplet magnet currents
-    U_Hexapod:ypos: [17, 18]
-    U_Hexapod:zpos: [-.5, .5]
-    U_Hexapod:vangle: [-.1, .1]
-    U_Hexapod:wangle: [-.1, .1]
+    U_Hexapod:ypos: [1, 14]
+    U_Hexapod:zpos: [-1, 1.5]
+    U_Hexapod:vangle: [-.5, .5]
+    U_Hexapod:wangle: [-1, .0]
 
   objectives:
     f: MINIMIZE  # Minimize the objective function
@@ -57,5 +57,5 @@ evaluator:
 
 # Generator: Optimization algorithm
 generator:
-  name: bayes_default  # Options: random, cnsga, upper_confidence_bound, etc.
+  name: bayes_turbo_standard  # Options: random, cnsga, upper_confidence_bound, etc.
 
