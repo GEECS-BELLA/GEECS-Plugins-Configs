@@ -1,0 +1,28 @@
+Devices:
+  UC_Amp2_IR_input:
+    add_all_variables: false
+    save_nonscalar_data: true
+    synchronous: true
+    variable_list:
+    - MeanCounts
+    - MaxCounts
+    - centroidx
+    - centroidy
+  UC_Amp3_IR_input:
+    add_all_variables: false
+    save_nonscalar_data: true
+    synchronous: true
+    variable_list:
+    - MeanCounts
+    - MaxCounts
+    - centroidx
+    - centroidy
+  UC_Amp4_IR_input:
+    add_all_variables: false
+    save_nonscalar_data: true
+    synchronous: true
+    variable_list:
+    - MeanCounts
+    - MaxCounts
+    - centroidx
+    - centroidy

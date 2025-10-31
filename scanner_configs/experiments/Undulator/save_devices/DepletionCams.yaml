@@ -1,0 +1,20 @@
+Devices:
+  UC_Amp2Depletion_South:
+    add_all_variables: false
+    save_nonscalar_data: true
+    synchronous: true
+    variable_list: []
+  UC_Amp3Depletion_South:
+    add_all_variables: false
+    save_nonscalar_data: true
+    synchronous: true
+    variable_list: []
+  UC_Amp4Depletion_South:
+    add_all_variables: false
+    save_nonscalar_data: true
+    synchronous: true
+    variable_list: []
+  UC_GaiaMode:
+    save_nonscalar_data: true
+    synchronous: true
+    variable_list: []
