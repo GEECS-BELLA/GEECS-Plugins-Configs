@@ -31,8 +31,8 @@ thresholding:
   clip_below: true           # Clip values below (true) or above (false) threshold
 
 roi:
-  x_min: 0.005    # 0 microseconds
-  x_max: 0.05   # 10 microseconds
+  x_min: 0.01    # 0 microseconds
+  x_max: 0.025   # 10 microseconds
 
 
 # Pipeline configuration (order of processing steps)

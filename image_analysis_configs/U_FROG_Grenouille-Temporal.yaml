@@ -1,0 +1,28 @@
+# Configuration for U_FROG_Grenouille-Temporal camera
+
+name: U_FROG_Grenouille-Temporal
+bit_depth: 16
+description: image of target chamber output port
+
+# Camera identification and properties
+background:
+  enabled: true
+  method: constant
+  constant_level: 0.0
+
+metadata:
+  location: "148"
+  notes: "none"
+  spatial_calibration: 2.44e-05
+
+# Thresholding configuration - NEW FEATURE
+thresholding:
+  enabled: true
+  method: "constant"  # Use percentage of max value
+  value: 0.0               # 10% of maximum pixel value
+  mode: "to_zero"            # Binary thresholding
+  invert: false             # Don't invert
+
+filtering:
+  gaussian_sigma: null
+  median_kernel_size: 3
