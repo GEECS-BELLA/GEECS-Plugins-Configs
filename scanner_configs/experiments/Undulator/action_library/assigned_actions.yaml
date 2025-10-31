@@ -5,3 +5,4 @@ assigned_actions:
   name: setup_action
 - name: experiment_CLOSEOUT
 - name: pmq_INSERT
+- name: Amp4_SEND_HP_TO_TARGET
