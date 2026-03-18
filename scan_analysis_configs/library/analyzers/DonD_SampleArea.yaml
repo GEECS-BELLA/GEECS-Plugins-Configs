@@ -1,0 +1,12 @@
+id: DonDSampleArea
+type: array2d
+device_name: UC_DonDSampleArea
+priority: 35
+analysis_mode: per_shot          # quotes optional
+flag_save_images: True
+image_analyzer:
+  analyzer_class: image_analysis.offline_analyzers.beam_analyzer.BeamAnalyzer
+  kwargs:
+    camera_config_name : "UC_DonDSampleArea"
+kwargs: {}
+is_active: true

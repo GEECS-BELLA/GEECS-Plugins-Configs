@@ -8,14 +8,14 @@ description: Target area image of ebeam profile imaged on LANEX
 background:
   enabled: true
   method: from_file
-  file_path: "Z:/data/Undulator/Y2025/11-Nov/25_1126/analysis/Scan002UC_DonDSampleArea_averaged.png"
+  file_path: "{scan_dir}/computed_background.npy"
   constant_level: 50.0  #fallback to this value if file not found
-#  dynamic_computation:
-#    enabled: true
-#    method: percentile_dataset
-#    percentile: 5.0
-#    auto_save_path: "{scan_dir}/computed_background.npy"
-# additional_constant: 50
+  dynamic_computation:
+    enabled: true
+    method: percentile_dataset
+    percentile: 15.0
+    auto_save_path: "{scan_dir}/computed_background.npy"
+  additional_constant: 10
 
 metadata:
   location: "B-cave"
@@ -23,10 +23,10 @@ metadata:
   spatial_calibration: 35e-6  #meters
 
 roi:
-  x_min: 200
-  x_max: 700
+  x_min: 250
+  x_max: 850
   y_min: 300
-  y_max: 700
+  y_max: 750
 
 # Thresholding configuration - NEW FEATURE
 thresholding:
