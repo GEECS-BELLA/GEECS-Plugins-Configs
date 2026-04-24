@@ -36,6 +36,6 @@ groups:
     - MagCam2
     - MagCam3
     - MagCam4
-    - HTT-MagSpectStitcher
+    - HTT-MagSpecStitcher
   HTU_haso_only:
     - HasoLift
