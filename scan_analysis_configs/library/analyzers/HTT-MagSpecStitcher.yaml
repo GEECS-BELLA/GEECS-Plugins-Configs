@@ -1,7 +1,7 @@
 id: HTT-MagSpecStitcher
 type: array1d
 device_name: HTT-C23_1_MagSpec1-interpSpec
-priority: 5
+priority: 1
 analysis_mode: per_shot          # quotes optional
 flag_save_images: true
 #gdoc_slot: 0        # 0 → row 1 col 0 | 1 → row 1 col 1
