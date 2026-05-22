@@ -1,0 +1,20 @@
+# Example interlock-server config for BELLA.
+#
+# Loaded with:
+#   from geecs_python_api.controls.interlocks import load_interlock_server
+#   server = load_interlock_server("bella_camera_example.yaml")
+#   server.run_forever()
+#
+# `server.host = 0.0.0.0` binds on all interfaces; restrict if needed.
+
+server:
+  host: 0.0.0.0
+  port: 9999
+
+interlocks:
+  - type: camera_threshold
+    device_name: CAM-PL1-LC_Film
+    variable: MeanCounts
+    threshold: 2.0
+    # poll_interval: 0.5    # seconds between checks (default 0.5)
+    # data_timeout: 5.0     # seconds before stale device data trips the interlock
