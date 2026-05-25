@@ -1,6 +1,0 @@
-experiment: haso_only
-description: Standard analysis using library/groups
-version: "1.0"
-include:
-  - group: HTU_haso_only
-    priority_offset: 0

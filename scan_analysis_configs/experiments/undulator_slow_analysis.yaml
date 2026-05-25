@@ -1,6 +1,0 @@
-experiment: Undulator_slow_analysis
-description: Standard analysis using library/groups
-version: "1.0"
-include:
-  - group: HTU_slow_analysis
-    priority_offset: 0

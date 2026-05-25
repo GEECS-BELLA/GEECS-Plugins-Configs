@@ -1,6 +1,0 @@
-experiment: PW_frog_only
-version: '1.0'
-upload_to_scanlog: true
-include:
-- group: PW_frog_onl
-  priority_offset: 0

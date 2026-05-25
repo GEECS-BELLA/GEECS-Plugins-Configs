@@ -1,9 +1,0 @@
-experiment: Undulator
-description: Standard analysis using library/groups
-version: '1.0'
-upload_to_scanlog: true
-include:
-- group: baseline
-  priority_offset: 0
-- group: Visa
-  priority_offset: 0

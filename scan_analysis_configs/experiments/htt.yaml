@@ -1,6 +1,0 @@
-experiment: HTT
-description: Standard analysis using library/groups
-version: "1.0"
-include:
-  - group: HTT_MagSpec
-    priority_offset: 0

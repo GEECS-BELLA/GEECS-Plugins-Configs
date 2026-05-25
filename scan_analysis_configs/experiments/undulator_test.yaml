@@ -1,6 +1,0 @@
-experiment: Undulator_test
-description: Standard analysis using library/groups
-version: "1.0"
-include:
-  - group: htu_test
-    priority_offset: 0

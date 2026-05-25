@@ -1,7 +1,0 @@
-experiment: PW_expt
-description: Standard analysis using library/groups
-version: '1.0'
-upload_to_scanlog: true
-include:
-- group: PW_frog_onl
-  priority_offset: 0
