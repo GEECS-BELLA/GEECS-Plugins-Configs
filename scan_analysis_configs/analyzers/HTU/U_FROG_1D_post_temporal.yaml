@@ -1,0 +1,39 @@
+name: U_FROG_Grenouille-Temporal
+image_analyzer: line
+image:
+  description: BCave ICT charge measurement from oscilloscope traces
+  data_loading:
+    data_type: tsv
+  processing_dtype: float64
+  storage_dtype: float32
+  background:
+    method: constant
+    constant_value: 0.0
+  filtering:
+    method: median
+    sigma: 2.0
+    kernel_size: 1
+  thresholding:
+    method: absolute
+    threshold_value: -10.0
+    clip_below: true
+  roi:
+    x_min: -200.0
+    x_max: 200.0
+  interpolation:
+    enabled: true
+    num_points: 300
+    x_min: -175.0
+    x_max: 175.0
+  pipeline:
+    steps:
+    - background
+    - interpolation
+    - roi
+    - filtering
+    - thresholding
+scan:
+  priority: 2
+  mode: per_shot
+  save: true
+  file_tail: _retrieved_lineouts.tsv

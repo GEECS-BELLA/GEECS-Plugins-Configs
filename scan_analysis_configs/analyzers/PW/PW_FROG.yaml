@@ -1,0 +1,46 @@
+name: FROG-LB-1-Temporal
+image_analyzer: grenouille
+image:
+  description: Frog laser bay
+  bit_depth: 16
+  roi:
+    x_min: 0
+    x_max: 1024
+    y_min: 0
+    y_max: 1024
+  background: null
+  crosshair_masking: null
+  circular_mask: null
+  vignette: null
+  thresholding: null
+  filtering:
+    gaussian_sigma: null
+    median_kernel_size: 5
+  normalization: null
+  transforms:
+    rotation_angle: 0.0
+    flip_horizontal: false
+    flip_vertical: false
+    distortion_correction: false
+    distortion_coeffs: null
+  pipeline:
+    steps:
+    - roi
+    - filtering
+    - transforms
+  analysis:
+    N: 512
+    dellam: -0.0787696
+    delt: 0.966601
+    lam0: 400.0
+    max_iterations: 1000000000.0
+    max_time_seconds: 15
+    target_error: 0.0001
+  metadata:
+    location: '148'
+    notes: none
+    spatial_calibration: 2.44e-05
+scan:
+  priority: 1
+  mode: per_shot
+  save: false

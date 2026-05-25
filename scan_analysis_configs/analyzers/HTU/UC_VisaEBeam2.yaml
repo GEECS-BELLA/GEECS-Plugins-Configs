@@ -1,0 +1,40 @@
+name: UC_VisaEBeam2
+image_analyzer: beam
+image:
+  bit_depth: 16
+  description: e beam profile on visa 2 screen
+  background:
+    enabled: true
+    method: from_file
+    file_path: '{scan_dir}/computed_background.npy'
+    constant_level: 50.0
+    additional_constant: 2
+  crosshair_masking:
+    crosshairs:
+    - angle: 0
+      center:
+      - 193
+      - 97
+      height: 108
+      thickness: 10
+      width: 108
+    - angle: 0
+      center:
+      - 193
+      - 465
+      height: 108
+      thickness: 10
+      width: 108
+    enabled: true
+  metadata:
+    spatial_calibration: 7.5e-06
+  roi:
+    x_max: 443
+    x_min: 110
+    y_max: 408
+    y_min: 75
+scan:
+  priority: 1
+  mode: per_shot
+  save: true
+  gdoc_slot: 0

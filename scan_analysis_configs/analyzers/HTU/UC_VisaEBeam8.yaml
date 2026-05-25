@@ -1,0 +1,23 @@
+name: UC_VisaEBeam8
+image_analyzer: beam
+image:
+  bit_depth: 16
+  description: e beam profile on visa 8 screen
+  background:
+    enabled: true
+    method: from_file
+    file_path: '{scan_dir}/computed_background.npy'
+    constant_level: 50.0
+    additional_constant: 2
+  metadata:
+    spatial_calibration: 7.5e-06
+  roi:
+    x_max: 438
+    x_min: 105
+    y_max: 433
+    y_min: 100
+scan:
+  priority: 1
+  mode: per_shot
+  save: true
+  gdoc_slot: 0

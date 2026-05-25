@@ -1,0 +1,23 @@
+name: UC_Amp4_IR_output
+image_analyzer: beam
+image:
+  bit_depth: 16
+  description: IR mode at the input to amp3
+  background:
+    enabled: true
+    method: constant
+    constant_level: 90.0
+  metadata:
+    location: Room 148
+    notes: none
+    spatial_calibration: 2.44e-05
+  thresholding:
+    enabled: true
+    method: constant
+    value: 0.0
+    mode: to_zero
+    invert: false
+scan:
+  priority: 31
+  mode: per_shot
+  save: false

@@ -1,0 +1,19 @@
+name: HTU_baseline
+analyzers:
+- Amp2Input
+- Amp3Input
+- Amp4Input
+- ref: Amp4Output
+  enabled: false
+- ExpanderIn1
+- ExpanderIn1_Pulsed
+- ModeImager
+- GaiaMode
+- BcaveMagSpecStitcherSpec
+- U_FROG_Beam
+- OAPin2
+- FinalSteeringLeak
+- U_BCaveSpec-beam
+- ref: 148Spectro
+  enabled: false
+- UC_TopView

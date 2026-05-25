@@ -1,0 +1,26 @@
+name: UC_GaiaMode
+image_analyzer: beam
+image:
+  bit_depth: 16
+  description: image of e-beam in diagnostics phosphor
+  background:
+    enabled: true
+    method: constant
+    constant_level: 80.0
+  metadata:
+    location: B-cave
+    notes: none
+    spatial_calibration: 2.44e-05
+  thresholding:
+    enabled: true
+    method: constant
+    value: 0.0
+    mode: to_zero
+    invert: false
+  filtering:
+    gaussian_sigma: null
+    median_kernel_size: 3
+scan:
+  priority: 45
+  mode: per_shot
+  save: false

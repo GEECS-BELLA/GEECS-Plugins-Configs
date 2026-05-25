@@ -1,0 +1,7 @@
+name: HTT_MagSpec
+analyzers:
+- MagCam1
+- MagCam2
+- MagCam3
+- MagCam4
+- HTT-MagSpectStitcher

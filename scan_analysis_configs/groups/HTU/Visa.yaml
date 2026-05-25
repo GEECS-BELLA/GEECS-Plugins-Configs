@@ -1,0 +1,11 @@
+name: HTU_Visa
+analyzers:
+- UC_VisaEBeam2
+- UC_VisaEBeam3
+- UC_VisaEBeam4
+- UC_VisaEBeam5
+- UC_VisaEBeam6
+- UC_VisaEBeam7
+- UC_VisaEBeam8
+- UC_VisaEBeam1
+- UC_UndulatorRad2

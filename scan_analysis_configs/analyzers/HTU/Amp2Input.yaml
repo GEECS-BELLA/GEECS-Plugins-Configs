@@ -1,0 +1,37 @@
+name: UC_Amp2_IR_Input
+image_analyzer: beam
+image:
+  bit_depth: 16
+  description: IR mode at the input to amp2
+  background:
+    enabled: true
+    method: constant
+    constant_level: 100.0
+  metadata:
+    location: Room 148
+    notes: none
+    spatial_calibration: 2.44e-05
+  roi:
+    x_max: 500
+    x_min: 1
+    y_max: 500
+    y_min: 1
+  circular_mask:
+    enabled: true
+    center:
+    - 205
+    - 260
+    radius: 150
+  filtering:
+    gaussian_sigma: null
+    median_kernel_size: 3
+  thresholding:
+    enabled: true
+    method: constant
+    value: 0.0
+    mode: to_zero
+    invert: false
+scan:
+  priority: 40
+  mode: per_shot
+  save: true

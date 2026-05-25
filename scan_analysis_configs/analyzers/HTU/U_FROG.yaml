@@ -1,0 +1,31 @@
+name: U_FROG_Grenouille-Temporal
+image_analyzer: grenouille
+image:
+  bit_depth: 16
+  description: image of target chamber output port
+  background:
+    enabled: true
+    method: constant
+    constant_level: 0.0
+  metadata:
+    location: '148'
+    notes: none
+    spatial_calibration: 2.44e-05
+  thresholding:
+    enabled: true
+    method: constant
+    value: 0.0
+    mode: to_zero
+    invert: false
+  analysis:
+    delt: 0.85
+    dellam: -0.085
+    lam0: 400.0
+    N: 512
+    target_error: 0.0001
+    max_time_seconds: 15
+    max_iterations: 1000000000.0
+scan:
+  priority: 1
+  mode: per_shot
+  save: false

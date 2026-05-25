@@ -1,0 +1,3 @@
+name: HTU_opt
+analyzers:
+- BcaveMagSpecStitcherSpecOpt

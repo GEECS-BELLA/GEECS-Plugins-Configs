@@ -1,0 +1,4 @@
+name: PW_frog_onl
+analyzers:
+- PW_FROG
+- PW-MagSpectStitcher

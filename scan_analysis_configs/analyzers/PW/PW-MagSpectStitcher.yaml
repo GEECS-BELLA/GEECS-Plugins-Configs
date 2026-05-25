@@ -1,0 +1,42 @@
+name: CAM-TEA-MagSpecA-interpSpec
+image_analyzer:
+  alias: line_stitcher
+  kwargs:
+    sibling_devices:
+    - CAM-TEA-MagSpecB-interpSpec
+    - CAM-TEA-MagSpecC-interpSpec
+    - CAM-TEA-MagSpecD-interpSpec
+    name: PW-MagSpectStitcher
+image:
+  description: Example configuration for processing 1D spectral data or lineouts
+  data_format: Charge density vs Energy
+  data_loading:
+    data_type: tsv
+  processing_dtype: float64
+  storage_dtype: float32
+  background:
+    method: constant
+    constant_value: 0.0
+  filtering:
+    method: median
+    kernel_size: 3
+  x_units: MeV
+  x_scale_factor: 1
+  thresholding:
+    method: absolute
+    threshold_value: 0.0
+    clip_below: true
+  roi:
+    x_min: 100
+    x_max: 10000
+  pipeline:
+    steps:
+    - background
+    - roi
+    - filtering
+    - thresholding
+scan:
+  priority: 1
+  mode: per_shot
+  save: true
+  file_tail: .txt

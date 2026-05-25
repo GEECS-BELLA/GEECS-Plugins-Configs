@@ -1,0 +1,26 @@
+name: UC_ModeImager
+image_analyzer: beam
+image:
+  bit_depth: 16
+  description: imager of main laser driver
+  background:
+    enabled: true
+    method: constant
+    constant_level: 100.0
+  metadata:
+    location: B-cave
+    notes: none
+    spatial_calibration: 2.44e-05
+  thresholding:
+    enabled: true
+    method: constant
+    value: 0.0
+    mode: to_zero
+    invert: false
+  filtering:
+    gaussian_sigma: null
+    median_kernel_size: 3
+scan:
+  priority: 20
+  mode: per_shot
+  save: true

@@ -1,0 +1,7 @@
+name: HTU_slow_analysis
+analyzers:
+- ref: HasoLift
+  enabled: false
+- U_FROG
+- ref: U_FROG_1D_post_temporal
+  enabled: false

@@ -1,0 +1,43 @@
+name: U_FROG_Grenouille-Temporal
+image_analyzer:
+  class: image_analysis.offline_analyzers.frog_spectral_phase_analyzer.FrogSpectralPhaseAnalyzer
+  image_kind: line
+  scan_type: array1d
+  kwargs:
+    line_config_name: U_FROG_Grenouille-SpectralPhase
+image:
+  description: FROG retrieved spectral phase, polynomial fit with intensity weighting
+  data_loading:
+    data_type: tsv
+    delimiter: "\t"
+    x_column: 3
+    y_column: 5
+    auxiliary_columns:
+      weights: 4
+  processing_dtype: float64
+  storage_dtype: float32
+  background:
+    method: none
+  filtering:
+    method: none
+  thresholding:
+    method: none
+  roi:
+    x_min: 750.0
+    x_max: 850.0
+  pipeline:
+    steps:
+    - roi
+  x_units: nm
+  y_units: rad
+  analysis:
+    fit_order: 3
+    mask_threshold: 0.5
+    reference_wavelength_nm: 800.0
+    sign_reference_order: 2
+    sign_reference: 1.0
+scan:
+  priority: 2
+  mode: per_shot
+  save: true
+  file_tail: _retrieved_lineouts.tsv

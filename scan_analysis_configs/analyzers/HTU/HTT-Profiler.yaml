@@ -1,0 +1,33 @@
+name: HTT-D-EBeam_Profiler
+image_analyzer: beam
+image:
+  description: high resolution for electron beam profile analysis
+  bit_depth: 16
+  background:
+    enabled: true
+    method: from_file
+    file_path: '{scan_dir}/computed_background.npy'
+    constant_level: 100.0
+    additional_constant: 20
+  thresholding:
+    enabled: true
+    method: constant
+    value: 0.0
+    mode: to_zero
+    invert: false
+  filtering:
+    gaussian_sigma: null
+    median_kernel_size: 5
+  transforms:
+    rotation_angle: 0.0
+    flip_horizontal: false
+    flip_vertical: false
+  metadata:
+    spatial_calibration: 1.9e-05
+    location: HTT target chamber
+    notes: NA
+scan:
+  priority: 1
+  mode: per_shot
+  save: true
+  gdoc_slot: 2

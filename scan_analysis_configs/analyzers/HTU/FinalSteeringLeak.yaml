@@ -1,0 +1,28 @@
+name: UC_FinalSteeringLeak
+image_analyzer: beam
+image:
+  bit_depth: 16
+  description: IR leaking through final steering mirror
+  background:
+    enabled: true
+    method: constant
+    constant_level: 30.0
+  metadata:
+    location: Room 148
+    notes: none
+    spatial_calibration: 2.44e-05
+  roi:
+    x_min: 1
+    x_max: 300
+    y_min: 350
+    y_max: 750
+  thresholding:
+    enabled: true
+    method: constant
+    value: 0.0
+    mode: to_zero
+    invert: false
+scan:
+  priority: 19
+  mode: per_shot
+  save: true
