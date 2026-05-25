@@ -1,0 +1,33 @@
+name: UC_DonDSampleArea
+image_analyzer: beam
+image:
+  bit_depth: 16
+  description: Target area image of ebeam profile imaged on LANEX
+  background:
+    enabled: true
+    method: from_file
+    file_path: '{scan_dir}/computed_background.npy'
+    constant_level: 50.0
+    additional_constant: 10
+  metadata:
+    location: B-cave
+    notes: none
+    spatial_calibration: 35e-6
+  thresholding:
+    enabled: true
+    method: constant
+    value: 50
+    mode: to_zero
+    invert: false
+  filtering:
+    gaussian_sigma: null
+    median_kernel_size: 3
+  normalization:
+    enabled: false
+    method: distribute_value
+    constant_value: 1
+scan:
+  priority: 1
+  mode: per_shot
+  save: true
+  gdoc_slot: 1
