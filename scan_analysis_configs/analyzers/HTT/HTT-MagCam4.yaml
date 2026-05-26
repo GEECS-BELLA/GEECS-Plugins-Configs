@@ -7,7 +7,7 @@ image:
   bit_depth: 16
   background:
     enabled: true
-    method: from_file
+    method: null
     additional_constant: 1.5
   thresholding:
     enabled: true
