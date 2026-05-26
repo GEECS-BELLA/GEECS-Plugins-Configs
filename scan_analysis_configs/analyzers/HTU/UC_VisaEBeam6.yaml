@@ -1,5 +1,5 @@
 name: UC_VisaEBeam6
-image_analyzer: beam
+image_analyzer: image_analysis.offline_analyzers.beam_analyzer.BeamAnalyzer
 image:
   bit_depth: 16
   description: e beam profile on visa 6 screen

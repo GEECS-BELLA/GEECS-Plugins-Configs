@@ -1,5 +1,5 @@
 name: U_FROG_Grenouille-Temporal
-image_analyzer: grenouille
+image_analyzer: image_analysis.offline_analyzers.grenouille_analyzer.GrenouilleAnalyzer
 image:
   bit_depth: 16
   description: image of target chamber output port
