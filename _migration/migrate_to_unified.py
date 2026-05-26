@@ -50,36 +50,66 @@ logger = logging.getLogger("migrate")
 
 
 # ---------------------------------------------------------------------------
-# Static mappings — keep in sync with scan_analysis/config/aliases.py
+# Known-class table: maps each production class path to its
+# (image_kind, scan_type) tuple. Used by the migrator to know whether
+# the emitted YAML can use the bare-string shorthand (camera + array2d
+# defaults) or must use the verbose ``{class_path, image_kind, scan_type}``
+# form. Unknown classes are emitted as verbose dicts with conservative
+# camera + array2d defaults and surfaced in the migration report.
 # ---------------------------------------------------------------------------
 
 
-ALIAS_MAP: Dict[str, str] = {
-    "image_analysis.offline_analyzers.beam_analyzer.BeamAnalyzer": "beam",
-    "image_analysis.offline_analyzers.standard_analyzer.StandardAnalyzer": "standard_2d",
-    "image_analysis.offline_analyzers.grenouille_analyzer.GrenouilleAnalyzer": "grenouille",
+CLASS_KINDS: Dict[str, Tuple[str, str]] = {
+    "image_analysis.offline_analyzers.beam_analyzer.BeamAnalyzer": (
+        "camera",
+        "array2d",
+    ),
+    "image_analysis.offline_analyzers.standard_analyzer.StandardAnalyzer": (
+        "camera",
+        "array2d",
+    ),
+    "image_analysis.offline_analyzers.grenouille_analyzer.GrenouilleAnalyzer": (
+        "camera",
+        "array2d",
+    ),
     (
         "image_analysis.offline_analyzers."
         "magspec_manual_calib_analyzer.MagSpecManualCalibAnalyzer"
-    ): "magspec_manual",
-    "image_analysis.offline_analyzers.standard_1d_analyzer.Standard1DAnalyzer": "standard_1d",
-    "image_analysis.offline_analyzers.line_analyzer.LineAnalyzer": "line",
-    "image_analysis.offline_analyzers.ict_1d_analyzer.ICT1DAnalyzer": "ict_1d",
-    "image_analysis.offline_analyzers.line_stitcher.LineStitcher": "line_stitcher",
+    ): ("camera", "array2d"),
+    "image_analysis.offline_analyzers.standard_1d_analyzer.Standard1DAnalyzer": (
+        "line",
+        "array1d",
+    ),
+    "image_analysis.offline_analyzers.line_analyzer.LineAnalyzer": (
+        "line",
+        "array1d",
+    ),
+    "image_analysis.offline_analyzers.ict_1d_analyzer.ICT1DAnalyzer": (
+        "line",
+        "array1d",
+    ),
+    "image_analysis.offline_analyzers.line_stitcher.LineStitcher": (
+        "line",
+        "array1d",
+    ),
     (
         "image_analysis.offline_analyzers."
         "HASO_himg_has_processor.HASOHimgHasProcessor"
-    ): "haso",
+    ): ("none", "array2d"),
 }
 
-# Aliases whose target classes consume no embedded image config.
+# Class paths whose target classes consume no embedded image config.
 # Diagnostics using these omit the ``image:`` section entirely.
-NO_IMAGE_KIND_ALIASES: Set[str] = {"haso"}
+NO_IMAGE_KIND_CLASSES: Set[str] = {
+    cp for cp, (kind, _) in CLASS_KINDS.items() if kind == "none"
+}
 
-# Aliases whose target classes are wrapped in Array1DScanAnalyzer.
+# Class paths whose target classes are wrapped in Array1DScanAnalyzer.
 # The migrated YAML's ``scan.save`` field maps to ``flag_save_data``
 # rather than ``flag_save_images`` when the analyzer is built.
-ARRAY1D_ALIASES: Set[str] = {"standard_1d", "line", "ict_1d", "line_stitcher"}
+ARRAY1D_CLASSES: Set[str] = {
+    cp for cp, (_, st) in CLASS_KINDS.items() if st == "array1d"
+}
 
 # Group-name → namespace inference for organising the new
 # analyzers/<ns>/ tree. Groups not listed here are reported as
@@ -219,10 +249,6 @@ def parse_groups_file(path: Path) -> Dict[str, List[Tuple[str, bool]]]:
 # ---------------------------------------------------------------------------
 
 
-def _alias_for_class(class_path: str) -> Optional[str]:
-    return ALIAS_MAP.get(class_path)
-
-
 def _is_var_analyzer(stem: str) -> bool:
     return stem.endswith("_var")
 
@@ -284,37 +310,48 @@ def migrate_analyzer(
         report.unknown_analyzer_classes.append((analyzer_id, "<missing>"))
         return None
 
-    alias = _alias_for_class(class_path)
-    if alias is None:
+    # Look up the class's image_kind / scan_type. Unknown classes get
+    # conservative camera + array2d defaults (and are surfaced in the
+    # report so the user can fix them).
+    if class_path in CLASS_KINDS:
+        image_kind, scan_type = CLASS_KINDS[class_path]
+    else:
         report.unknown_analyzer_classes.append((analyzer_id, class_path))
-        # We still emit the verbose form so the YAML is usable; the
-        # user can swap to a custom alias later.
+        # Fall back to the legacy ``type:`` field on the old config
+        # when one is present, or the camera + array2d default.
         scan_type = old.get("type", "array2d")
         image_kind = "camera" if scan_type == "array2d" else "line"
-        image_analyzer_field: Any = {
-            "class": class_path,
+
+    # camera_config_name / line_config_name are no longer carried in
+    # kwargs — the embedded image: section IS the camera/line config.
+    # Drop them.
+    ia_kwargs = dict(old.get("image_analyzer", {}).get("kwargs", {}) or {})
+    ia_kwargs.pop("camera_config_name", None)
+    ia_kwargs.pop("line_config_name", None)
+
+    # Emit the bare-string class path when the class fits the defaults
+    # (camera + array2d) and needs no extra kwargs. Otherwise use the
+    # verbose dict so image_kind / scan_type / kwargs are explicit.
+    image_analyzer_field: Any
+    if (
+        image_kind == "camera"
+        and scan_type == "array2d"
+        and not ia_kwargs
+    ):
+        image_analyzer_field = class_path
+    else:
+        image_analyzer_field = {
+            "class_path": class_path,
             "image_kind": image_kind,
             "scan_type": scan_type,
-            "kwargs": old.get("image_analyzer", {}).get("kwargs", {}) or {},
         }
-    else:
-        # Alias form. Carry kwargs only if the analyzer needs them
-        # beyond the embedded image config.
-        ia_kwargs = dict(old.get("image_analyzer", {}).get("kwargs", {}) or {})
-        # camera_config_name / line_config_name are no longer carried
-        # in kwargs — the embedded image: section IS the camera/line
-        # config. Drop them.
-        ia_kwargs.pop("camera_config_name", None)
-        ia_kwargs.pop("line_config_name", None)
         if ia_kwargs:
-            image_analyzer_field = {"alias": alias, "kwargs": ia_kwargs}
-        else:
-            image_analyzer_field = alias
+            image_analyzer_field["kwargs"] = ia_kwargs
 
-    # Look up the paired image config (if the alias has image_kind != none).
+    # Look up the paired image config (when the analyzer consumes one).
     image_section: Optional[Dict[str, Any]] = None
     bg_scan_number: Optional[int] = None
-    if alias not in NO_IMAGE_KIND_ALIASES:
+    if class_path not in NO_IMAGE_KIND_CLASSES:
         # The legacy schema was inconsistent about where camera_config_name
         # lived: some configs put it at image_analyzer.camera_config_name
         # (sibling of analyzer_class), others nested it inside
