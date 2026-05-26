@@ -519,7 +519,7 @@ def migrate(configs_root: Path, *, dry_run: bool = False) -> MigrationReport:
         # The new file stem is the legacy ``id`` field, not the old
         # file stem — groups reference analyzers by id, and many old
         # YAMLs had file stems that diverged from id (e.g.
-        # ``HTT-MagCam1.yaml`` with ``id: MagCam1``).
+        # ``HTT-HTT-MagCam1.yaml`` with ``id: MagCam1``).
         new_id = old.get("id") or analyzer_path.stem
 
         if _is_var_analyzer(new_id):
