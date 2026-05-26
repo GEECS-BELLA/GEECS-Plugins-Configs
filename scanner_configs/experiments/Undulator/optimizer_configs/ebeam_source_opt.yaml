@@ -52,7 +52,7 @@ evaluator:
 
         # ImageAnalyzer configuration
         image_analyzer:
-          module: image_analysis.offline_analyzers.Undulator.BCaveMagSpecStitcherOpt
+          module: image_analysis.analyzers.Undulator.BCaveMagSpecStitcherOpt
           class: BCaveMagOpt
           kwargs: {"line_config_name":"U_BCaveMagSpec-interpSpec"}
 

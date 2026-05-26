@@ -1,6 +1,6 @@
 name: U_HasoLift
 image_analyzer:
-  class_path: image_analysis.offline_analyzers.HASO_himg_has_processor.HASOHimgHasProcessor
+  class_path: image_analysis.analyzers.HASO_himg_has_processor.HASOHimgHasProcessor
   image_kind: none
   scan_type: array2d
   kwargs:
