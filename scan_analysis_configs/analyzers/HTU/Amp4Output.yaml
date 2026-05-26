@@ -1,5 +1,5 @@
 name: UC_Amp4_IR_output
-image_analyzer: beam
+image_analyzer: image_analysis.offline_analyzers.beam_analyzer.BeamAnalyzer
 image:
   bit_depth: 16
   description: IR mode at the input to amp3

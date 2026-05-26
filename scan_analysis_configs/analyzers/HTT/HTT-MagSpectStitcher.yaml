@@ -1,6 +1,8 @@
 name: HTT-C23_1_MagSpec1-interpSpec
 image_analyzer:
-  alias: line_stitcher
+  class_path: image_analysis.offline_analyzers.line_stitcher.LineStitcher
+  image_kind: line
+  scan_type: array1d
   kwargs:
     sibling_devices:
     - HTT-C23_2_MagSpec2-interpSpec

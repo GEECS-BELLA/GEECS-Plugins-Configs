@@ -1,5 +1,8 @@
 name: U_BCaveMagSpec-interpSpec
-image_analyzer: line
+image_analyzer:
+  class_path: image_analysis.offline_analyzers.line_analyzer.LineAnalyzer
+  image_kind: line
+  scan_type: array1d
 image:
   description: Example configuration for processing 1D spectral data or lineouts
   data_format: Charge density vs Energy

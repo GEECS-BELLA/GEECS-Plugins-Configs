@@ -1,6 +1,8 @@
 name: CAM-TEA-MagSpecA-interpSpec
 image_analyzer:
-  alias: line_stitcher
+  class_path: image_analysis.offline_analyzers.line_stitcher.LineStitcher
+  image_kind: line
+  scan_type: array1d
   kwargs:
     sibling_devices:
     - CAM-TEA-MagSpecB-interpSpec

@@ -1,5 +1,5 @@
 name: UC_UndulatorRad2
-image_analyzer: beam
+image_analyzer: image_analysis.offline_analyzers.beam_analyzer.BeamAnalyzer
 image:
   description: Undulator radiation diagnostic
   bit_depth: 16

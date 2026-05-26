@@ -1,5 +1,5 @@
 name: HTT-C23_4_MagSpec4
-image_analyzer: magspec_manual
+image_analyzer: image_analysis.offline_analyzers.magspec_manual_calib_analyzer.MagSpecManualCalibAnalyzer
 image:
   description: High power mode imager
   camera_type: ebeam_profile
