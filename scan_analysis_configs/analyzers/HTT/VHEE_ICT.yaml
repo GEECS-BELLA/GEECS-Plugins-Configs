@@ -1,9 +1,7 @@
 name: HTT-VHEE_ICT_Picoscope
-image_analyzer:
-  class_path: image_analysis.analyzers.ict_1d_analyzer.ICT1DAnalyzer
-  image_kind: line
-  scan_type: array1d
+image_analyzer: image_analysis.analyzers.ict_1d_analyzer.ICT1DAnalyzer
 image:
+  type: line
   description: VHEE ICT charge measurement from oscilloscope traces
   data_format: volts (V) vs time (s)
   data_loading:

@@ -1,8 +1,6 @@
 name: CAM-TEA-MagSpecA-interpSpec
 image_analyzer:
   class_path: image_analysis.analyzers.line_stitcher.LineStitcher
-  image_kind: line
-  scan_type: array1d
   kwargs:
     sibling_devices:
     - CAM-TEA-MagSpecB-interpSpec
@@ -10,6 +8,7 @@ image_analyzer:
     - CAM-TEA-MagSpecD-interpSpec
     name: PW-MagSpectStitcher
 image:
+  type: line
   description: Example configuration for processing 1D spectral data or lineouts
   data_format: Charge density vs Energy
   data_loading:

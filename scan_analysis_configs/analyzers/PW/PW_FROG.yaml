@@ -1,6 +1,7 @@
 name: FROG-LB-1-Temporal
 image_analyzer: image_analysis.analyzers.grenouille_analyzer.GrenouilleAnalyzer
 image:
+  type: camera
   description: Frog laser bay
   bit_depth: 16
   roi:

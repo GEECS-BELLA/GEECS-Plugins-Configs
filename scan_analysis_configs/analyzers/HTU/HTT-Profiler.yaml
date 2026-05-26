@@ -1,6 +1,7 @@
 name: HTT-D-EBeam_Profiler
 image_analyzer: image_analysis.analyzers.beam_analyzer.BeamAnalyzer
 image:
+  type: camera
   description: high resolution for electron beam profile analysis
   bit_depth: 16
   background:
