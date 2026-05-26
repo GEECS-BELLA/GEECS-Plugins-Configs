@@ -60,40 +60,40 @@ logger = logging.getLogger("migrate")
 
 
 CLASS_KINDS: Dict[str, Tuple[str, str]] = {
-    "image_analysis.offline_analyzers.beam_analyzer.BeamAnalyzer": (
+    "image_analysis.analyzers.beam_analyzer.BeamAnalyzer": (
         "camera",
         "array2d",
     ),
-    "image_analysis.offline_analyzers.standard_analyzer.StandardAnalyzer": (
+    "image_analysis.analyzers.standard_analyzer.StandardAnalyzer": (
         "camera",
         "array2d",
     ),
-    "image_analysis.offline_analyzers.grenouille_analyzer.GrenouilleAnalyzer": (
+    "image_analysis.analyzers.grenouille_analyzer.GrenouilleAnalyzer": (
         "camera",
         "array2d",
     ),
     (
-        "image_analysis.offline_analyzers."
+        "image_analysis.analyzers."
         "magspec_manual_calib_analyzer.MagSpecManualCalibAnalyzer"
     ): ("camera", "array2d"),
-    "image_analysis.offline_analyzers.standard_1d_analyzer.Standard1DAnalyzer": (
+    "image_analysis.analyzers.standard_1d_analyzer.Standard1DAnalyzer": (
         "line",
         "array1d",
     ),
-    "image_analysis.offline_analyzers.line_analyzer.LineAnalyzer": (
+    "image_analysis.analyzers.line_analyzer.LineAnalyzer": (
         "line",
         "array1d",
     ),
-    "image_analysis.offline_analyzers.ict_1d_analyzer.ICT1DAnalyzer": (
+    "image_analysis.analyzers.ict_1d_analyzer.ICT1DAnalyzer": (
         "line",
         "array1d",
     ),
-    "image_analysis.offline_analyzers.line_stitcher.LineStitcher": (
+    "image_analysis.analyzers.line_stitcher.LineStitcher": (
         "line",
         "array1d",
     ),
     (
-        "image_analysis.offline_analyzers."
+        "image_analysis.analyzers."
         "HASO_himg_has_processor.HASOHimgHasProcessor"
     ): ("none", "array2d"),
 }

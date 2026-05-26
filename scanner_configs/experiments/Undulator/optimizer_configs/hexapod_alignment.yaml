@@ -48,7 +48,7 @@ evaluator:
 
         # ImageAnalyzer configuration
         image_analyzer:
-          module: image_analysis.offline_analyzers.beam_analyzer
+          module: image_analysis.analyzers.beam_analyzer
           class: BeamAnalyzer
           kwargs: {"camera_config_name":"UC_TC_Output"}
 

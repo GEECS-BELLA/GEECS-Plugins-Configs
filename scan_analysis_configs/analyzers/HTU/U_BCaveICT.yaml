@@ -1,6 +1,6 @@
 name: U_BCaveICT
 image_analyzer:
-  class_path: image_analysis.offline_analyzers.ict_1d_analyzer.ICT1DAnalyzer
+  class_path: image_analysis.analyzers.ict_1d_analyzer.ICT1DAnalyzer
   image_kind: line
   scan_type: array1d
 image:

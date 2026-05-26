@@ -47,7 +47,7 @@ evaluator:
 
         # ImageAnalyzer configuration
         image_analyzer:
-          module: image_analysis.offline_analyzers.beam_analyzer
+          module: image_analysis.analyzers.beam_analyzer
           class: BeamAnalyzer
           kwargs: {"camera_config_name":"UC_ALineEBeam3"}
 
@@ -60,7 +60,7 @@ evaluator:
       #   analyzer_type: Array2DScanAnalyzer
       #   file_tail: .png
       #   image_analyzer:
-      #     module: image_analysis.offline_analyzers.Undulator.hi_res_mag_cam_analyzer
+      #     module: image_analysis.analyzers.Undulator.hi_res_mag_cam_analyzer
       #     class: HiResMagCamAnalyzer
       #     kwargs:
       #       camera_name: UC_HiResMagCam

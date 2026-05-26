@@ -1,5 +1,5 @@
 name: UC_TopView
-image_analyzer: image_analysis.offline_analyzers.beam_analyzer.BeamAnalyzer
+image_analyzer: image_analysis.analyzers.beam_analyzer.BeamAnalyzer
 image:
   description: IR mode at the input to amp3
   bit_depth: 16

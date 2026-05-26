@@ -4,7 +4,7 @@ image_analyzer:
   scan_type: array1d
   kwargs:
     line_config_name: U_BCaveMagSpec-interpSpec
-  class_path: image_analysis.offline_analyzers.Undulator.BCaveMagSpecStitcherOpt.BCaveMagOpt
+  class_path: image_analysis.analyzers.Undulator.BCaveMagSpecStitcherOpt.BCaveMagOpt
 image:
   description: Example configuration for processing 1D spectral data or lineouts
   data_format: Charge density vs Energy
