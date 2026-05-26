@@ -1,6 +1,7 @@
 name: U_BCaveMagSpec
 image_analyzer: image_analysis.analyzers.beam_analyzer.BeamAnalyzer
 image:
+  type: camera
   bit_depth: 16
   description: B-Cave magnetic spectrometer camera for electron beam profiling
   background:

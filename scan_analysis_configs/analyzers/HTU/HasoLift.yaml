@@ -1,8 +1,6 @@
 name: U_HasoLift
 image_analyzer:
   class_path: image_analysis.analyzers.HASO_himg_has_processor.HASOHimgHasProcessor
-  image_kind: none
-  scan_type: array2d
   kwargs:
     wavekit_config_file_path: Z:/software/control-all-loasis/HTU/Active Version/GEECS-Plugins/ImageAnalysis/image_analysis/third_party_sdks/wavekit_43/WFS_HASO4_LIFT_680_8244_gain_enabled.dat
     mask_top: 125

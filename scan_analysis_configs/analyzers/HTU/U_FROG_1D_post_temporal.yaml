@@ -1,9 +1,7 @@
 name: U_FROG_Grenouille-Temporal
-image_analyzer:
-  class_path: image_analysis.analyzers.line_analyzer.LineAnalyzer
-  image_kind: line
-  scan_type: array1d
+image_analyzer: image_analysis.analyzers.line_analyzer.LineAnalyzer
 image:
+  type: line
   description: BCave ICT charge measurement from oscilloscope traces
   data_loading:
     data_type: tsv

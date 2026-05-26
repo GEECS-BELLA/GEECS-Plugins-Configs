@@ -1,11 +1,10 @@
 name: U_BCaveMagSpec-interpSpec
 image_analyzer:
-  image_kind: line
-  scan_type: array1d
+  class_path: image_analysis.analyzers.Undulator.BCaveMagSpecStitcherOpt.BCaveMagOpt
   kwargs:
     line_config_name: U_BCaveMagSpec-interpSpec
-  class_path: image_analysis.analyzers.Undulator.BCaveMagSpecStitcherOpt.BCaveMagOpt
 image:
+  type: line
   description: Example configuration for processing 1D spectral data or lineouts
   data_format: Charge density vs Energy
   data_loading:

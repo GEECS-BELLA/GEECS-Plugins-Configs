@@ -1,9 +1,7 @@
 name: U_148Spectrometer
-image_analyzer:
-  class_path: image_analysis.analyzers.standard_1d_analyzer.Standard1DAnalyzer
-  image_kind: line
-  scan_type: array1d
+image_analyzer: image_analysis.analyzers.standard_1d_analyzer.Standard1DAnalyzer
 image:
+  type: line
   description: spectrometer oscilloscope traces
   data_format: intensity (arb) vs wavelength (nm)
   data_loading:
