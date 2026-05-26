@@ -6,7 +6,7 @@ image_analyzer:
     - HTT-C23_2_MagSpec2-interpSpec
     - HTT-C23_3_MagSpec3-interpSpec
     - HTT-C23_4_MagSpec4-interpSpec
-    name: PW-MagSpectStitcher
+    name: HTT-MagSpecStitcher
 image:
   type: line
   description: Example configuration for processing 1D spectral data or lineouts
