@@ -5,7 +5,6 @@ image:
   bit_depth: 16
   description: IR leaking through final steering mirror
   background:
-    enabled: true
     method: constant
     constant_level: 30.0
   metadata:
@@ -18,11 +17,15 @@ image:
     y_min: 350
     y_max: 750
   thresholding:
-    enabled: true
     method: constant
     value: 0.0
     mode: to_zero
     invert: false
+  pipeline:
+    steps:
+    - background
+    - roi
+    - thresholding
 scan:
   priority: 19
   mode: per_shot

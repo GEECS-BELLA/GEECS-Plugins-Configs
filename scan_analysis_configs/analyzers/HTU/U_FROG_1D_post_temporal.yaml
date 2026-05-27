@@ -22,7 +22,6 @@ image:
     x_min: -200.0
     x_max: 200.0
   interpolation:
-    enabled: true
     num_points: 300
     x_min: -175.0
     x_max: 175.0

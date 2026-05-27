@@ -5,13 +5,11 @@ image:
   description: high resolution for electron beam profile analysis
   bit_depth: 16
   background:
-    enabled: true
     method: from_file
     file_path: '{scan_dir}/computed_background.npy'
     constant_level: 100.0
     additional_constant: 20
   thresholding:
-    enabled: true
     method: constant
     value: 0.0
     mode: to_zero
@@ -27,6 +25,12 @@ image:
     spatial_calibration: 1.9e-05
     location: HTT target chamber
     notes: NA
+  pipeline:
+    steps:
+    - background
+    - thresholding
+    - filtering
+    - transforms
 scan:
   priority: 1
   mode: per_shot
