@@ -6,11 +6,9 @@ image:
   camera_type: ebeam_profile
   bit_depth: 16
   background:
-    enabled: true
     method: constant
     constant_level: 150.0
   thresholding:
-    enabled: true
     method: constant
     value: 0.0
     mode: to_zero
@@ -27,6 +25,12 @@ image:
     spatial_calibration: 2.44e-05
     location: A-Line beamline
     notes: Migrated from hardcoded configuration in EBeamProfile.py
+  pipeline:
+    steps:
+    - background
+    - roi
+    - thresholding
+    - filtering
 scan:
   priority: 18
   mode: per_shot

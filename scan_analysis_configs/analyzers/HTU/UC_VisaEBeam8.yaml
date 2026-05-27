@@ -5,7 +5,6 @@ image:
   bit_depth: 16
   description: e beam profile on visa 8 screen
   background:
-    enabled: true
     method: from_file
     file_path: '{scan_dir}/computed_background.npy'
     constant_level: 50.0
@@ -17,6 +16,10 @@ image:
     x_min: 105
     y_max: 433
     y_min: 100
+  pipeline:
+    steps:
+    - background
+    - roi
 scan:
   priority: 1
   mode: per_shot

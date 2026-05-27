@@ -10,7 +10,6 @@ image:
     y_min: 350
     y_max: 650
   background:
-    enabled: true
     method: constant
     file_path: null
     constant_level: 5.0
@@ -19,7 +18,6 @@ image:
   circular_mask: null
   vignette: null
   thresholding:
-    enabled: true
     method: constant
     value: 0.0
     mode: to_zero
@@ -34,7 +32,17 @@ image:
     flip_vertical: false
     distortion_correction: false
     distortion_coeffs: null
-  pipeline: null
+  pipeline:
+    steps:
+    - background
+    - vignette
+    - crosshair_masking
+    - roi
+    - circular_mask
+    - thresholding
+    - filtering
+    - normalization
+    - transforms
   analysis: null
   metadata:
     location: Room 148

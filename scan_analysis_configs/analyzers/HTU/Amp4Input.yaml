@@ -6,7 +6,6 @@ image:
   description: Image analyzer to calcuate basic statistics of the IR laser beam profile
     at the input to amp4.
   background:
-    enabled: true
     method: constant
     constant_level: 90.0
   metadata:
@@ -19,11 +18,15 @@ image:
     y_max: 600
     y_min: 1
   thresholding:
-    enabled: true
     method: constant
     value: 0.0
     mode: to_zero
     invert: false
+  pipeline:
+    steps:
+    - background
+    - roi
+    - thresholding
 scan:
   priority: 30
   mode: per_shot

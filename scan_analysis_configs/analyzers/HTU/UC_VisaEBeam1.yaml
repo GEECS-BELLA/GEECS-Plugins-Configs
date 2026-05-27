@@ -5,7 +5,6 @@ image:
   bit_depth: 16
   description: e beam profile on visa 1 screen
   background:
-    enabled: true
     method: from_file
     file_path: '{scan_dir}/computed_background.npy'
     constant_level: 50.0
@@ -26,7 +25,6 @@ image:
       height: 108
       thickness: 10
       width: 108
-    enabled: true
   metadata:
     location: Migrated camera
     notes: Migrated from hardcoded configuration in EBeamProfile.py
@@ -36,6 +34,11 @@ image:
     x_min: 558
     y_max: 623
     y_min: 290
+  pipeline:
+    steps:
+    - background
+    - crosshair_masking
+    - roi
 scan:
   priority: 1
   mode: per_shot

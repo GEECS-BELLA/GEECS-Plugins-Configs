@@ -6,11 +6,9 @@ image:
   camera_type: ebeam_profile
   bit_depth: 16
   background:
-    enabled: true
     method: null
     additional_constant: 1.5
   thresholding:
-    enabled: true
     method: constant
     value: 0.0
     mode: to_zero
@@ -28,7 +26,6 @@ image:
     flip_horizontal: false
     flip_vertical: false
   vignette:
-    enabled: true
     method: radial_polynomial
     full_width: 1384
     full_height: 1032
@@ -50,6 +47,14 @@ image:
       lanex_calibration_file: data/HTT-MagSpce-Calibrations/250101lanexCalib.txt
       camera_number: 4
       magnetic_field_t: 0.2008
+  pipeline:
+    steps:
+    - background
+    - vignette
+    - roi
+    - thresholding
+    - filtering
+    - transforms
 scan:
   priority: 1
   mode: per_shot
