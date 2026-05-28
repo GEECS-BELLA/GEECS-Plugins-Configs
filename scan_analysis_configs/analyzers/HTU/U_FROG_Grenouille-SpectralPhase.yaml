@@ -1,0 +1,39 @@
+name: U_FROG_Grenouille-Temporal
+image_analyzer: image_analysis.analyzers.frog_spectral_phase_analyzer.FrogSpectralPhaseAnalyzer
+image:
+  type: line
+  name: U_FROG_Grenouille-SpectralPhase
+  description: FROG spectral phase fit from retrieved lineout sidecar
+  data_format: x vs y
+  processing_dtype: float64
+  storage_dtype: float32
+  data_loading:
+    data_type: tsv
+    trace_index: 0
+    x_trace_index: null
+    delimiter: "\t"
+    x_column: 3
+    y_column: 5
+    auxiliary_columns:
+      weights: 4
+  roi:
+    x_min: 750.0
+    x_max: 850.0
+  interpolation: null
+  background: null
+  filtering: null
+  thresholding: null
+  analysis:
+    fit_order: 3
+    mask_threshold: 0.5
+    reference_wavelength_nm: 800.0
+    sign_reference: 1.0
+    sign_reference_order: 2
+  pipeline:
+    steps:
+    - roi
+scan:
+  priority: 3
+  mode: per_shot
+  save: true
+  file_tail: _retrieved_lineouts.tsv
