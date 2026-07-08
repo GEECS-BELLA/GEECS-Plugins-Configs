@@ -27,14 +27,15 @@ actions:
   setup: []
   closeout: []
 
-# Honor the GEECS experiment database's scan-start/end writes (MySQL
-# expt_device_variable rows with set='yes') for devices taking part in a scan,
-# matching how Master Control behaves. (Consumed at the M3c DB-runtime
-# milestone; declared here now so the intended default is on the record.)
+# RESERVED / not currently honored. The MySQL set='yes' scan start/end writes
+# are intentionally disabled: triggering is set up via the trigger profile /
+# shot controller and camera saving via the scanner's save-windowing, and the
+# DB set-rows would otherwise race the shot controller on the DG645. Kept for a
+# possible future re-enable. (M3c, GEECS-Schemas 0.4.0.)
 apply_db_scan_defaults: true
 
 # Log every live experiment device not in a scan's save set as best-effort
 # snapshot columns (expt_device_variable get='yes'), read from the gateway's
 # always-on monitor cache — read-only, never waited on, dead devices dropped
-# with a log line. (Also consumed at M3c.)
+# with a log line. (Honored — the Tier-2 get-side, live as of M3c.)
 background_telemetry: true
