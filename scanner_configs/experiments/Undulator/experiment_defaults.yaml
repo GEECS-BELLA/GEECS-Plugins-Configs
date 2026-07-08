@@ -1,0 +1,40 @@
+# Undulator experiment defaults.
+#
+# What a scan assumes when its ScanRequest doesn't say otherwise. Defaults
+# never override an explicit request field — they only fill blanks — and
+# every applied default is recorded into the run metadata for provenance.
+#
+# Layer order (outermost to innermost): DB experiment table -> THIS FILE ->
+# save-set entry rituals -> the scan's own ScanRequest fields.
+
+schema_version: 1
+
+description: >-
+  Standard Undulator scan defaults: laser-on trigger profile, no standing
+  bracket actions, database scan-start/end writes and background telemetry on.
+
+# The trigger profile a scan uses when it names none. HTU-Normal is the
+# standard laser-on operating profile (external single-shot when armed).
+# Testing scans that must not arm the laser still pass HTU-LaserOFF explicitly.
+trigger_profile: HTU-Normal
+
+# Action plans that bracket EVERY scan: setup runs before the scan's own setup
+# plans, closeout runs after the scan's own closeout (teardown mirrors setup,
+# so a defaults closeout is the outermost bracket). Empty for now — this is
+# where a standing safety ritual (e.g. "return the machine to standby") would
+# go once we decide one. Names must exist in the action_library.
+actions:
+  setup: []
+  closeout: []
+
+# Honor the GEECS experiment database's scan-start/end writes (MySQL
+# expt_device_variable rows with set='yes') for devices taking part in a scan,
+# matching how Master Control behaves. (Consumed at the M3c DB-runtime
+# milestone; declared here now so the intended default is on the record.)
+apply_db_scan_defaults: true
+
+# Log every live experiment device not in a scan's save set as best-effort
+# snapshot columns (expt_device_variable get='yes'), read from the gateway's
+# always-on monitor cache — read-only, never waited on, dead devices dropped
+# with a log line. (Also consumed at M3c.)
+background_telemetry: true
