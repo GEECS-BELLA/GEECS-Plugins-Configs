@@ -1,0 +1,242 @@
+schema_version: 1
+variables:
+  BCaveMagSepecCurrent:
+    target: U_BCaveMagSpecPS:Current_Limit.Ch1
+    kind: setpoint
+  Centtronic DUT position:
+    target: U_ASSERT_Stages:Position.Ch2
+    kind: setpoint
+  DonD Dipole:
+    target: U_DonD_DCStages:Position.Axis 1
+    kind: setpoint
+  DonD Q12 Gap:
+    target: U_DonD_Q12_Gap:Position
+    kind: setpoint
+  DonD Q34 Gap:
+    target: U_DonD_DCStages:Position.Axis 3
+    kind: setpoint
+  DonD Q34 Transverse:
+    target: U_DonD_DCStages:Position.Axis 2
+    kind: setpoint
+  DonDQ12:
+    target: U_DonD_Q12_Gap:Position
+    kind: setpoint
+  EMQ1 Current:
+    target: U_EMQTripletBipolar:Current_Limit.Ch1
+    kind: setpoint
+    confirm: U_EMQTripletBipolar:Current.Ch1
+  EMQ2 Current:
+    target: U_EMQTripletBipolar:Current_Limit.Ch2
+    kind: setpoint
+    confirm: U_EMQTripletBipolar:Current.Ch2
+  EMQ3 Current:
+    target: U_EMQTripletBipolar:Current_Limit.Ch3
+    kind: setpoint
+    confirm: U_EMQTripletBipolar:Current.Ch3
+  Gaia Lamp timing:
+    target: U_1HzShiftedBox:delay.Channel_C
+    kind: setpoint
+  Gas Pressure:
+    target: U_HP_Daq:AnalogOutput.Channel 1
+    kind: setpoint
+  Ghost Focus:
+    target: U_Zaber:Position.Ch2
+    kind: setpoint
+  Grating Separation (um):
+    target: U_CompAerotech:Position.Axis1
+    kind: setpoint
+  Hexapod Angle U:
+    target: U_Hexapod:uangle
+    kind: setpoint
+  Hexapod Angle V:
+    target: U_Hexapod:vangle
+    kind: setpoint
+  Hexapod Angle W:
+    target: U_Hexapod:wangle
+    kind: setpoint
+  Hexapod X:
+    target: U_Hexapod:xpos
+    kind: setpoint
+  Hexapod Y:
+    target: U_Hexapod:ypos
+    kind: setpoint
+  Hexapod Z:
+    target: U_Hexapod:zpos
+    kind: setpoint
+  Jet Blade:
+    target: U_ModeImagerESP:Position.Axis 2
+    kind: setpoint
+  JetX (mm):
+    target: U_ESP_JetXYZ:Position.Axis 1
+    kind: setpoint
+  JetY (mm):
+    target: U_ESP_JetXYZ:Position.Axis 2
+    kind: setpoint
+  JetZ (mm):
+    target: U_ESP_JetXYZ:Position.Axis 3
+    kind: setpoint
+  Mode Imager Stage:
+    target: U_ModeImagerESP:Position.Axis 1
+    kind: setpoint
+  S1H:
+    target: U_S1H:Current
+    kind: setpoint
+  S1V:
+    target: U_S1V:Current
+    kind: setpoint
+  S2H:
+    target: U_S2H:Current
+    kind: setpoint
+  S2V:
+    target: U_S2V:Current
+    kind: setpoint
+  S3H:
+    target: U_S3H:Current
+    kind: setpoint
+  S3V:
+    target: U_S3V:Current
+    kind: setpoint
+  S4H:
+    target: U_S4H:Current
+    kind: setpoint
+  S4V:
+    target: U_S4V:Current
+    kind: setpoint
+  VS1H:
+    target: U_VS1H:Current
+    kind: setpoint
+  VS1V:
+    target: U_VS1V:Current
+    kind: setpoint
+  VS2H:
+    target: U_VS2H:Current
+    kind: setpoint
+  VS2V:
+    target: U_VS2V:Current
+    kind: setpoint
+  VS3H:
+    target: U_VS3H:Current
+    kind: setpoint
+  VS3V:
+    target: U_VS3V:Current
+    kind: setpoint
+  VS4H:
+    target: U_VS4H:Current
+    kind: setpoint
+  VS4V:
+    target: U_VS4V:Current
+    kind: setpoint
+  gaia_Qswitch_time:
+    target: U_1HzShiftedBox:delay.Channel_A
+    kind: setpoint
+  gas jet start time:
+    target: U_DG645_ShotControl:Delay.Ch A
+    kind: setpoint
+  haso stage:
+    target: U_Zaber:Position.Ch1
+    kind: setpoint
+  jet opening time:
+    target: U_DG645_ShotControl:Delay.Ch B
+    kind: setpoint
+  probe cam stage:
+    target: U_ProbeCamStage:Position
+    kind: setpoint
+  thorlabs dut position:
+    target: U_ASSERT_Stages:Position.Ch1
+    kind: setpoint
+  ALine_e_beam_angle_offset_x:
+    kind: pseudo
+    targets:
+    - target: U_S3H:Current
+      forward: composite_var * 1
+    - target: U_S4H:Current
+      forward: composite_var * -2
+    mode: relative
+  ALine_e_beam_angle_offset_y:
+    kind: pseudo
+    targets:
+    - target: U_S3V:Current
+      forward: composite_var * 1
+    - target: U_S4V:Current
+      forward: composite_var * -2
+    mode: relative
+  ALine_e_beam_position_offset_x:
+    kind: pseudo
+    targets:
+    - target: U_S3H:Current
+      forward: composite_var * 1
+    - target: U_S4H:Current
+      forward: composite_var * -1
+    mode: relative
+  ALine_e_beam_position_offset_y:
+    kind: pseudo
+    targets:
+    - target: U_S3V:Current
+      forward: composite_var * 1
+    - target: U_S4V:Current
+      forward: composite_var * -1
+    mode: relative
+  CompressorAndMode:
+    kind: pseudo
+    targets:
+    - target: U_CompAerotech:Position.Axis1
+      forward: composite_var
+    - target: U_ModeImagerESP:Position.Axis 1
+      forward: (composite_var-41000) * 14/1000 - 20
+    mode: absolute
+  ERROR_Laser_angle_offset_y:
+    kind: pseudo
+    targets:
+    - target: U_ESP302_02:Position.Axis 3
+      forward: composite_var * 1.0
+    - target: U_ESP302_02:Position.Axis 1
+      forward: composite_var * -1.5
+    mode: relative
+  HexY_S1H_relative:
+    kind: pseudo
+    targets:
+    - target: U_Hexapod:ypos
+      forward: composite_var
+    - target: U_S1H:Current
+      forward: (composite_var)*8
+    mode: relative
+  HexZ_S1V:
+    kind: pseudo
+    targets:
+    - target: U_Hexapod:zpos
+      forward: composite_var
+    - target: U_S1V:Current
+      forward: -(composite_var + 0.2411) * 9
+    mode: absolute
+  HexZ_S1V_relative:
+    kind: pseudo
+    targets:
+    - target: U_Hexapod:zpos
+      forward: composite_var
+    - target: U_S1V:Current
+      forward: -(composite_var)*9.0
+    mode: relative
+  JetZ_with_probe:
+    kind: pseudo
+    targets:
+    - target: U_ESP_JetXYZ:Position.Axis 3
+      forward: composite_var
+    - target: U_ProbeCamStage:Position
+      forward: 8.5 + (composite_var-10)*2.5
+    mode: absolute
+  Laser_angle_offset_x:
+    kind: pseudo
+    targets:
+    - target: U_ESP302_02:Position.Axis 2
+      forward: composite_var * 1.5
+    - target: U_ESP302_01:Position.Axis 3
+      forward: composite_var * -1.5
+    mode: relative
+  R56_at_100MeV:
+    kind: pseudo
+    targets:
+    - target: U_ChicaneInner:Current
+      forward: sqrt(100 ** 2 * composite_var / 560968.636)
+    - target: U_ChicaneOuter:Current
+      forward: -sqrt(100 ** 2 * composite_var / 560968.636)
+    mode: absolute
