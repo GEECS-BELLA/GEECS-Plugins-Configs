@@ -6,6 +6,10 @@ image_analyzer:
     - CAM-TEA-MagSpecB-interpSpec
     - CAM-TEA-MagSpecC-interpSpec
     - CAM-TEA-MagSpecD-interpSpec
+    - CAM-TEA-MagSpecG-interpSpec
+    - CAM-TEA-MagSpecH-interpSpec
+    - CAM-TEA-MagSpecI-interpSpec
+    - CAM-TEA-MagSpecJ-interpSpec
     name: PW-MagSpectStitcher
 image:
   type: line
@@ -20,6 +24,7 @@ image:
     delimiter: null
     x_column: 0
     y_column: 1
+    auxiliary_columns: {}
   roi: null
   interpolation: null
   background: null
