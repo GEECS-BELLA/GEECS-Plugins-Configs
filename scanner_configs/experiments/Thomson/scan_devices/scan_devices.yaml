@@ -1,4 +1,5 @@
 single_scan_devices:
+  ASSERT-Stage_TestBench: ASSERT-LensStage:Position.Ch1
   Assert-Ctrl-BProfiler-LRes: Assert-Ctrl_BProfiler-LRes:Position.Ch1
   Blade-Z: HTT-ESP02:Position.Axis 3
   'Compressor: Grating Separation': HTT-Aerotech:Position.Axis1

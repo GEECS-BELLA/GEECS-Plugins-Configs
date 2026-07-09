@@ -10,7 +10,6 @@ vocs:
   variables:
     U_S1V:Current: [-4, 4]                                # control (the BAX "S")
     U_EMQTripletBipolar:Current_Limit.Ch1: [1.2, 1.7]     # measurement (the BAX "M")
-  objectives: {}                                          # EMPTY - BAX models observables only
   observables:
     - x_CoM
 

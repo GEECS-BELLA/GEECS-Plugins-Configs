@@ -1,0 +1,13 @@
+Devices:
+  HTT-ESP01:
+    save_nonscalar_data: true
+    synchronous: true
+    variable_list:
+    - Position.Axis 1
+    - Position.Axis 2
+    - Position.Axis 3
+  HTT-ESP02:
+    save_nonscalar_data: true
+    synchronous: true
+    variable_list:
+    - Position.Axis 3

@@ -1,0 +1,26 @@
+name: ASSERT-BP_HR
+image_analyzer: image_analysis.analyzers.beam_analyzer.BeamAnalyzer
+image:
+  type: camera
+  bit_depth: 16
+  description: ASSERT high resolution beam profiler
+  background:
+    method: constant
+    constant_level: 90.0
+  metadata:
+    location: B cave
+    notes: none
+    spatial_calibration: 1
+  thresholding:
+    method: constant
+    value: 0.0
+    mode: to_zero
+    invert: false
+  pipeline:
+    steps:
+    - background
+    - thresholding
+scan:
+  priority: 100
+  mode: per_shot
+  save: false

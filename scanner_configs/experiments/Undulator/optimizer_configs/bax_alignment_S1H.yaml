@@ -8,7 +8,6 @@ vocs:
   variables:
     U_S1H:Current: [-4.5, -1.5]
     U_EMQTripletBipolar:Current_Limit.Ch1: [1.2, 1.7]
-  objectives: {}
   observables:
     - x_CoM
 
