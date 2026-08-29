@@ -31,3 +31,8 @@ scan:
   priority: 30
   mode: per_shot
   save: true
+  # First production opt-in to the central-capture frame stack (the
+  # dual-write validation camera): analysis reads <device>.h5 when a
+  # stack exists, with unconditional fallback to the per-shot PNGs on
+  # any failure shape. See ScanAnalysis CLAUDE.md (device_hdf5).
+  data_format: device_hdf5
