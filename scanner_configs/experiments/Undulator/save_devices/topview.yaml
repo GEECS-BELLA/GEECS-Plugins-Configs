@@ -1,9 +1,14 @@
-Devices:
-  UC_TopView:
-    save_nonscalar_data: true
-    synchronous: true
-    variable_list:
-    - MaxCounts
-    - MeanCounts
-    - 2ndmomW0x
-    - 2ndmomW0y
+schema_version: 1
+name: topview
+entries:
+- device: UC_TopView
+  scalars: []
+  all_scalars: true
+  images: true
+  role: null
+  setup: []
+  closeout: []
+  db_scalars: false
+  at_scan_start: {}
+  at_scan_end: {}
+description: ''

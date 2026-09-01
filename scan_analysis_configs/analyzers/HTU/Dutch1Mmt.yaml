@@ -1,0 +1,38 @@
+name: Dutch1Mmt
+image_analyzer: image_analysis.analyzers.line_analyzer.LineAnalyzer
+image:
+  type: line
+  description: Example configuration for processing 1D spectral data or lineouts
+  data_format: Charge density vs Energy
+  data_loading:
+    data_type: tsv
+  processing_dtype: float64
+  storage_dtype: float32
+  background:
+    method: constant
+    constant_value: 0.0
+  filtering:
+    method: median
+    sigma: 2.0
+    kernel_size: 3
+  x_units: MeV
+  x_scale_factor: 1e0
+  thresholding:
+    method: absolute
+    threshold_value: -10.0
+    clip_below: true
+  roi:
+    x_min: 60
+    x_max: 500
+  pipeline:
+    steps:
+    - background
+    - roi
+    - filtering
+    - thresholding
+scan:
+  priority: 1
+  mode: per_shot
+  save: true
+  gdoc_slot: 0
+  file_tail: .txt

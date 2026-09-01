@@ -1,0 +1,18 @@
+schema_version: 1
+mode: noscan
+axes: []
+shots_per_step: 3
+acquisition: free_run
+save_sets:
+- Amp4In
+- Amp4Out
+background_telemetry: null
+trigger_profile: null
+trigger_variant: null
+actions:
+  setup: []
+  per_step: []
+  closeout: []
+description: ''
+background: false
+optimization: null

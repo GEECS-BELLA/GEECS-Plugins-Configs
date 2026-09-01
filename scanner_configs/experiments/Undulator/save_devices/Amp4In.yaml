@@ -1,5 +1,14 @@
-Devices:
-  UC_Amp4_IR_input:
-    save_nonscalar_data: true
-    synchronous: true
-    variable_list: []
+schema_version: 1
+name: Amp4In
+entries:
+- device: UC_Amp4_IR_input
+  scalars: []
+  all_scalars: false
+  images: true
+  role: null
+  setup: []
+  closeout: []
+  db_scalars: true
+  at_scan_start: {}
+  at_scan_end: {}
+description: ''
