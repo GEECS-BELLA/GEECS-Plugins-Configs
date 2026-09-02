@@ -1,4 +1,5 @@
-name: U_FROG_Grenouille-Temporal
+name: U_FROG_Grenouille
+output_name: U_FROG_Grenouille-Temporal
 image_analyzer: image_analysis.analyzers.grenouille_analyzer.GrenouilleAnalyzer
 image:
   type: camera
@@ -32,3 +33,4 @@ scan:
   priority: 1
   mode: per_shot
   save: false
+  device: U_FROG_Grenouille-Temporal
