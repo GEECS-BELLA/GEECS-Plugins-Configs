@@ -99,6 +99,14 @@ variables:
   Grating Separation (um):
     target: U_CompAerotech:Position.Axis1
     kind: motor
+  grating_angle_w_DMsurf_TRA:
+    kind: pseudo
+    targets:
+    - target: U_Grating2Rotation:Position.Axis 1
+      forward: composite_var
+    - target: U_TRAServer03:Position.Axis 5
+      forward: composite_var*(7.66)
+    mode: relative
   haso stage:
     target: U_Zaber:Position.Ch1
     kind: motor
