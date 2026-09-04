@@ -1,0 +1,61 @@
+schema_version: 1
+variables:
+  Assert-Ctrl-BProfiler-LRes:
+    target: Assert-Ctrl_BProfiler-LRes:Position.Ch1
+    kind: motor
+  ASSERT-Stage_TestBench:
+    target: ASSERT-LensStage:Position.Ch1
+    kind: motor
+  Blade-Z:
+    target: HTT-ESP02:Position.Axis 3
+    kind: motor
+  'Compressor: Grating Separation':
+    target: HTT-Aerotech:Position.Axis1
+    kind: motor
+  ebeam_profile_zScan:
+    kind: pseudo
+    targets:
+    - target: Assert-Ctrl_DUTStage:Position.Ch1
+      forward: composite_var
+    - target: HTT-TC_Zabers_II:Position.Ch1
+      forward: 100 - composite_var
+    mode: absolute
+  Ghost Stage:
+    target: HTT-ESP06:Position.Axis 3
+    kind: motor
+  HP Mode Imager:
+    target: HTT-ESP06:Position.Axis 1
+    kind: motor
+  Jet x:
+    target: HTT-ESP01:Position.Axis 1
+    kind: motor
+  Jet z:
+    target: HTT-ESP01:Position.Axis 3
+    kind: motor
+  LP Mode Imager:
+    target: HTT-LPModeStage:position
+    kind: motor
+  Pressure Scan:
+    target: HTT-HighPressureDAQ:AnalogOutput.Channel 0
+    kind: setpoint
+  Probe Delay Short:
+    target: HTT-ESP04:Position.Axis 3
+    kind: motor
+  'Probe Delay: Long':
+    target: HTT_ProbeLongDelay:position
+    kind: motor
+  QAtt-DS:
+    target: HTT-B-Zaber_Chain-B:Position.Ch3
+    kind: motor
+  QAtt-US:
+    target: HTT-B-Zaber_Chain-B:Position.Ch2
+    kind: motor
+  Quad-x:
+    target: HTT-B-Zaber_Chain-B:Position.Ch3
+    kind: motor
+  Quad-y:
+    target: HTT-B-Zaber_Chain-B:Position.Ch5
+    kind: motor
+  Quad-z:
+    target: HTT-B-Zaber_Chain-B:Position.Ch4
+    kind: motor

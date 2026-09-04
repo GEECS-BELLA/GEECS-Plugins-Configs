@@ -1,0 +1,245 @@
+schema_version: 1
+variables:
+  ALine_e_beam_angle_offset_x:
+    kind: pseudo
+    targets:
+    - target: U_S3H:Current
+      forward: composite_var * 1
+    - target: U_S4H:Current
+      forward: composite_var * -2
+    mode: relative
+  ALine_e_beam_angle_offset_y:
+    kind: pseudo
+    targets:
+    - target: U_S3V:Current
+      forward: composite_var * 1
+    - target: U_S4V:Current
+      forward: composite_var * -2
+    mode: relative
+  ALine_e_beam_position_offset_x:
+    kind: pseudo
+    targets:
+    - target: U_S3H:Current
+      forward: composite_var * 1
+    - target: U_S4H:Current
+      forward: composite_var * -1
+    mode: relative
+  ALine_e_beam_position_offset_y:
+    kind: pseudo
+    targets:
+    - target: U_S3V:Current
+      forward: composite_var * 1
+    - target: U_S4V:Current
+      forward: composite_var * -1
+    mode: relative
+  BCaveMagSepecCurrent:
+    target: U_BCaveMagSpecPS:Current_Limit.Ch1
+    kind: setpoint
+  Centtronic DUT position:
+    target: U_ASSERT_Stages:Position.Ch2
+    kind: motor
+  CompressorAndMode:
+    kind: pseudo
+    targets:
+    - target: U_CompAerotech:Position.Axis1
+      forward: composite_var
+    - target: U_ModeImagerESP:Position.Axis 1
+      forward: (composite_var-41000) * 14/1000 - 20
+    mode: absolute
+  DonD Dipole:
+    target: U_DonD_DCStages:Position.Axis 1
+    kind: motor
+  DonD Q12 Gap:
+    target: U_DonD_Q12_Gap:Position
+    kind: motor
+  DonD Q34 Gap:
+    target: U_DonD_DCStages:Position.Axis 3
+    kind: motor
+  DonD Q34 Transverse:
+    target: U_DonD_DCStages:Position.Axis 2
+    kind: motor
+  DonDQ12:
+    target: U_DonD_Q12_Gap:Position
+    kind: motor
+  EMQ1 Current:
+    target: U_EMQTripletBipolar:Current_Limit.Ch1
+    kind: setpoint
+    confirm: U_EMQTripletBipolar:Current.Ch1
+  EMQ2 Current:
+    target: U_EMQTripletBipolar:Current_Limit.Ch2
+    kind: setpoint
+    confirm: U_EMQTripletBipolar:Current.Ch2
+  EMQ3 Current:
+    target: U_EMQTripletBipolar:Current_Limit.Ch3
+    kind: setpoint
+    confirm: U_EMQTripletBipolar:Current.Ch3
+  ERROR_Laser_angle_offset_y:
+    kind: pseudo
+    targets:
+    - target: U_ESP302_02:Position.Axis 3
+      forward: composite_var * 1.0
+    - target: U_ESP302_02:Position.Axis 1
+      forward: composite_var * -1.5
+    mode: relative
+  Gaia Lamp timing:
+    target: U_1HzShiftedBox:delay.Channel_C
+    kind: setpoint
+  gaia_Qswitch_time:
+    target: U_1HzShiftedBox:delay.Channel_A
+    kind: setpoint
+  gas jet start time:
+    target: U_DG645_ShotControl:Delay.Ch A
+    kind: setpoint
+  Gas Pressure:
+    target: U_HP_Daq:AnalogOutput.Channel 1
+    kind: setpoint
+  Ghost Focus:
+    target: U_Zaber:Position.Ch2
+    kind: motor
+  Grating Separation (um):
+    target: U_CompAerotech:Position.Axis1
+    kind: motor
+  haso stage:
+    target: U_Zaber:Position.Ch1
+    kind: motor
+  Hexapod Angle U:
+    target: U_Hexapod:uangle
+    kind: motor
+  Hexapod Angle V:
+    target: U_Hexapod:vangle
+    kind: motor
+  Hexapod Angle W:
+    target: U_Hexapod:wangle
+    kind: motor
+  Hexapod X:
+    target: U_Hexapod:xpos
+    kind: motor
+  Hexapod Y:
+    target: U_Hexapod:ypos
+    kind: motor
+  Hexapod Z:
+    target: U_Hexapod:zpos
+    kind: motor
+  HexY_S1H_relative:
+    kind: pseudo
+    targets:
+    - target: U_Hexapod:ypos
+      forward: composite_var
+    - target: U_S1H:Current
+      forward: (composite_var)*8
+    mode: relative
+  HexZ_S1V:
+    kind: pseudo
+    targets:
+    - target: U_Hexapod:zpos
+      forward: composite_var
+    - target: U_S1V:Current
+      forward: -(composite_var + 0.2411) * 9
+    mode: absolute
+  HexZ_S1V_relative:
+    kind: pseudo
+    targets:
+    - target: U_Hexapod:zpos
+      forward: composite_var
+    - target: U_S1V:Current
+      forward: -(composite_var)*9.0
+    mode: relative
+  Jet Blade:
+    target: U_ModeImagerESP:Position.Axis 2
+    kind: motor
+  jet opening time:
+    target: U_DG645_ShotControl:Delay.Ch B
+    kind: setpoint
+  JetX (mm):
+    target: U_ESP_JetXYZ:Position.Axis 1
+    kind: motor
+  JetY (mm):
+    target: U_ESP_JetXYZ:Position.Axis 2
+    kind: motor
+  JetZ (mm):
+    target: U_ESP_JetXYZ:Position.Axis 3
+    kind: motor
+  JetZ_with_probe:
+    kind: pseudo
+    targets:
+    - target: U_ESP_JetXYZ:Position.Axis 3
+      forward: composite_var
+    - target: U_ProbeCamStage:Position
+      forward: 8.5 + (composite_var-10)*2.5
+    mode: absolute
+  Laser_angle_offset_x:
+    kind: pseudo
+    targets:
+    - target: U_ESP302_02:Position.Axis 2
+      forward: composite_var * 1.5
+    - target: U_ESP302_01:Position.Axis 3
+      forward: composite_var * -1.5
+    mode: relative
+  Mode Imager Stage:
+    target: U_ModeImagerESP:Position.Axis 1
+    kind: motor
+  probe cam stage:
+    target: U_ProbeCamStage:Position
+    kind: motor
+  R56_at_100MeV:
+    kind: pseudo
+    targets:
+    - target: U_ChicaneInner:Current
+      forward: sqrt(100 ** 2 * composite_var / 560968.636)
+    - target: U_ChicaneOuter:Current
+      forward: -sqrt(100 ** 2 * composite_var / 560968.636)
+    mode: absolute
+  S1H:
+    target: U_S1H:Current
+    kind: motor
+  S1V:
+    target: U_S1V:Current
+    kind: motor
+  S2H:
+    target: U_S2H:Current
+    kind: motor
+  S2V:
+    target: U_S2V:Current
+    kind: motor
+  S3H:
+    target: U_S3H:Current
+    kind: motor
+  S3V:
+    target: U_S3V:Current
+    kind: motor
+  S4H:
+    target: U_S4H:Current
+    kind: motor
+  S4V:
+    target: U_S4V:Current
+    kind: motor
+  StretcherMIStaged:
+    target: U_StretchterXMCC:Position.Ch3
+    kind: motor
+  thorlabs dut position:
+    target: U_ASSERT_Stages:Position.Ch1
+    kind: motor
+  VS1H:
+    target: U_VS1H:Current
+    kind: motor
+  VS1V:
+    target: U_VS1V:Current
+    kind: motor
+  VS2H:
+    target: U_VS2H:Current
+    kind: motor
+  VS2V:
+    target: U_VS2V:Current
+    kind: motor
+  VS3H:
+    target: U_VS3H:Current
+    kind: motor
+  VS3V:
+    target: U_VS3V:Current
+    kind: motor
+  VS4H:
+    target: U_VS4H:Current
+    kind: motor
+  VS4V:
+    target: U_VS4V:Current
+    kind: motor
