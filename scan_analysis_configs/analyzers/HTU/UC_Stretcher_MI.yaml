@@ -1,22 +1,21 @@
 schema_version: 2
-name: U_FROG_Grenouille
-output_name: U_FROG_Grenouille-Temporal
+name: UC_Stretcher_MI
 analyzer:
   kind: beam
 image:
   type: camera
-  description: image of target chamber output port
+  description: IR mode at the input to amp2
   metadata:
-    location: '148'
+    location: Room 148
     notes: none
     spatial_calibration: 2.44e-05
   bit_depth: 16
   background:
     method: constant
-    constant_level: 0.0
+    constant_level: 100.0
   thresholding:
     method: constant
-    value: 0.0
+    value: 30.0
     mode: to_zero
     invert: false
   filtering:
@@ -26,7 +25,6 @@ image:
   - thresholding
   - filtering
 scan:
-  priority: 2
+  priority: 40
   mode: per_shot
   save: true
-  device: U_FROG_Grenouille-Temporal
