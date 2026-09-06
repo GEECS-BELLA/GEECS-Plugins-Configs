@@ -1,42 +1,43 @@
+schema_version: 2
 name: UC_VisaEBeam2
-image_analyzer: image_analysis.analyzers.beam_analyzer.BeamAnalyzer
+analyzer:
+  kind: beam
 image:
   type: camera
-  bit_depth: 16
   description: e beam profile on visa 2 screen
+  metadata:
+    spatial_calibration: 7.5e-06
+  bit_depth: 16
+  roi:
+    x_min: 110
+    x_max: 443
+    y_min: 75
+    y_max: 408
   background:
     method: from_file
     file_path: '{scan_dir}/computed_background.npy'
     constant_level: 50.0
-    additional_constant: 2
+    additional_constant: 2.0
   crosshair_masking:
     crosshairs:
-    - angle: 0
-      center:
+    - center:
       - 193
       - 97
+      width: 108
       height: 108
       thickness: 10
-      width: 108
-    - angle: 0
-      center:
+      angle: 0.0
+    - center:
       - 193
       - 465
+      width: 108
       height: 108
       thickness: 10
-      width: 108
-  metadata:
-    spatial_calibration: 7.5e-06
-  roi:
-    x_max: 443
-    x_min: 110
-    y_max: 408
-    y_min: 75
+      angle: 0.0
   pipeline:
-    steps:
-    - background
-    - crosshair_masking
-    - roi
+  - background
+  - crosshair_masking
+  - roi
 scan:
   priority: 1
   mode: per_shot

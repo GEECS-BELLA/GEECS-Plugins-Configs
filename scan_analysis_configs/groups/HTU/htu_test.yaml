@@ -1,5 +1,6 @@
+schema_version: 1
 name: HTU_htu_test
 analyzers:
 - ref: BcaveMagSpecStitcherSpec
   enabled: false
-- HTT-Profiler
+- ref: HTT-Profiler

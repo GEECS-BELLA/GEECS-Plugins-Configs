@@ -1,3 +1,4 @@
+schema_version: 1
 name: HTU_haso_only
 analyzers:
-- HasoLift
+- ref: HasoLift

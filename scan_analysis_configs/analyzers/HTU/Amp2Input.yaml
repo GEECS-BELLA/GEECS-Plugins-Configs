@@ -1,41 +1,41 @@
+schema_version: 2
 name: UC_Amp2_IR_Input
-image_analyzer: image_analysis.analyzers.beam_analyzer.BeamAnalyzer
+analyzer:
+  kind: beam
 image:
   type: camera
-  bit_depth: 16
   description: IR mode at the input to amp2
-  background:
-    method: constant
-    constant_level: 100.0
   metadata:
     location: Room 148
     notes: none
     spatial_calibration: 2.44e-05
+  bit_depth: 16
   roi:
-    x_max: 500
     x_min: 1
-    y_max: 500
+    x_max: 500
     y_min: 1
+    y_max: 500
+  background:
+    method: constant
+    constant_level: 100.0
   circular_mask:
     center:
     - 205
     - 260
     radius: 150
-  filtering:
-    gaussian_sigma: null
-    median_kernel_size: 3
   thresholding:
     method: constant
     value: 0.0
     mode: to_zero
     invert: false
+  filtering:
+    median_kernel_size: 3
   pipeline:
-    steps:
-    - background
-    - roi
-    - circular_mask
-    - thresholding
-    - filtering
+  - background
+  - roi
+  - circular_mask
+  - thresholding
+  - filtering
 scan:
   priority: 40
   mode: per_shot

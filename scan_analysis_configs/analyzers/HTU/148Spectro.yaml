@@ -1,28 +1,29 @@
+schema_version: 2
 name: U_148Spectrometer
-image_analyzer: image_analysis.analyzers.standard_1d_analyzer.Standard1DAnalyzer
+analyzer:
+  kind: trace
 image:
   type: line
   description: spectrometer oscilloscope traces
-  data_format: intensity (arb) vs wavelength (nm)
   data_loading:
     data_type: tdms_scope
-    x_trace_index: 0
     trace_index: 1
+    x_trace_index: 0
+  label: intensity (arb) vs wavelength (nm)
   processing_dtype: float64
   storage_dtype: float32
+  roi:
+    x_min: 700.0
+    x_max: 900.0
   background:
     method: constant
-    constant_value: 0.0
+    constant_level: 0.0
   filtering:
     method: none
   thresholding:
     method: none
-  roi:
-    x_min: 700
-    x_max: 900
   pipeline:
-    steps:
-    - roi
+  - roi
 scan:
   priority: 49
   mode: per_shot

@@ -1,5 +1,7 @@
+schema_version: 2
 name: UC_UndulatorRad2
-image_analyzer: image_analysis.analyzers.beam_analyzer.BeamAnalyzer
+analyzer:
+  kind: beam
 image:
   type: camera
   description: Undulator radiation diagnostic
@@ -9,27 +11,16 @@ image:
     x_max: 10000
     y_min: 0
     y_max: 100000
-  background: null
-  crosshair_masking: null
-  circular_mask: null
-  vignette: null
-  thresholding: null
-  filtering:
-    gaussian_sigma: null
-    median_kernel_size: null
-  normalization: null
+  filtering: {}
   transforms:
     rotation_angle: 0.0
     flip_horizontal: false
     flip_vertical: false
     distortion_correction: false
-    distortion_coeffs: null
   pipeline:
-    steps:
-    - roi
-    - filtering
-    - transforms
-  analysis: null
+  - roi
+  - filtering
+  - transforms
 scan:
   priority: 2
   mode: per_shot

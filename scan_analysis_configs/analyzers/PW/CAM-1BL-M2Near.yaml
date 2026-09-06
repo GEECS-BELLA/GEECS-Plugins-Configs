@@ -1,21 +1,12 @@
+schema_version: 2
 name: CAM-1BL-M2Near
-image_analyzer: image_analysis.analyzers.beam_analyzer.BeamAnalyzer
+analyzer:
+  kind: beam
 image:
   type: camera
   description: ''
   bit_depth: 16
-  background: null
-  vignette: null
-  crosshair_masking: null
-  roi: null
-  circular_mask: null
-  thresholding: null
-  filtering: null
-  normalization: null
-  transforms: null
-  analysis: null
-  pipeline:
-    steps: []
+  pipeline: []
 scan:
   priority: 100
   mode: per_shot

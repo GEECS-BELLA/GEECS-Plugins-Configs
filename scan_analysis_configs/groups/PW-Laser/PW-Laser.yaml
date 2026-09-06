@@ -1,3 +1,4 @@
+schema_version: 1
 name: PW-Laser
 analyzers:
-- SCS
+- ref: SCS

@@ -1,50 +1,36 @@
-# Configuration for HTT-C-ASSERTHighR camera
+schema_version: 2
 name: HTT-C-ASSERTHighR
-image_analyzer: image_analysis.analyzers.beam_analyzer.BeamAnalyzer
-
+analyzer:
+  kind: beam
+  enabled_stats:
+  - image_total
+  - x_CoM
+  - y_CoM
 image:
   type: camera
   description: high resolution for electron beam profile analysis
+  metadata:
+    spatial_calibration: 1.9e-05
+    location: HTT target chamber
+    notes: NA
   bit_depth: 16
-
+  roi:
+    x_min: 675
+    x_max: 975
+    y_min: 100
+    y_max: 300
   background:
-    enabled: true
     method: constant
     constant_level: 100.0
-
+  crosshair_masking:
+    crosshairs: []
   thresholding:
-    enabled: true
     method: constant
     value: 0.0
     mode: to_zero
     invert: false
-
-  roi:
-    x_min: 675
-    y_min: 100
-    x_max: 975
-    y_max: 300
-
-  crosshair_masking:
-    enabled: false
-    crosshairs: []
-
-  filtering:
-    gaussian_sigma: null
-    median_kernel_size: null
-
+  filtering: {}
   transforms:
     rotation_angle: 0.0
     flip_horizontal: false
     flip_vertical: false
-
-  analysis:
-    enabled_stats:
-      - image_total
-      - x_CoM
-      - y_CoM
-
-  metadata:
-    spatial_calibration: 0.000019
-    location: HTT target chamber
-    notes: NA

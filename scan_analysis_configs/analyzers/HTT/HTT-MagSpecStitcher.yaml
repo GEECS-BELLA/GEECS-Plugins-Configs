@@ -1,42 +1,41 @@
+schema_version: 2
 name: HTT-C23_1_MagSpec1-interpSpec
-image_analyzer:
-  class_path: image_analysis.analyzers.line_stitcher.LineStitcher
-  kwargs:
-    sibling_devices:
-    - HTT-C23_2_MagSpec2-interpSpec
-    - HTT-C23_3_MagSpec3-interpSpec
-    - HTT-C23_4_MagSpec4-interpSpec
-    name: HTT-MagSpecStitcher
+analyzer:
+  kind: line_stitcher
+  sibling_devices:
+  - HTT-C23_2_MagSpec2-interpSpec
+  - HTT-C23_3_MagSpec3-interpSpec
+  - HTT-C23_4_MagSpec4-interpSpec
+  output_label: HTT-MagSpecStitcher
 image:
   type: line
   description: Example configuration for processing 1D spectral data or lineouts
-  data_format: Charge density vs Energy
   data_loading:
     data_type: tsv
+  label: Charge density vs Energy
+  x_units: MeV
+  x_scale_factor: 1.0
   processing_dtype: float64
   storage_dtype: float32
+  roi:
+    x_min: 4.0
+    x_max: 500.0
   background:
     method: constant
-    constant_value: 0.0
+    constant_level: 0.0
   filtering:
     method: median
-    sigma: 2.0
     kernel_size: 15
-  x_units: MeV
-  x_scale_factor: 1
+    sigma: 2.0
   thresholding:
     method: absolute
     threshold_value: 0.0
     clip_below: true
-  roi:
-    x_min: 4
-    x_max: 500
   pipeline:
-    steps:
-    - background
-    - roi
-    - filtering
-    - thresholding
+  - background
+  - roi
+  - filtering
+  - thresholding
 scan:
   priority: 5
   mode: per_shot

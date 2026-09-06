@@ -1,31 +1,32 @@
+schema_version: 2
 name: UC_ExpanderIn1
-image_analyzer: image_analysis.analyzers.beam_analyzer.BeamAnalyzer
+analyzer:
+  kind: beam
 image:
   type: camera
-  bit_depth: 16
   description: IR mode at the input to amp2
-  background:
-    method: constant
-    constant_level: 50.0
   metadata:
     location: Room 148
     notes: none
     spatial_calibration: 2.44e-05
+  bit_depth: 16
   roi:
     x_min: 125
     x_max: 575
     y_min: 1
     y_max: 450
+  background:
+    method: constant
+    constant_level: 50.0
   thresholding:
     method: constant
     value: 0.0
     mode: to_zero
     invert: false
   pipeline:
-    steps:
-    - background
-    - roi
-    - thresholding
+  - background
+  - roi
+  - thresholding
 scan:
   priority: 20
   mode: per_shot

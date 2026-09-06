@@ -1,7 +1,8 @@
+schema_version: 1
 name: HTT_MagSpec
 analyzers:
-- MagCam1
-- MagCam2
-- MagCam3
-- MagCam4
-- HTT-MagSpectStitcher
+- ref: MagCam1
+- ref: MagCam2
+- ref: MagCam3
+- ref: MagCam4
+- ref: HTT-MagSpectStitcher

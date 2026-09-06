@@ -1,19 +1,20 @@
+schema_version: 1
 name: HTU_baseline
 analyzers:
-- Amp2Input
-- Amp3Input
-- Amp4Input
+- ref: Amp2Input
+- ref: Amp3Input
+- ref: Amp4Input
 - ref: Amp4Output
   enabled: false
-- ExpanderIn1
-- ExpanderIn1_Pulsed
-- ModeImager
-- GaiaMode
-- BcaveMagSpecStitcherSpec
-- U_FROG_Beam
-- OAPin2
-- FinalSteeringLeak
-- U_BCaveSpec-beam
+- ref: ExpanderIn1
+- ref: ExpanderIn1_Pulsed
+- ref: ModeImager
+- ref: GaiaMode
+- ref: BcaveMagSpecStitcherSpec
+- ref: U_FROG_Beam
+- ref: OAPin2
+- ref: FinalSteeringLeak
+- ref: U_BCaveSpec-beam
 - ref: 148Spectro
   enabled: false
-- UC_TopView
+- ref: UC_TopView

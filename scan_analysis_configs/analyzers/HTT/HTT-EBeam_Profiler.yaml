@@ -1,25 +1,26 @@
+schema_version: 2
 name: HTT-D-EBeam_Profiler
-image_analyzer: image_analysis.analyzers.beam_analyzer.BeamAnalyzer
+analyzer:
+  kind: beam
 image:
   type: camera
-  bit_depth: 16
   description: ASSERT test bench optimisation camera
-  background:
-    method: constant
-    constant_level: 90.0
   metadata:
     location: L cave
     notes: none
     spatial_calibration: 1
+  bit_depth: 16
+  background:
+    method: constant
+    constant_level: 90.0
   thresholding:
     method: constant
     value: 0.0
     mode: to_zero
     invert: false
   pipeline:
-    steps:
-    - background
-    - thresholding
+  - background
+  - thresholding
 scan:
   priority: 100
   mode: per_shot

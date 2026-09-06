@@ -1,8 +1,14 @@
+schema_version: 2
 name: UC_TC_Output
-image_analyzer: image_analysis.analyzers.beam_analyzer.BeamAnalyzer
+analyzer:
+  kind: beam
 image:
   type: camera
   description: image of target chamber output port
+  metadata:
+    location: B-cave
+    notes: none
+    spatial_calibration: 2.44e-05
   bit_depth: 16
   roi:
     x_min: 200
@@ -11,30 +17,17 @@ image:
     y_max: 250
   background:
     method: constant
-    file_path: null
     constant_level: 0.0
     additional_constant: 0.0
-  crosshair_masking: null
-  circular_mask: null
-  vignette: null
   thresholding:
     method: constant
     value: 0.0
     mode: to_zero
     invert: false
-  filtering: null
-  normalization: null
-  transforms: null
   pipeline:
-    steps:
-    - background
-    - roi
-    - thresholding
-  analysis: null
-  metadata:
-    location: B-cave
-    notes: none
-    spatial_calibration: 2.44e-05
+  - background
+  - roi
+  - thresholding
 scan:
   priority: 10
   mode: per_shot

@@ -1,40 +1,34 @@
-# A-Line e-beam camera 3 (between A and B cave in the cutout, mirroring
-# the location of UC_ALineEBeam2). Started by adapting UC_ALineEBeam2's
-# ROI / calibration / background settings into the unified diagnostic
-# schema; values may need beam-3-specific tuning once real images are
-# available.
-
+schema_version: 2
 name: UC_ALineEBeam3
-image_analyzer: image_analysis.analyzers.beam_analyzer.BeamAnalyzer
+analyzer:
+  kind: beam
 image:
   type: camera
-  bit_depth: 16
   description: A-Line electron beam camera 3 for beam profiling
+  metadata:
+    location: between A and B cave in the cutout
+    notes: starter config adapted from UC_ALineEBeam2; refine ROI + spatial_calibration
+      with beam-3 calibration runs
+    spatial_calibration: 2.217e-05
+  bit_depth: 16
+  roi:
+    x_min: 1
+    x_max: 1289
+    y_min: 1
+    y_max: 964
   background:
     method: constant
     constant_level: 50.0
-  metadata:
-    location: between A and B cave in the cutout
-    notes: starter config adapted from UC_ALineEBeam2; refine ROI + spatial_calibration with beam-3 calibration runs
-    spatial_calibration: 2.217e-05
-  roi:
-    x_max: 1289
-    x_min: 1
-    y_max: 964
-    y_min: 1
-  filtering:
-    gaussian_sigma: null
-    median_kernel_size: null
   thresholding:
     method: constant
     value: 0.0
     mode: to_zero
     invert: false
+  filtering: {}
   pipeline:
-    steps:
-    - background
-    - roi
-    - thresholding
+  - background
+  - roi
+  - thresholding
 scan:
   priority: 50
   mode: per_shot

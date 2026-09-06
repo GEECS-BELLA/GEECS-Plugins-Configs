@@ -1,9 +1,20 @@
+schema_version: 2
 name: UC_OAPin2
-image_analyzer: image_analysis.analyzers.beam_analyzer.BeamAnalyzer
+analyzer:
+  kind: beam
 image:
   type: camera
   description: High power mode imager
+  metadata:
+    spatial_calibration: 2.44e-05
+    location: A-Line beamline
+    notes: Migrated from hardcoded configuration in EBeamProfile.py
   bit_depth: 16
+  roi:
+    x_min: 200
+    x_max: 1260
+    y_min: 1
+    y_max: 950
   background:
     method: constant
     constant_level: 150.0
@@ -12,24 +23,13 @@ image:
     value: 0.0
     mode: to_zero
     invert: false
-  roi:
-    x_min: 200
-    x_max: 1260
-    y_min: 1
-    y_max: 950
   filtering:
-    gaussian_sigma: null
     median_kernel_size: 3
-  metadata:
-    spatial_calibration: 2.44e-05
-    location: A-Line beamline
-    notes: Migrated from hardcoded configuration in EBeamProfile.py
   pipeline:
-    steps:
-    - background
-    - roi
-    - thresholding
-    - filtering
+  - background
+  - roi
+  - thresholding
+  - filtering
 scan:
   priority: 18
   mode: per_shot

@@ -1,29 +1,29 @@
+schema_version: 2
 name: UC_GaiaMode
-image_analyzer: image_analysis.analyzers.beam_analyzer.BeamAnalyzer
+analyzer:
+  kind: beam
 image:
   type: camera
-  bit_depth: 16
   description: image of e-beam in diagnostics phosphor
-  background:
-    method: constant
-    constant_level: 80.0
   metadata:
     location: B-cave
     notes: none
     spatial_calibration: 2.44e-05
+  bit_depth: 16
+  background:
+    method: constant
+    constant_level: 80.0
   thresholding:
     method: constant
     value: 0.0
     mode: to_zero
     invert: false
   filtering:
-    gaussian_sigma: null
     median_kernel_size: 3
   pipeline:
-    steps:
-    - background
-    - thresholding
-    - filtering
+  - background
+  - thresholding
+  - filtering
 scan:
   priority: 45
   mode: per_shot

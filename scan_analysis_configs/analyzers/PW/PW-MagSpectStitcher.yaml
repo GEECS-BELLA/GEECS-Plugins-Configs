@@ -1,38 +1,29 @@
+schema_version: 2
 name: CAM-TEA-MagSpecA-interpSpec
-image_analyzer:
-  class_path: image_analysis.analyzers.line_stitcher.LineStitcher
-  kwargs:
-    sibling_devices:
-    - CAM-TEA-MagSpecB-interpSpec
-    - CAM-TEA-MagSpecC-interpSpec
-    - CAM-TEA-MagSpecD-interpSpec
-    - CAM-TEA-MagSpecG-interpSpec
-    - CAM-TEA-MagSpecH-interpSpec
-    - CAM-TEA-MagSpecI-interpSpec
-    - CAM-TEA-MagSpecJ-interpSpec
-    name: PW-MagSpectStitcher
+analyzer:
+  kind: line_stitcher
+  sibling_devices:
+  - CAM-TEA-MagSpecB-interpSpec
+  - CAM-TEA-MagSpecC-interpSpec
+  - CAM-TEA-MagSpecD-interpSpec
+  - CAM-TEA-MagSpecG-interpSpec
+  - CAM-TEA-MagSpecH-interpSpec
+  - CAM-TEA-MagSpecI-interpSpec
+  - CAM-TEA-MagSpecJ-interpSpec
+  output_label: PW-MagSpectStitcher
 image:
   type: line
   description: Example configuration for processing 1D spectral data or lineouts
-  data_format: Charge density vs Energy
-  processing_dtype: float64
-  storage_dtype: float32
   data_loading:
     data_type: tsv
     trace_index: 0
-    x_trace_index: null
-    delimiter: null
     x_column: 0
     y_column: 1
     auxiliary_columns: {}
-  roi: null
-  interpolation: null
-  background: null
-  filtering: null
-  thresholding: null
-  analysis: null
-  pipeline:
-    steps: []
+  label: Charge density vs Energy
+  processing_dtype: float64
+  storage_dtype: float32
+  pipeline: []
 scan:
   priority: 1
   mode: per_shot

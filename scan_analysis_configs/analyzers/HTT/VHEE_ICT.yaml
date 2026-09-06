@@ -1,33 +1,33 @@
+schema_version: 2
 name: HTT-VHEE_ICT_Picoscope
-image_analyzer: image_analysis.analyzers.ict_1d_analyzer.ICT1DAnalyzer
+analyzer:
+  kind: ict
+  butterworth_order: 1
+  butterworth_crit_f: 0.125
+  calibration_factor: 0.2
+  dt: 2.0e-09
 image:
   type: line
   description: VHEE ICT charge measurement from oscilloscope traces
-  data_format: volts (V) vs time (s)
   data_loading:
     data_type: tdms_scope
     trace_index: 0
+  label: volts (V) vs time (s)
   processing_dtype: float64
   storage_dtype: float32
   background:
     method: constant
-    constant_value: 0.0
+    constant_level: 0.0
   filtering:
     method: none
   thresholding:
     method: none
-  pipeline:
-    steps: []
-  analysis:
-    butterworth_order: 1
-    butterworth_crit_f: 0.125
-    calibration_factor: 0.2
-    dt: 2e-9
+  pipeline: []
 scan:
   priority: 1
   mode: per_shot
   save: true
   file_tail: .tdms
-  renderer_kwargs:
+  renderer:
     colormap_mode: diverging
     cmap: RdBu_r
