@@ -1,0 +1,12 @@
+schema_version: 1
+name: TargetChamberStages
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: U_ESP_JetXYZ
+  save_images: false
+- device: U_Hexapod
+  save_images: false
+- device: U_ModeImagerESP
+  save_images: false

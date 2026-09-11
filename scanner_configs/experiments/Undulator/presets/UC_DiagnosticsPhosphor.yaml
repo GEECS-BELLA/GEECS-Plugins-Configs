@@ -1,0 +1,8 @@
+schema_version: 1
+name: UC_DiagnosticsPhosphor
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: UC_DiagnosticsPhosphor
+  save_images: true

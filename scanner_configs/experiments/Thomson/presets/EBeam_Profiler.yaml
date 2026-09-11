@@ -1,0 +1,8 @@
+schema_version: 1
+name: EBeam_Profiler
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: HTT-D-EBeam_Profiler
+  save_images: true

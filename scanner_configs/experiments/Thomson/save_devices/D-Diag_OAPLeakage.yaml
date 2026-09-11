@@ -1,5 +1,0 @@
-Devices:
-  HTT-D-OAP_Leakage:
-    save_nonscalar_data: true
-    synchronous: true
-    variable_list: []

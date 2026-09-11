@@ -1,0 +1,32 @@
+schema_version: 1
+name: HP-LaserCams
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: UC_Amp2Depletion_South
+  save_images: true
+- device: UC_Amp2_IR_input
+  save_images: true
+- device: UC_Amp3Depletion_South
+  save_images: true
+- device: UC_Amp3_IR_input
+  save_images: true
+- device: UC_Amp4Depletion_South
+  save_images: true
+- device: UC_Amp4_IR_input
+  save_images: true
+- device: UC_ExpanderIn1
+  save_images: true
+- device: UC_ExpanderIn1_Pulsed
+  save_images: true
+- device: UC_FinalSteeringLeak
+  save_images: true
+- device: UC_GhostUpstream
+  save_images: true
+- device: UC_OAPin2
+  save_images: true
+- device: UC_Stretcher
+  save_images: true
+- device: UC_Stretcher_MI
+  save_images: true

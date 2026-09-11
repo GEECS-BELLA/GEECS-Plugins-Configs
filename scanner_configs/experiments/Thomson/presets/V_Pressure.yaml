@@ -1,0 +1,8 @@
+schema_version: 1
+name: V_Pressure
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: HTT-VacuumGauge
+  save_images: false

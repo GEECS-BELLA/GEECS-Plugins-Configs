@@ -1,0 +1,8 @@
+schema_version: 1
+name: VHEE_LANEX
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: HTT-VHEE_Lanex
+  save_images: true

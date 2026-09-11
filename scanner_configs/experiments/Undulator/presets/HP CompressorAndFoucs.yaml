@@ -1,0 +1,19 @@
+schema_version: 1
+name: HP CompressorAndFoucs
+description: HP power compressor and Mode Scan
+trigger_profile: null
+background: false
+devices:
+- device: UC_ModeImager
+  save_images: true
+- device: U_FROG_Grenouille
+  save_images: true
+plan:
+  name: scan
+  args:
+  - CompressorAndMode
+  - 41000.0
+  - 42000.0
+  - 41
+  kwargs:
+    shots_per_step: 5

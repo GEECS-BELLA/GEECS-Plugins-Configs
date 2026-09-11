@@ -1,0 +1,10 @@
+schema_version: 1
+name: DonDDiagnostics
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: UC_DonDSampleArea
+  save_images: true
+- device: U_BCaveICT
+  save_images: true

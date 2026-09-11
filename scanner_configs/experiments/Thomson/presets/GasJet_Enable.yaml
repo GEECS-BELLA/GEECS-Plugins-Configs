@@ -1,0 +1,8 @@
+schema_version: 1
+name: GasJet_Enable
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: HTT-DG645_6_B
+  save_images: false

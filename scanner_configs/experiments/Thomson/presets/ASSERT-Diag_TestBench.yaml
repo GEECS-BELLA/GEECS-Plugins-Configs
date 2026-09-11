@@ -1,0 +1,8 @@
+schema_version: 1
+name: ASSERT-Diag_TestBench
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: ASSERT-TestBench
+  save_images: true

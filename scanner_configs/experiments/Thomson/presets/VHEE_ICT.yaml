@@ -1,0 +1,8 @@
+schema_version: 1
+name: VHEE_ICT
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: HTT-VHEE_ICT_Picoscope
+  save_images: true

@@ -1,0 +1,8 @@
+schema_version: 1
+name: GasJet_Diag_Shadow
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: HTT-P-JetShadow
+  save_images: true

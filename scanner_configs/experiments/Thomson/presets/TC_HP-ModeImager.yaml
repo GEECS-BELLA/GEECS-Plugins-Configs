@@ -1,0 +1,8 @@
+schema_version: 1
+name: TC_HP-ModeImager
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: HTT-D-HP_Mode_Imager
+  save_images: true

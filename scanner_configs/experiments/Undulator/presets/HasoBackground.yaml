@@ -1,0 +1,19 @@
+schema_version: 1
+name: HasoBackground
+description: haso background nogas
+trigger_profile: null
+background: true
+devices:
+- device: U_ESP_JetXYZ
+  save_images: false
+- device: U_HasoLift
+  save_images: true
+- device: U_ModeImagerESP
+  save_images: false
+- device: U_ProbeCamStage
+  save_images: false
+plan:
+  name: count
+  args: []
+  kwargs:
+    num: 20

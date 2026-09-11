@@ -1,0 +1,12 @@
+schema_version: 1
+name: AmplifierCams
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: UC_Amp2_IR_input
+  save_images: true
+- device: UC_Amp3_IR_input
+  save_images: true
+- device: UC_Amp4_IR_input
+  save_images: true

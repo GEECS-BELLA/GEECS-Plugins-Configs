@@ -1,0 +1,8 @@
+schema_version: 1
+name: ASSERT-BP-LR
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: ASSERT-BP_LR
+  save_images: true

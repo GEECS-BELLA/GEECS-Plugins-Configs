@@ -1,0 +1,8 @@
+schema_version: 1
+name: Hamamatsu_Spectro
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: U_HamaSpectro
+  save_images: true

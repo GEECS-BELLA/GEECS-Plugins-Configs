@@ -1,0 +1,8 @@
+schema_version: 1
+name: 2BL-ShotShutter2
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: CAM-2BL-ShotShutter2
+  save_images: true

@@ -1,0 +1,14 @@
+schema_version: 1
+name: D-Diag_Mode
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: HTT-D-AMP2_In
+  save_images: true
+- device: HTT-D-AMP3_In
+  save_images: true
+- device: HTT-D-AMP4_In
+  save_images: true
+- device: HTT-D-AMP4_Out
+  save_images: true

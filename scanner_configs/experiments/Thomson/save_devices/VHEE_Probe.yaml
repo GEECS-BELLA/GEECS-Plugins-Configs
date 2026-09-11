@@ -1,9 +1,0 @@
-Devices:
-  HTT-VHEE_Ref:
-    save_nonscalar_data: true
-    synchronous: true
-    variable_list: []
-  HTT-VHEE_Sig:
-    save_nonscalar_data: true
-    synchronous: true
-    variable_list: []

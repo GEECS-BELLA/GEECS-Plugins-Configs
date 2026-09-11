@@ -1,0 +1,10 @@
+schema_version: 1
+name: GasJet_Pos
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: HTT-ESP01
+  save_images: true
+- device: HTT-ESP02
+  save_images: true

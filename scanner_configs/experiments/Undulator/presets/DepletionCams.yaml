@@ -1,0 +1,14 @@
+schema_version: 1
+name: DepletionCams
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: UC_Amp2Depletion_South
+  save_images: true
+- device: UC_Amp3Depletion_South
+  save_images: true
+- device: UC_Amp4Depletion_South
+  save_images: true
+- device: UC_GaiaMode
+  save_images: true

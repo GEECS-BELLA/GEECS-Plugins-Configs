@@ -1,0 +1,8 @@
+schema_version: 1
+name: UC_Phosphor1
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: UC_Phosphor1
+  save_images: true

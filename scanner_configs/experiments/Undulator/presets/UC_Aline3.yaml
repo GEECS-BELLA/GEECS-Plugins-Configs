@@ -1,0 +1,8 @@
+schema_version: 1
+name: UC_Aline3
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: UC_ALineEBeam3
+  save_images: true

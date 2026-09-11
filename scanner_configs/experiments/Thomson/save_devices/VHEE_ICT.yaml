@@ -1,6 +1,0 @@
-Devices:
-  HTT-VHEE_ICT_Picoscope:
-    add_all_variables: false
-    save_nonscalar_data: true
-    synchronous: true
-    variable_list: []

@@ -1,5 +1,0 @@
-Devices:
-  HTT-D-HP_Mode_Imager:
-    save_nonscalar_data: true
-    synchronous: true
-    variable_list: []

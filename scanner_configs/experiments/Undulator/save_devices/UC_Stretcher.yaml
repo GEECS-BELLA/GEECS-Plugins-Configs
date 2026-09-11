@@ -1,9 +1,0 @@
-Devices:
-  UC_Stretcher:
-    save_nonscalar_data: true
-    synchronous: true
-    variable_list:
-    - Analysis
-    - centroidx
-    - centroidy
-    - save

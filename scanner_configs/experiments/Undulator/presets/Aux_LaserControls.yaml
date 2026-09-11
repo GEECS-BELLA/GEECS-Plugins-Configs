@@ -1,0 +1,12 @@
+schema_version: 1
+name: Aux_LaserControls
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: U_ESP302_01
+  save_images: false
+- device: U_ESP302_02
+  save_images: false
+- device: U_StretchterXMCC
+  save_images: false

@@ -1,0 +1,12 @@
+schema_version: 1
+name: visa4_spectrometer_setup
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: UC_UndulatorRad2
+  save_images: true
+- device: UC_VisaEBeam4
+  save_images: true
+- device: U_BCaveICT
+  save_images: true

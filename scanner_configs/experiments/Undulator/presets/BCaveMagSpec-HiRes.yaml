@@ -1,0 +1,12 @@
+schema_version: 1
+name: BCaveMagSpec-HiRes
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: UC_HiResMagCam
+  save_images: true
+- device: U_BCaveHallProbe
+  save_images: false
+- device: U_BCaveMagSpecPS
+  save_images: false

@@ -1,0 +1,73 @@
+schema_version: 1
+name: HP-1000 shot noscan-E beam
+description: 1000 shot noscan
+trigger_profile: null
+background: false
+devices:
+- device: U_FROG_Grenouille
+  save_images: true
+- device: UC_HiResMagCam
+  save_images: true
+- device: U_BCaveHallProbe
+  save_images: false
+- device: U_BCaveMagSpecPS
+  save_images: false
+- device: UC_BCaveMagSpecCam1
+  save_images: true
+- device: UC_BCaveMagSpecCam2
+  save_images: true
+- device: UC_BCaveMagSpecCam3
+  save_images: true
+- device: U_BCaveMagSpec
+  save_images: true
+- device: U_HasoLift
+  save_images: true
+- device: U_GhostWFS
+  save_images: true
+- device: U_BCaveICT
+  save_images: true
+- device: U_VacuumGauge
+  save_images: false
+- device: U_ESP_JetXYZ
+  save_images: false
+- device: U_Hexapod
+  save_images: false
+- device: U_ModeImagerESP
+  save_images: false
+- device: UC_Amp2Depletion_South
+  save_images: true
+- device: UC_Amp2_IR_input
+  save_images: true
+- device: UC_Amp3Depletion_South
+  save_images: true
+- device: UC_Amp3_IR_input
+  save_images: true
+- device: UC_Amp4Depletion_South
+  save_images: true
+- device: UC_Amp4_IR_input
+  save_images: true
+- device: UC_ExpanderIn1
+  save_images: true
+- device: UC_ExpanderIn1_Pulsed
+  save_images: true
+- device: UC_FinalSteeringLeak
+  save_images: true
+- device: UC_GhostUpstream
+  save_images: true
+- device: UC_OAPin2
+  save_images: true
+- device: UC_Stretcher
+  save_images: true
+- device: UC_Stretcher_MI
+  save_images: true
+- device: U_ESP302_01
+  save_images: false
+- device: U_ESP302_02
+  save_images: false
+- device: U_StretchterXMCC
+  save_images: false
+plan:
+  name: count
+  args: []
+  kwargs:
+    num: 1000

@@ -1,0 +1,14 @@
+schema_version: 1
+name: HasoLift_background
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: U_ESP_JetXYZ
+  save_images: false
+- device: U_HasoLift
+  save_images: true
+- device: U_ModeImagerESP
+  save_images: false
+- device: U_ProbeCamStage
+  save_images: false

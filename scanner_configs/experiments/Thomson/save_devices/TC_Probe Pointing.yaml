@@ -1,5 +1,0 @@
-Devices:
-  HTT-P-TC_Pointing:
-    save_nonscalar_data: true
-    synchronous: true
-    variable_list: []

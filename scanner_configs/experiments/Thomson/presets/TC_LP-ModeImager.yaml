@@ -1,0 +1,8 @@
+schema_version: 1
+name: TC_LP-ModeImager
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: HTT-Chamber-Cam
+  save_images: true

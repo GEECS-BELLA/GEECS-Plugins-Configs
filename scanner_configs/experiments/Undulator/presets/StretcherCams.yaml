@@ -1,0 +1,10 @@
+schema_version: 1
+name: StretcherCams
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: UC_Stretcher
+  save_images: true
+- device: UC_Stretcher_MI
+  save_images: true

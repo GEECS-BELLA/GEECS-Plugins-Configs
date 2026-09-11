@@ -1,0 +1,21 @@
+schema_version: 1
+name: VHEE_Probe_BG
+description: 50 shots, no gas, samples in Probe Delay Stage 589.696
+trigger_profile: null
+background: false
+devices:
+- device: HTT-D-TopJet
+  save_images: true
+- device: HTT-VHEE_ICT_Picoscope
+  save_images: true
+- device: HTT-VHEE_Lanex
+  save_images: true
+- device: HTT-VHEE_Ref
+  save_images: true
+- device: HTT-VHEE_Sig
+  save_images: true
+plan:
+  name: count
+  args: []
+  kwargs:
+    num: 50

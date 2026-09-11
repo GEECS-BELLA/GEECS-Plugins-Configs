@@ -1,0 +1,12 @@
+schema_version: 1
+name: D-Diag_Depletion
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: HTT-D-AMP2_Depletion
+  save_images: true
+- device: HTT-D-AMP3_Depletion
+  save_images: true
+- device: HTT-D-AMP4_Depletion
+  save_images: true

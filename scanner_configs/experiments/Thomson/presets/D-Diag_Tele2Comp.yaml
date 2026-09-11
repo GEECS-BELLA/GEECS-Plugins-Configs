@@ -1,0 +1,14 @@
+schema_version: 1
+name: D-Diag_Tele2Comp
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: HTT-D-Compressor_In
+  save_images: true
+- device: HTT-D-Telescope_FF
+  save_images: true
+- device: HTT-D-Telescope_In
+  save_images: true
+- device: HTT-D-Telescope_Mid
+  save_images: true

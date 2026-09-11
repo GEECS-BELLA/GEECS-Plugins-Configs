@@ -1,0 +1,8 @@
+schema_version: 1
+name: LFS
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: U_LFS_UDP
+  save_images: false

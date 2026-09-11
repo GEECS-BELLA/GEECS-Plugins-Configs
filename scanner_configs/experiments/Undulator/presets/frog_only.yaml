@@ -1,0 +1,8 @@
+schema_version: 1
+name: frog_only
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: U_FROG_Grenouille
+  save_images: true

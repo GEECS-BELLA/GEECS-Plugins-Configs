@@ -1,0 +1,22 @@
+schema_version: 1
+name: SteeringMagCurrents
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: U_S1H
+  save_images: false
+- device: U_S1V
+  save_images: false
+- device: U_S2H
+  save_images: false
+- device: U_S2V
+  save_images: false
+- device: U_S3H
+  save_images: false
+- device: U_S3V
+  save_images: false
+- device: U_S4H
+  save_images: false
+- device: U_S4V
+  save_images: false

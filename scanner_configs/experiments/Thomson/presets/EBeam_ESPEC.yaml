@@ -1,0 +1,16 @@
+schema_version: 1
+name: EBeam_ESPEC
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: HTT-C23_1_MagSpec1
+  save_images: true
+- device: HTT-C23_2_MagSpec2
+  save_images: true
+- device: HTT-C23_3_MagSpec3
+  save_images: true
+- device: HTT-C23_4_MagSpec4
+  save_images: true
+- device: HTT-MagTeslameter-DTM141
+  save_images: false

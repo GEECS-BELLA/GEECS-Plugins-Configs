@@ -1,15 +1,8 @@
 schema_version: 1
-name: basic test
+name: Amp4In
 description: ''
 trigger_profile: null
 background: false
 devices:
 - device: UC_Amp4_IR_input
   save_images: true
-- device: UC_Amp4_IR_output
-  save_images: true
-plan:
-  name: count
-  args: []
-  kwargs:
-    num: 3

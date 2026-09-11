@@ -1,0 +1,8 @@
+schema_version: 1
+name: TC_Optical Spectrometer
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: HTT-D-Plasma_Opt_Spectro
+  save_images: true

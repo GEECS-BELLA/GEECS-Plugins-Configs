@@ -1,0 +1,8 @@
+schema_version: 1
+name: UC_ModeImager
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: UC_ModeImager
+  save_images: true

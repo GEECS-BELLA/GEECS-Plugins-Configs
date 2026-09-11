@@ -1,0 +1,8 @@
+schema_version: 1
+name: ASSERT-Stages
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: HTT-B-Zaber_Chain-B
+  save_images: true

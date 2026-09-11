@@ -1,0 +1,19 @@
+schema_version: 1
+name: 00_focuscan
+description: Focus Scan
+trigger_profile: null
+background: false
+devices:
+- device: UC_GhostUpstream
+  save_images: true
+- device: UC_ModeImager
+  save_images: true
+plan:
+  name: scan
+  args:
+  - Mode Imager Stage
+  - -18.0
+  - -26.0
+  - 17
+  kwargs:
+    shots_per_step: 10

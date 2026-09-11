@@ -1,0 +1,8 @@
+schema_version: 1
+name: HP_Ghost_WFS
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: U_GhostWFS
+  save_images: true

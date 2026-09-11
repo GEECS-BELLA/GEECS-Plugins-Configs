@@ -1,0 +1,8 @@
+schema_version: 1
+name: GasJet_Diag_TopJet
+description: ''
+trigger_profile: null
+background: false
+devices:
+- device: HTT-D-TopJet
+  save_images: true
