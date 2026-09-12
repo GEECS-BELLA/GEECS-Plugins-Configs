@@ -1,35 +1,40 @@
-actions:
+schema_version: 1
+plans:
   Quad-In_Long0:
+    schema_version: 1
     steps:
-    - action: set
+    - do: set
       device: HTT-B-Zaber_Chain-B
-      value: 30
       variable: Position.Ch4
+      value: 30
       wait_for_execution: true
-    - action: set
+    - do: set
       device: HTT-B-Zaber_Chain-B
+      variable: Disable.Ch5
       value: 0
-      variable: Disable.Ch5
       wait_for_execution: true
-    - action: set
+    - do: set
       device: HTT-B-Zaber_Chain-B
-      value: 15
       variable: Position.Ch6
+      value: 15
       wait_for_execution: true
+    description: ''
   Quad-In_Long300:
+    schema_version: 1
     steps:
-    - action: set
+    - do: set
       device: HTT-B-Zaber_Chain-B
-      value: 30
       variable: Position.Ch4
+      value: 30
       wait_for_execution: true
-    - action: set
+    - do: set
       device: HTT-B-Zaber_Chain-B
-      value: 300
       variable: Disable.Ch5
+      value: 300
       wait_for_execution: true
-    - action: set
+    - do: set
       device: HTT-B-Zaber_Chain-B
-      value: 15
       variable: Position.Ch6
+      value: 15
       wait_for_execution: true
+    description: ''
