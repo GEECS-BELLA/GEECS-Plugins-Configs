@@ -173,6 +173,18 @@ actions:
       device: U_Hexapod
       value: -22
       variable: ypos
+  s1h_exercise:
+    steps:
+    - action: set
+      device: U_S1H
+      value: 1.0
+      variable: Current
+    - action: wait
+      wait: 3
+    - action: set
+      device: U_S1H
+      value: 0.0
+      variable: Current
   remove_gaia_stops:
     steps:
     - action: set
