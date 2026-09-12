@@ -251,3 +251,6 @@ variables:
   VS4V:
     target: U_VS4V:Current
     kind: motor
+  Beamline Out x:
+    target: U_ESP302_01:Position.Axis 3
+    kind: setpoint
