@@ -1,0 +1,15 @@
+schema_version: 1
+name: stretcher MI scan
+description: ''
+trigger_profile: HTU-NoGas
+background: false
+devices: []
+plan:
+  name: scan
+  args:
+  - StretcherMIStaged
+  - 50.0
+  - 100.0
+  - 6
+  kwargs:
+    shots_per_step: 3

@@ -1,0 +1,8 @@
+schema_version: 1
+name: LowPower-Frog-Scan
+description: Low power compressor scan on frog diagnostic outside Compressor Chamber
+trigger_profile: null
+background: false
+devices:
+- device: U_FROG_Grenouille
+  save_images: true
