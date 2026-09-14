@@ -1,13 +1,15 @@
 ---
-label: Fault
-colour: crit
-book: both
-order: 30
+label: Software issue
+colour: warn
+book: ops
+order: 40
 ---
-#fault
+#software-issue
 
-**What failed:**
+**What happened:**
 
-**Impact:**
+**What I expected:**
 
-**Fixed by / still open:**
+**Where (app / page / scan):**
+
+**Reporter:**
