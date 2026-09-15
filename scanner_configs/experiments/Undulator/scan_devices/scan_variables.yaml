@@ -2,6 +2,13 @@ schema_version: 1
 variables:
   ALine_e_beam_angle_offset_x:
     kind: pseudo
+    description: >-
+      Horizontal angle bump at the undulator entrance with no position change
+      there: S3H kicks by +θ, S4H by −2θ (the ×−2), which leaves zero
+      displacement at the target when the S4H→target drift equals the
+      S3H→S4H drift, and an angle of −θ. Assumes equal kick per ampere on
+      S3H and S4H. Drift lengths: TODO (physicist) — the coefficients are
+      pure geometry, edit them here.
     targets:
     - target: U_S3H:Current
       forward: composite_var * 1
@@ -10,6 +17,13 @@ variables:
     mode: relative
   ALine_e_beam_angle_offset_y:
     kind: pseudo
+    description: >-
+      Vertical angle bump at the undulator entrance with no position change
+      there: S3V kicks by +θ, S4V by −2θ (the ×−2), which leaves zero
+      displacement at the target when the S4V→target drift equals the
+      S3V→S4V drift, and an angle of −θ. Assumes equal kick per ampere on
+      S3V and S4V. Drift lengths: TODO (physicist) — the coefficients are
+      pure geometry, edit them here.
     targets:
     - target: U_S3V:Current
       forward: composite_var * 1
@@ -18,6 +32,11 @@ variables:
     mode: relative
   ALine_e_beam_position_offset_x:
     kind: pseudo
+    description: >-
+      Horizontal parallel displacement at the undulator entrance: S3H kicks by
+      +θ, S4H by −θ (the ×−1), so the beam leaves S4H parallel to its original
+      path, displaced by θ × the S3H→S4H drift. Assumes equal kick per ampere
+      on S3H and S4H. Drift lengths: TODO (physicist).
     targets:
     - target: U_S3H:Current
       forward: composite_var * 1
@@ -26,6 +45,11 @@ variables:
     mode: relative
   ALine_e_beam_position_offset_y:
     kind: pseudo
+    description: >-
+      Vertical parallel displacement at the undulator entrance: S3V kicks by
+      +θ, S4V by −θ (the ×−1), so the beam leaves S4V parallel to its original
+      path, displaced by θ × the S3V→S4V drift. Assumes equal kick per ampere
+      on S3V and S4V. Drift lengths: TODO (physicist).
     targets:
     - target: U_S3V:Current
       forward: composite_var * 1
@@ -191,12 +215,17 @@ variables:
     kind: motor
   R56_at_100MeV:
     kind: pseudo
+    description: >-
+      Chicane R56 at 100 MeV: inner and outer magnets at equal and opposite
+      currents. The readback (inverse) recovers R56 from the inner magnet's
+      current; the engine checks the outer sits at −inner.
     targets:
     - target: U_ChicaneInner:Current
       forward: sqrt(100 ** 2 * composite_var / 560968.636)
     - target: U_ChicaneOuter:Current
       forward: -sqrt(100 ** 2 * composite_var / 560968.636)
     mode: absolute
+    inverse: 560968.636 * U_ChicaneInner ** 2 / 100 ** 2
   S1H:
     target: U_S1H:Current
     kind: motor
