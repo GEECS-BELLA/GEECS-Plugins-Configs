@@ -226,20 +226,6 @@ variables:
       forward: -sqrt(100 ** 2 * composite_var / 560968.636)
     mode: absolute
     inverse: 560968.636 * U_ChicaneInner ** 2 / 100 ** 2
-  TEST_S3H_S4H_plain:
-    kind: pseudo
-    description: >-
-      TEST ENTRY for the pseudo arc hardware acceptance (2026-09-15): a plain
-      pseudo positioner over the two ALine horizontal steerers, with S4H's
-      constant chosen so the magnets sit on the relation at the currents of
-      that day (S3H 0.00011 A, S4H -0.09925 A) and nothing snaps at the first
-      step. Delete after the acceptance.
-    targets:
-    - target: U_S3H:Current
-      forward: x
-    - target: U_S4H:Current
-      forward: x * -2 - 0.09903
-    mode: absolute
   S1H:
     target: U_S1H:Current
     kind: motor
