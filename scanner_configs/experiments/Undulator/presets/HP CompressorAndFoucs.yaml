@@ -9,11 +9,20 @@ devices:
 - device: U_FROG_Grenouille
   save_images: true
 plan:
-  name: scan
-  args:
-  - CompressorAndMode
-  - 41000.0
-  - 42000.0
-  - 41
+  name: sweep
+  args: []
   kwargs:
     shots_per_step: 5
+    acquisition: strict
+    sweep:
+      trajectory:
+        kind: axes
+        combine: zip
+        snake: false
+        axes:
+        - kind: range
+          axis: CompressorAndMode
+          relative: false
+          start: 41000.0
+          stop: 42000.0
+          num: 41

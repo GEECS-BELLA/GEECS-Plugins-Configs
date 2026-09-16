@@ -53,11 +53,20 @@ devices:
 - device: U_VacuumGauge
   save_images: false
 plan:
-  name: scan
-  args:
-  - EMQ1 Current
-  - 1.2
-  - 1.7
-  - 6
+  name: sweep
+  args: []
   kwargs:
     shots_per_step: 20
+    acquisition: strict
+    sweep:
+      trajectory:
+        kind: axes
+        combine: zip
+        snake: false
+        axes:
+        - kind: range
+          axis: EMQ1 Current
+          relative: false
+          start: 1.2
+          stop: 1.7
+          num: 6

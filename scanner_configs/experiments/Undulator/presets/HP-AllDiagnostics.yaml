@@ -71,11 +71,20 @@ devices:
 - device: UC_TopView
   save_images: true
 plan:
-  name: scan
-  args:
-  - JetZ_with_probe
-  - 1.0
-  - 7.0
-  - 13
+  name: sweep
+  args: []
   kwargs:
     shots_per_step: 15
+    acquisition: strict
+    sweep:
+      trajectory:
+        kind: axes
+        combine: zip
+        snake: false
+        axes:
+        - kind: range
+          axis: JetZ_with_probe
+          relative: false
+          start: 1.0
+          stop: 7.0
+          num: 13

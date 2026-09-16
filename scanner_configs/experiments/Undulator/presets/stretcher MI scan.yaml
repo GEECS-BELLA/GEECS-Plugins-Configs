@@ -5,11 +5,20 @@ trigger_profile: HTU-NoGas
 background: false
 devices: []
 plan:
-  name: scan
-  args:
-  - StretcherMIStaged
-  - 50.0
-  - 100.0
-  - 6
+  name: sweep
+  args: []
   kwargs:
     shots_per_step: 3
+    acquisition: strict
+    sweep:
+      trajectory:
+        kind: axes
+        combine: zip
+        snake: false
+        axes:
+        - kind: range
+          axis: StretcherMIStaged
+          relative: false
+          start: 50.0
+          stop: 100.0
+          num: 6

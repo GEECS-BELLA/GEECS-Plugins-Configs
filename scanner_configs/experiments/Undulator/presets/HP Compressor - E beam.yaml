@@ -67,11 +67,20 @@ devices:
 - device: U_StretchterXMCC
   save_images: false
 plan:
-  name: scan
-  args:
-  - Grating Separation (um)
-  - 41300.0
-  - 41700.0
-  - 17
+  name: sweep
+  args: []
   kwargs:
     shots_per_step: 15
+    acquisition: strict
+    sweep:
+      trajectory:
+        kind: axes
+        combine: zip
+        snake: false
+        axes:
+        - kind: range
+          axis: Grating Separation (um)
+          relative: false
+          start: 41300.0
+          stop: 41700.0
+          num: 17

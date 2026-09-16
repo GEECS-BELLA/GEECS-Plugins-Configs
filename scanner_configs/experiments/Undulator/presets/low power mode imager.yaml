@@ -7,11 +7,20 @@ devices:
 - device: UC_ModeImager
   save_images: true
 plan:
-  name: scan
-  args:
-  - Mode Imager Stage
-  - -25.0
-  - -10.0
-  - 16
+  name: sweep
+  args: []
   kwargs:
     shots_per_step: 3
+    acquisition: strict
+    sweep:
+      trajectory:
+        kind: axes
+        combine: zip
+        snake: false
+        axes:
+        - kind: range
+          axis: Mode Imager Stage
+          relative: false
+          start: -25.0
+          stop: -10.0
+          num: 16
