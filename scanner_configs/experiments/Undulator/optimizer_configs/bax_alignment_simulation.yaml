@@ -1,39 +1,41 @@
-# BAX alignment with full hardware control + synthetic centroid.
-#
-# Xopt drives the corrector + quadrupole currents on real hardware via
-# VOCS variables; ``BeamPositionSimulationEvaluator`` reads the resulting
-# setpoints from the s-file and computes a synthetic ``x_CoM`` observable
-# via the parametric ray-tracing model. No camera analyzer required —
-# this lets us exercise the full control loop end-to-end without needing
-# the real beam-position diagnostic working.
+schema_version: 1
 vocs:
   variables:
-    U_S1V:Current: [-4, 4]                                # control (the BAX "S")
-    U_EMQTripletBipolar:Current_Limit.Ch1: [1.2, 1.7]     # measurement (the BAX "M")
+    U_S1V:Current:
+    - -4
+    - 4
+    U_EMQTripletBipolar:Current_Limit.Ch1:
+    - 1.2
+    - 1.7
   observables:
-    - x_CoM
-
-evaluator:
-  module:
-    geecs_scanner.optimization.evaluators.beam_position_evaluator_simulation
-  class: BeamPositionSimulationEvaluator
-  kwargs:
-    # Defaults assume U_S1H; this scan uses U_S1V, so override.
-    control_variable_name: U_S1V:Current
-    measurement_variable_name: U_EMQTripletBipolar:Current_Limit.Ch1
-
+  - x_com_sim
+measurements:
+  s1v:
+    signal: U_S1V:Current
+  emq:
+    signal: U_EMQTripletBipolar:Current_Limit.Ch1
+derived:
+  x_com_sim:
+    python: geecs_bluesky.optimization.simulations:aline_x_com
 generator:
   name: multipoint_bax_alignment_l2
-
-xopt_config_overrides:
-  multipoint_bax_alignment_l2:
-    control_names: ["U_S1V:Current"]
-    measurement_name: "U_EMQTripletBipolar:Current_Limit.Ch1"
-    observable_names: ["x_CoM"]
+  options:
+    control_names:
+    - U_S1V:Current
+    measurement_name: U_EMQTripletBipolar:Current_Limit.Ch1
+    observable_names:
+    - x_com_sim
     probe_nominal: 1.5
-    probe_grid_absolute: [-0.25, 0.0, +0.25]
+    probe_grid_absolute:
+    - -0.25
+    - 0.0
+    - 0.25
     n_control_mesh: 21
     mesh_measurement: true
-    n_measurement_mesh: 5  # adjust as needed
+    n_measurement_mesh: 5
     n_monte_carlo_samples: 32
     use_low_noise_prior: false
+run:
+  on_finish: best
+  shots_per_step: 5
+  max_iterations: 30
