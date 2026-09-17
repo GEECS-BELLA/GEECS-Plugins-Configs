@@ -1,5 +1,6 @@
 schema_version: 2
-name: U_BCaveMagSpec-interpSpec
+name: U_BCaveMagSpec
+output_name: U_BCaveMagSpec-interpSpec
 analyzer:
   kind: line
 image:
@@ -32,6 +33,7 @@ image:
   - filtering
   - thresholding
 scan:
+  device: U_BCaveMagSpec-interpSpec
   priority: 1
   mode: per_shot
   save: true

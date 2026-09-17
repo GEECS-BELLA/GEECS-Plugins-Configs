@@ -1,5 +1,6 @@
 schema_version: 2
-name: U_FROG_Grenouille-Temporal
+name: U_FROG_Grenouille
+output_name: U_FROG_Grenouille-Temporal
 analyzer:
   kind: line
 image:
@@ -34,6 +35,7 @@ image:
   - filtering
   - thresholding
 scan:
+  device: U_FROG_Grenouille-Temporal
   priority: 2
   mode: per_shot
   save: true
