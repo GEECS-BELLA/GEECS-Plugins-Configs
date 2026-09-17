@@ -10,10 +10,10 @@ image:
     notes: none
     spatial_calibration: 2.44e-05
   roi:
-    x_min: 400
-    x_max: 800
-    y_min: 200
-    y_max: 600
+    x_min: 500
+    x_max: 900
+    y_min: 300
+    y_max: 700
   background:
     method: constant
     constant_level: 30.0
