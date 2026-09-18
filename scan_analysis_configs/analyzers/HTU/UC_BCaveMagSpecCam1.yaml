@@ -1,0 +1,32 @@
+schema_version: 2
+name: UC_BCaveMagSpecCam1
+analyzer:
+  kind: bcave_magspec_cam1
+  n_beam_size_clearance: 4
+  min_total_counts: 2500.0
+  threshold_factor: 10.0
+  count_threshold: 10.0
+image:
+  type: camera
+  description: B-cave magnetic spectrometer camera 1, bow-tie emittance analysis
+  metadata:
+    location: B-cave
+    notes: >-
+      TODO(tune): ROI and background are placeholders authored without access to
+      real frames, so this config is deliberately pass-through — full frame, no
+      background subtracted. On a Z:-mounted machine, open a scan containing
+      UC_BCaveMagSpecCam1 in the data portal and add a roi section around the
+      dispersed trace, set background.constant_level to the measured dark level,
+      and confirm bit_depth against the camera. Then revisit the analyzer's
+      count_threshold (the noise floor left after background subtraction) and
+      min_total_counts. Neighbour reference for the cave: U_BCaveSpec-beam.yaml.
+  bit_depth: 16
+  background:
+    method: constant
+    constant_level: 0.0
+  pipeline:
+  - background
+scan:
+  priority: 50
+  mode: per_shot
+  save: true
