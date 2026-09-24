@@ -7,12 +7,10 @@ image:
   type: line
   description: Example configuration for processing 1D spectral data or lineouts
   data_loading:
-    data_type: tsv
+    data_type: pva_stack
   label: Charge density vs Energy
   x_units: MeV
   x_scale_factor: 1000.0
-  processing_dtype: float64
-  storage_dtype: float32
   roi:
     x_min: 60.0
     x_max: 160.0
@@ -26,16 +24,14 @@ image:
   thresholding:
     method: absolute
     threshold_value: -10.0
-    clip_below: true
   pipeline:
   - background
   - roi
   - filtering
   - thresholding
 scan:
-  device: U_BCaveMagSpec-interpSpec
   priority: 1
-  mode: per_shot
-  save: true
   gdoc_slot: 0
+  device: U_BCaveMagSpec-interpSpec
   file_tail: .txt
+  data_format: device_hdf5

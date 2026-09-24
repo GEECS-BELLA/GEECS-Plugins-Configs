@@ -9,39 +9,22 @@ image:
     location: Room 148
     notes: none
     spatial_calibration: 2.44e-05
-  bit_depth: 16
   roi:
-    x_min: 0
-    x_max: 650
+    x_min: 10
+    x_max: 750
     y_min: 350
-    y_max: 650
+    y_max: 600
   background:
     method: constant
     constant_level: 5.0
-    additional_constant: 0.0
   thresholding:
-    method: constant
     value: 0.0
     mode: to_zero
-    invert: false
   filtering:
     median_kernel_size: 3
-  transforms:
-    rotation_angle: 0.0
-    flip_horizontal: false
-    flip_vertical: false
-    distortion_correction: false
   pipeline:
   - background
-  - vignette
-  - crosshair_masking
   - roi
-  - circular_mask
-  - thresholding
   - filtering
-  - normalization
-  - transforms
 scan:
   priority: 10
-  mode: per_shot
-  save: true

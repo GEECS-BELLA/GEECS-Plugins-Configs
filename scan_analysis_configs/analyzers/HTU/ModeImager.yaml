@@ -12,8 +12,8 @@ image:
   roi:
     x_min: 500
     x_max: 900
-    y_min: 300
-    y_max: 700
+    y_min: 400
+    y_max: 800
   background:
     method: constant
     constant_level: 30.0

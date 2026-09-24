@@ -1,6 +1,6 @@
 schema_version: 2
 name: U_FROG_Grenouille
-output_name: U_FROG_Grenouille-Temporal
+output_name: U_FROG_Grenouille
 analyzer:
   kind: beam
 image:
@@ -10,15 +10,11 @@ image:
     location: '148'
     notes: none
     spatial_calibration: 2.44e-05
-  bit_depth: 16
   background:
     method: constant
-    constant_level: 0.0
   thresholding:
-    method: constant
     value: 0.0
     mode: to_zero
-    invert: false
   filtering:
     median_kernel_size: 3
   pipeline:
@@ -27,6 +23,16 @@ image:
   - filtering
 scan:
   priority: 2
-  mode: per_shot
-  save: true
-  device: U_FROG_Grenouille-Temporal
+  device: U_FROG_Grenouille
+  data_format: device_hdf5
+  renderer:
+    colormap_mode: auto
+    cmap: viridis
+    vmin: -100.0
+    vmax: 100.0
+    xlabel: thing
+    ylabel: asdf
+    colorbar_label: test
+    figsize:
+    - 10.0
+    - 1.0

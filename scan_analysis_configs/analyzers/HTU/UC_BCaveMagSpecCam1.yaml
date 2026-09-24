@@ -1,0 +1,12 @@
+schema_version: 2
+name: UC_BCaveMagSpecCam1
+analyzer:
+  kind: beam
+image:
+  type: camera
+  roi:
+    x_max: 20000
+    y_min: 25
+    y_max: 150
+  pipeline:
+  - roi

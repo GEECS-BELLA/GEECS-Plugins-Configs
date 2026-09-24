@@ -1,0 +1,19 @@
+schema_version: 2
+name: UC_GhostFocus
+analyzer:
+  kind: beam
+image:
+  type: camera
+  roi:
+    x_min: 400
+    x_max: 600
+    y_min: 150
+    y_max: 350
+  background:
+    method: constant
+    constant_level: 50.0
+  pipeline:
+  - roi
+  - background
+scan:
+  data_format: device_hdf5
