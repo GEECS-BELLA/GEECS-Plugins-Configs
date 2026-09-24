@@ -1,50 +1,56 @@
-schema_version: 2
-name: UC_VisaEBeam7
-analyzer:
+schema_version: 3
+device: UC_VisaEBeam7
+description: e beam profile on visa 7 screen
+metadata:
+  spatial_calibration: 7.5e-06
+input:
+  kind: camera
+inputs:
+  camera_background:
+    path: '{scan_dir}/computed_background.npy'
+    fallback_level: 50.0
+steps:
+- step: background_frame
+  source: camera_background
+  alignment: samples
+- step: background_constant
+  level: 2
+- step: crosshair_mask
+  center:
+  - 328
+  - 275
+  width: 108
+  height: 108
+  thickness: 10
+  angle: -8
+- step: crosshair_mask
+  center:
+  - 550
+  - 275
+  width: 108
+  height: 108
+  thickness: 10
+  angle: -8
+- step: roi
+  bounds:
+  - - 100
+    - 433
+  - - 120
+    - 453
+- step: rotate
+  angle: -8
+measure:
   kind: beam
-image:
-  type: camera
-  description: e beam profile on visa 7 screen
-  metadata:
-    spatial_calibration: 7.5e-06
-  bit_depth: 16
-  roi:
-    x_min: 120
-    x_max: 453
-    y_min: 100
-    y_max: 433
-  background:
-    method: from_file
-    file_path: '{scan_dir}/computed_background.npy'
-    constant_level: 50.0
-    additional_constant: 2.0
-  crosshair_masking:
-    crosshairs:
-    - center:
-      - 275
-      - 328
-      width: 108
-      height: 108
-      thickness: 10
-      angle: -8.0
-    - center:
-      - 275
-      - 550
-      width: 108
-      height: 108
-      thickness: 10
-      angle: -8.0
-  transforms:
-    rotation_angle: -8.0
-    flip_horizontal: false
-    flip_vertical: false
-  pipeline:
-  - background
-  - crosshair_masking
-  - roi
-  - transforms
 scan:
   priority: 1
-  mode: per_shot
-  save: true
-  gdoc_slot: 0
+figure:
+  imshow:
+    vmin: 0
+  fig:
+    dpi: 150
+summaries:
+- kind: image_grid
+  panel_size:
+  - 6.0
+  - 6.0
+- kind: average

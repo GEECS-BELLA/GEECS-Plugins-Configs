@@ -1,34 +1,33 @@
-schema_version: 2
-name: UC_TC_Output
-analyzer:
+schema_version: 3
+device: UC_TC_Output
+description: image of target chamber output port
+metadata:
+  location: B-cave
+  notes: none
+  spatial_calibration: 2.44e-05
+input:
+  kind: camera
+steps:
+- step: roi
+  bounds:
+  - - 100
+    - 250
+  - - 200
+    - 350
+- step: zero_below
+  level: 0
+measure:
   kind: beam
-image:
-  type: camera
-  description: image of target chamber output port
-  metadata:
-    location: B-cave
-    notes: none
-    spatial_calibration: 2.44e-05
-  bit_depth: 16
-  roi:
-    x_min: 200
-    x_max: 350
-    y_min: 100
-    y_max: 250
-  background:
-    method: constant
-    constant_level: 0.0
-    additional_constant: 0.0
-  thresholding:
-    method: constant
-    value: 0.0
-    mode: to_zero
-    invert: false
-  pipeline:
-  - background
-  - roi
-  - thresholding
 scan:
   priority: 10
-  mode: per_shot
-  save: true
+figure:
+  imshow:
+    vmin: 0
+  fig:
+    dpi: 150
+summaries:
+- kind: image_grid
+  panel_size:
+  - 6.0
+  - 6.0
+- kind: average

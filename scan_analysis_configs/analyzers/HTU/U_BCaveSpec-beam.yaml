@@ -1,38 +1,37 @@
-schema_version: 2
-name: U_BCaveMagSpec
-analyzer:
+schema_version: 3
+device: U_BCaveMagSpec
+description: B-Cave magnetic spectrometer camera for electron beam profiling
+metadata:
+  location: B-cave
+  notes: NA
+  spatial_calibration: 2.217e-05
+input:
+  kind: camera
+steps:
+- step: background_constant
+  level: 1
+- step: roi
+  bounds:
+  - - 1
+    - 180
+  - - 50
+    - 300
+- step: zero_below
+  level: 0
+measure:
   kind: beam
   compute_slopes: true
-image:
-  type: camera
-  description: B-Cave magnetic spectrometer camera for electron beam profiling
-  metadata:
-    location: B-cave
-    notes: NA
-    spatial_calibration: 2.217e-05
-  bit_depth: 16
-  roi:
-    x_min: 50
-    x_max: 300
-    y_min: 1
-    y_max: 180
-  background:
-    method: constant
-    constant_level: 1.0
-  crosshair_masking:
-    crosshairs: []
-  thresholding:
-    method: constant
-    value: 0.0
-    mode: to_zero
-    invert: false
-  filtering: {}
-  pipeline:
-  - background
-  - roi
-  - thresholding
-  - filtering
 scan:
   priority: 3
-  mode: per_bin
-  save: true
+  average_frames_first: true
+figure:
+  imshow:
+    vmin: 0
+  fig:
+    dpi: 150
+summaries:
+- kind: image_grid
+  panel_size:
+  - 6.0
+  - 6.0
+- kind: average

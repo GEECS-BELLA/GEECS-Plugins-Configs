@@ -1,35 +1,36 @@
-schema_version: 2
-name: UC_ALineEBeam3
-analyzer:
+schema_version: 3
+device: UC_ALineEBeam3
+description: A-Line electron beam camera 3 for beam profiling
+metadata:
+  location: between A and B cave in the cutout
+  notes: starter config adapted from UC_ALineEBeam2; refine ROI + spatial_calibration
+    with beam-3 calibration runs
+  spatial_calibration: 2.217e-05
+input:
+  kind: camera
+steps:
+- step: background_constant
+  level: 50
+- step: roi
+  bounds:
+  - - 1
+    - 964
+  - - 1
+    - 1289
+- step: zero_below
+  level: 0
+measure:
   kind: beam
-image:
-  type: camera
-  description: A-Line electron beam camera 3 for beam profiling
-  metadata:
-    location: between A and B cave in the cutout
-    notes: starter config adapted from UC_ALineEBeam2; refine ROI + spatial_calibration
-      with beam-3 calibration runs
-    spatial_calibration: 2.217e-05
-  bit_depth: 16
-  roi:
-    x_min: 1
-    x_max: 1289
-    y_min: 1
-    y_max: 964
-  background:
-    method: constant
-    constant_level: 50.0
-  thresholding:
-    method: constant
-    value: 0.0
-    mode: to_zero
-    invert: false
-  filtering: {}
-  pipeline:
-  - background
-  - roi
-  - thresholding
 scan:
   priority: 50
-  mode: per_shot
-  save: true
+figure:
+  imshow:
+    vmin: 0
+  fig:
+    dpi: 150
+summaries:
+- kind: image_grid
+  panel_size:
+  - 6.0
+  - 6.0
+- kind: average

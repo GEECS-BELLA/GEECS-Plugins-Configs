@@ -1,28 +1,27 @@
-schema_version: 2
-name: UC_UndulatorRad2
-analyzer:
+schema_version: 3
+device: UC_UndulatorRad2
+description: Undulator radiation diagnostic
+input:
+  kind: camera
+steps:
+- step: roi
+  bounds:
+  - - 0
+    - 100000
+  - - 0
+    - 10000
+measure:
   kind: beam
-image:
-  type: camera
-  description: Undulator radiation diagnostic
-  bit_depth: 16
-  roi:
-    x_min: 0
-    x_max: 10000
-    y_min: 0
-    y_max: 100000
-  filtering: {}
-  transforms:
-    rotation_angle: 0.0
-    flip_horizontal: false
-    flip_vertical: false
-    distortion_correction: false
-  pipeline:
-  - roi
-  - filtering
-  - transforms
 scan:
   priority: 2
-  mode: per_shot
-  save: true
-  gdoc_slot: 1
+figure:
+  imshow:
+    vmin: 0
+  fig:
+    dpi: 150
+summaries:
+- kind: image_grid
+  panel_size:
+  - 6.0
+  - 6.0
+- kind: average

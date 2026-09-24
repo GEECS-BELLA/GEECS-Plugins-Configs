@@ -1,38 +1,38 @@
-schema_version: 2
-name: HTT-D-EBeam_Profiler
-analyzer:
+schema_version: 3
+device: HTT-D-EBeam_Profiler
+description: high resolution for electron beam profile analysis
+metadata:
+  spatial_calibration: 1.9e-05
+  location: HTT target chamber
+  notes: NA
+input:
+  kind: camera
+inputs:
+  camera_background:
+    path: '{scan_dir}/computed_background.npy'
+    fallback_level: 100.0
+steps:
+- step: background_frame
+  source: camera_background
+  alignment: samples
+- step: background_constant
+  level: 20
+- step: zero_below
+  level: 0
+- step: median
+  kernel: 5
+measure:
   kind: beam
-image:
-  type: camera
-  description: high resolution for electron beam profile analysis
-  metadata:
-    spatial_calibration: 1.9e-05
-    location: HTT target chamber
-    notes: NA
-  bit_depth: 16
-  background:
-    method: from_file
-    file_path: '{scan_dir}/computed_background.npy'
-    constant_level: 100.0
-    additional_constant: 20.0
-  thresholding:
-    method: constant
-    value: 0.0
-    mode: to_zero
-    invert: false
-  filtering:
-    median_kernel_size: 5
-  transforms:
-    rotation_angle: 0.0
-    flip_horizontal: false
-    flip_vertical: false
-  pipeline:
-  - background
-  - thresholding
-  - filtering
-  - transforms
 scan:
   priority: 1
-  mode: per_shot
-  save: true
-  gdoc_slot: 2
+figure:
+  imshow:
+    vmin: 0
+  fig:
+    dpi: 150
+summaries:
+- kind: image_grid
+  panel_size:
+  - 6.0
+  - 6.0
+- kind: average

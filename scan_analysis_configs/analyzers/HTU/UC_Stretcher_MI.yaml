@@ -1,30 +1,30 @@
-schema_version: 2
-name: UC_Stretcher_MI
-analyzer:
+schema_version: 3
+device: UC_Stretcher_MI
+description: IR mode at the input to amp2
+metadata:
+  location: Room 148
+  notes: none
+  spatial_calibration: 2.44e-05
+input:
+  kind: camera
+steps:
+- step: background_constant
+  level: 100
+- step: zero_below
+  level: 30
+- step: median
+measure:
   kind: beam
-image:
-  type: camera
-  description: IR mode at the input to amp2
-  metadata:
-    location: Room 148
-    notes: none
-    spatial_calibration: 2.44e-05
-  bit_depth: 16
-  background:
-    method: constant
-    constant_level: 100.0
-  thresholding:
-    method: constant
-    value: 30.0
-    mode: to_zero
-    invert: false
-  filtering:
-    median_kernel_size: 3
-  pipeline:
-  - background
-  - thresholding
-  - filtering
 scan:
   priority: 40
-  mode: per_shot
-  save: true
+figure:
+  imshow:
+    vmin: 0
+  fig:
+    dpi: 150
+summaries:
+- kind: image_grid
+  panel_size:
+  - 6.0
+  - 6.0
+- kind: average

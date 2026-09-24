@@ -1,36 +1,36 @@
-schema_version: 2
-name: UC_OAPin2
-analyzer:
+schema_version: 3
+device: UC_OAPin2
+description: High power mode imager
+metadata:
+  spatial_calibration: 2.44e-05
+  location: A-Line beamline
+  notes: Migrated from hardcoded configuration in EBeamProfile.py
+input:
+  kind: camera
+steps:
+- step: background_constant
+  level: 150
+- step: roi
+  bounds:
+  - - 1
+    - 950
+  - - 200
+    - 1260
+- step: zero_below
+  level: 0
+- step: median
+measure:
   kind: beam
-image:
-  type: camera
-  description: High power mode imager
-  metadata:
-    spatial_calibration: 2.44e-05
-    location: A-Line beamline
-    notes: Migrated from hardcoded configuration in EBeamProfile.py
-  bit_depth: 16
-  roi:
-    x_min: 200
-    x_max: 1260
-    y_min: 1
-    y_max: 950
-  background:
-    method: constant
-    constant_level: 150.0
-  thresholding:
-    method: constant
-    value: 0.0
-    mode: to_zero
-    invert: false
-  filtering:
-    median_kernel_size: 3
-  pipeline:
-  - background
-  - roi
-  - thresholding
-  - filtering
 scan:
   priority: 18
-  mode: per_shot
-  save: true
+figure:
+  imshow:
+    vmin: 0
+  fig:
+    dpi: 150
+summaries:
+- kind: image_grid
+  panel_size:
+  - 6.0
+  - 6.0
+- kind: average

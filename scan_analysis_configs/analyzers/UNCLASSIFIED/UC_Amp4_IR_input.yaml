@@ -1,30 +1,37 @@
-schema_version: 2
-name: UC_Amp4_IR_input
-analyzer:
+schema_version: 3
+device: UC_Amp4_IR_input
+description: Image analyzer to calcuate basic statistics of the IR laser beam profile
+  at the input to amp4.
+metadata:
+  location: Room 148
+  notes: none
+  spatial_calibration: 2.44e-05
+input:
+  kind: camera
+  format: device_hdf5
+steps:
+- step: background_constant
+  level: 90
+- step: roi
+  bounds:
+  - - 1
+    - 600
+  - - 1
+    - 600
+- step: zero_below
+  level: 0
+measure:
   kind: beam
-image:
-  type: camera
-  description: Image analyzer to calcuate basic statistics of the IR laser beam profile
-    at the input to amp4.
-  metadata:
-    location: Room 148
-    notes: none
-    spatial_calibration: 2.44e-05
-  roi:
-    x_min: 1
-    x_max: 600
-    y_min: 1
-    y_max: 600
-  background:
-    method: constant
-    constant_level: 90.0
-  thresholding:
-    value: 0.0
-    mode: to_zero
-  pipeline:
-  - background
-  - roi
-  - thresholding
 scan:
   priority: 10
-  data_format: device_hdf5
+figure:
+  imshow:
+    vmin: 0
+  fig:
+    dpi: 150
+summaries:
+- kind: image_grid
+  panel_size:
+  - 6.0
+  - 6.0
+- kind: average

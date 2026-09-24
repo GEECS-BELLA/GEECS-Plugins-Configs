@@ -1,38 +1,38 @@
-schema_version: 2
-name: U_FROG_Grenouille
+schema_version: 3
+device: U_FROG_Grenouille
 output_name: U_FROG_Grenouille
-analyzer:
+description: image of target chamber output port
+metadata:
+  location: '148'
+  notes: none
+  spatial_calibration: 2.44e-05
+input:
+  kind: camera
+  folder: U_FROG_Grenouille
+  format: device_hdf5
+steps:
+- step: zero_below
+  level: 0
+- step: median
+measure:
   kind: beam
-image:
-  type: camera
-  description: image of target chamber output port
-  metadata:
-    location: '148'
-    notes: none
-    spatial_calibration: 2.44e-05
-  background:
-    method: constant
-  thresholding:
-    value: 0.0
-    mode: to_zero
-  filtering:
-    median_kernel_size: 3
-  pipeline:
-  - background
-  - thresholding
-  - filtering
 scan:
   priority: 2
-  device: U_FROG_Grenouille
-  data_format: device_hdf5
-  renderer:
-    colormap_mode: auto
+figure:
+  imshow:
+    vmin: -100
+    vmax: 100
     cmap: viridis
-    vmin: -100.0
-    vmax: 100.0
+  colorbar:
+    label: test
+  axes:
     xlabel: thing
     ylabel: asdf
-    colorbar_label: test
-    figsize:
-    - 10.0
-    - 1.0
+  fig:
+    dpi: 150
+summaries:
+- kind: image_grid
+  panel_size:
+  - 10.0
+  - 1.0
+- kind: average

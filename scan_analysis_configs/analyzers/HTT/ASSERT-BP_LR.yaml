@@ -1,27 +1,29 @@
-schema_version: 2
-name: ASSERT-BP_LR
-analyzer:
+schema_version: 3
+device: ASSERT-BP_LR
+description: ASSERT low resolution beam profiler
+metadata:
+  location: B cave
+  notes: none
+  spatial_calibration: 1
+input:
+  kind: camera
+steps:
+- step: background_constant
+  level: 90
+- step: zero_below
+  level: 0
+measure:
   kind: beam
-image:
-  type: camera
-  description: ASSERT low resolution beam profiler
-  metadata:
-    location: B cave
-    notes: none
-    spatial_calibration: 1
-  bit_depth: 16
-  background:
-    method: constant
-    constant_level: 90.0
-  thresholding:
-    method: constant
-    value: 0.0
-    mode: to_zero
-    invert: false
-  pipeline:
-  - background
-  - thresholding
 scan:
-  priority: 100
-  mode: per_shot
   save: false
+figure:
+  imshow:
+    vmin: 0
+  fig:
+    dpi: 150
+summaries:
+- kind: image_grid
+  panel_size:
+  - 6.0
+  - 6.0
+- kind: average

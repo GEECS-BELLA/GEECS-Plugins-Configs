@@ -1,39 +1,31 @@
-schema_version: 2
-name: Dutch1Mmt
-analyzer:
+schema_version: 3
+device: Dutch1Mmt
+description: Example configuration for processing 1D spectral data or lineouts
+input:
   kind: line
-image:
-  type: line
-  description: Example configuration for processing 1D spectral data or lineouts
-  data_loading:
+  file_tail: .txt
+  loading:
     data_type: tsv
+  x_unit: MeV
   label: Charge density vs Energy
-  x_units: MeV
-  x_scale_factor: 1.0
-  processing_dtype: float64
-  storage_dtype: float32
-  roi:
-    x_min: 60.0
-    x_max: 500.0
-  background:
-    method: constant
-    constant_level: 0.0
-  filtering:
-    method: median
-    kernel_size: 3
-    sigma: 2.0
-  thresholding:
-    method: absolute
-    threshold_value: -10.0
-    clip_below: true
-  pipeline:
-  - background
-  - roi
-  - filtering
-  - thresholding
+steps:
+- step: background_constant
+  level: 0
+- step: roi
+  bounds:
+  - - 60
+    - 500
+  units: axis
+- step: median
+- step: clip_below
+  level: -10
+measure:
+  kind: line
 scan:
   priority: 1
-  mode: per_shot
-  save: true
-  gdoc_slot: 0
-  file_tail: .txt
+figure:
+  fig:
+    dpi: 150
+summaries:
+- kind: waterfall
+- kind: average

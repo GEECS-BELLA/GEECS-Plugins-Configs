@@ -1,12 +1,24 @@
-schema_version: 2
-name: UC_BCaveMagSpecCam1
-analyzer:
+schema_version: 3
+device: UC_BCaveMagSpecCam1
+input:
+  kind: camera
+steps:
+- step: roi
+  bounds:
+  - - 25
+    - 150
+  - - 0
+    - 20000
+measure:
   kind: beam
-image:
-  type: camera
-  roi:
-    x_max: 20000
-    y_min: 25
-    y_max: 150
-  pipeline:
-  - roi
+figure:
+  imshow:
+    vmin: 0
+  fig:
+    dpi: 150
+summaries:
+- kind: image_grid
+  panel_size:
+  - 6.0
+  - 6.0
+- kind: average

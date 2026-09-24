@@ -1,19 +1,27 @@
-schema_version: 2
-name: UC_GhostFocus
-analyzer:
+schema_version: 3
+device: UC_GhostFocus
+input:
+  kind: camera
+  format: device_hdf5
+steps:
+- step: roi
+  bounds:
+  - - 150
+    - 350
+  - - 400
+    - 600
+- step: background_constant
+  level: 50
+measure:
   kind: beam
-image:
-  type: camera
-  roi:
-    x_min: 400
-    x_max: 600
-    y_min: 150
-    y_max: 350
-  background:
-    method: constant
-    constant_level: 50.0
-  pipeline:
-  - roi
-  - background
-scan:
-  data_format: device_hdf5
+figure:
+  imshow:
+    vmin: 0
+  fig:
+    dpi: 150
+summaries:
+- kind: image_grid
+  panel_size:
+  - 6.0
+  - 6.0
+- kind: average

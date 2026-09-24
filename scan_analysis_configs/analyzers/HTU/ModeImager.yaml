@@ -1,35 +1,60 @@
-schema_version: 2
-name: UC_ModeImager
-analyzer:
+schema_version: 3
+device: UC_ModeImager
+description: imager of main laser driver
+metadata:
+  location: B-cave
+  notes: none
+  spatial_calibration: 2.44e-05
+input:
+  kind: camera
+steps:
+- step: background_constant
+  level: 30
+- step: zero_below
+  level: 0
+- step: median
+- step: roi
+  bounds:
+  - - 400
+    - 800
+  - - 500
+    - 900
+- step: roi
+  bounds:
+  - - 400
+    - 800
+  - - 500
+    - 900
+- step: roi
+  bounds:
+  - - 400
+    - 800
+  - - 500
+    - 900
+- step: roi
+  bounds:
+  - - 400
+    - 800
+  - - 500
+    - 900
+- step: roi
+  bounds:
+  - - 400
+    - 800
+  - - 500
+    - 900
+measure:
   kind: beam
-image:
-  type: camera
-  description: imager of main laser driver
-  metadata:
-    location: B-cave
-    notes: none
-    spatial_calibration: 2.44e-05
-  roi:
-    x_min: 500
-    x_max: 900
-    y_min: 400
-    y_max: 800
-  background:
-    method: constant
-    constant_level: 30.0
-  thresholding:
-    value: 0.0
-    mode: to_zero
-  filtering:
-    median_kernel_size: 3
-  pipeline:
-  - background
-  - thresholding
-  - filtering
-  - roi
-  - roi
-  - roi
-  - roi
-  - roi
 scan:
   priority: 20
+figure:
+  imshow:
+    vmin: 0
+  fig:
+    dpi: 150
+summaries:
+- kind: image_grid
+  panel_size:
+  - 6.0
+  - 6.0
+- kind: average
