@@ -1,0 +1,19 @@
+schema_version: 3
+device: UC_BCaveMagSpecCam1
+output_name: UC_BCaveMagSpecStitcher
+description: BCave magnetic spectrometer, cameras 1 and 2 stitched along momentum
+input:
+  kind: line
+  folder: UC_BCaveMagSpecCam1-interpSpec
+  file_tail: .txt
+  format: device_hdf5
+  loading:
+    data_type: pva_stack
+  siblings:
+  - UC_BCaveMagSpecCam2-interpSpec
+steps: []
+measure:
+  kind: line
+summaries:
+- kind: waterfall
+- kind: average
