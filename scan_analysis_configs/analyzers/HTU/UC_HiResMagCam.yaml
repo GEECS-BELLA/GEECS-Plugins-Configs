@@ -1,0 +1,40 @@
+schema_version: 3
+device: UC_HiResMagCam
+description: High resolution magnetic spectrometer camera; bow-tie fit of the
+  dispersed electron beam. Run per bin so one fit per bin gives the imaged-energy
+  column (bowtie_x0) beside the emittance proxy.
+metadata:
+  location: Undulator beamline
+  spatial_calibration: 2.217e-05
+input:
+  kind: camera
+inputs:
+  camera_background:
+    from_scan:
+      statistic: percentile
+      percentile: 5.0
+steps:
+- step: background_frame
+  source: camera_background
+  alignment: samples
+- step: background_constant
+  level: 5
+- step: zero_below
+  level: 0
+- step: median
+  kernel: 3
+measure:
+  kind: hi_res_mag_cam
+scan:
+  average_frames_first: true
+figure:
+  imshow:
+    vmin: 0
+  fig:
+    dpi: 150
+summaries:
+- kind: image_grid
+  panel_size:
+  - 6.0
+  - 6.0
+- kind: average
