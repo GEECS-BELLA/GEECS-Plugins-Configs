@@ -9,17 +9,15 @@ input:
   format: device_hdf5
   loading:
     data_type: pva_stack
-  x_scale: 1000.0
   x_unit: MeV
   label: Charge density vs Energy
 steps:
-- step: background_constant
-  level: 0
 - step: roi
   bounds:
-  - - 60
-    - 160
-  units: axis
+  - - 10
+    - 150
+- step: background_constant
+  level: 0
 - step: median
 - step: clip_below
   level: -10
@@ -28,6 +26,9 @@ measure:
 scan:
   priority: 1
 figure:
+  axes:
+    xlabel: Energy (MeV)
+    ylabel: Spectral Density (pC/MeV...sort of)
   fig:
     dpi: 150
 summaries:

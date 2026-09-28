@@ -17,32 +17,8 @@ steps:
   bounds:
   - - 400
     - 800
-  - - 500
-    - 900
-- step: roi
-  bounds:
-  - - 400
+  - - 200
     - 800
-  - - 500
-    - 900
-- step: roi
-  bounds:
-  - - 400
-    - 800
-  - - 500
-    - 900
-- step: roi
-  bounds:
-  - - 400
-    - 800
-  - - 500
-    - 900
-- step: roi
-  bounds:
-  - - 400
-    - 800
-  - - 500
-    - 900
 measure:
   kind: beam
 scan:

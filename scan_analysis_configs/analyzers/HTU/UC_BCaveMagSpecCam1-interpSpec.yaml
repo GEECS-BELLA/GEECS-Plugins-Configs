@@ -1,0 +1,16 @@
+schema_version: 3
+device: UC_BCaveMagSpecCam1
+output_name: UC_BCaveMagSpecCam1-interpSpec
+input:
+  kind: line
+  folder: UC_BCaveMagSpecCam1-interpSpec
+  file_tail: .txt
+  format: device_hdf5
+  loading:
+    data_type: pva_stack
+steps: []
+measure:
+  kind: line
+summaries:
+- kind: waterfall
+- kind: average
