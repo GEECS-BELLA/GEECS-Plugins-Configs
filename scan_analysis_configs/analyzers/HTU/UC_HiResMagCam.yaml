@@ -1,0 +1,34 @@
+schema_version: 2
+name: UC_HiResMagCam
+analyzer:
+  kind: hi_res_mag_cam
+image:
+  type: camera
+  description: High resolution magnetic camera for electron beam profiling
+  metadata:
+    location: Undulator beamline
+    notes: ported from the legacy UNCLASSIFIED/UC_HiResMagCam.yaml camera config
+      (deleted in 8cbbc21); no ROI, as in the legacy file
+    spatial_calibration: 2.217e-05
+  bit_depth: 16
+  background:
+    constant_level: 50.0
+    additional_constant: 5.0
+  thresholding:
+    method: constant
+    value: 0.0
+    mode: to_zero
+    invert: false
+  filtering:
+    median_kernel_size: 3
+  pipeline:
+  - background
+  - thresholding
+  - filtering
+scan:
+  mode: per_shot
+  save: true
+  background_source:
+    from_current_scan:
+      method: percentile
+      percentile: 5.0
