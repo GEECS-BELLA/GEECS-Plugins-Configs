@@ -18,6 +18,13 @@ measure:
     bottom: 350
     left: 10
     right: 670
+  filters:         # nothing removed (owner ruling 2026-09-29): the stored phase keeps tilt and lensing,
+    tilt_x: false  # a reference subtraction and any filtering can be applied afterwards
+    tilt_y: false
+    curvature: false
+    astigmatism_0: false
+    astigmatism_45: false
+    others: false
   wavelength_nm: 800.0
 scan:
   priority: 10
