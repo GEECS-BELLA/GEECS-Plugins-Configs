@@ -1,0 +1,47 @@
+schema_version: 3
+device: U_HasoLift
+output_name: HasoLift_imprint
+description: >-
+  HASO4 LIFT plasma imprint: HasoLift's reconstruction with a same-day
+  probe-only reference subtracted on the slopes (before the mask), so the
+  phase is phase(probe + plasma) - phase(probe alone). Set inputs.probe
+  from_scan.scan to that day's reference scan (converted with
+  HasoLift_stack, like the scan analyzed) before running. Jet off in the
+  reference leaves gas (+) and plasma (-) in the map; jet firing with the
+  drive laser blocked leaves the plasma alone. Products under
+  analysis/ScanNNN/HasoLift_imprint/.
+input:
+  kind: camera
+  file_tail: .himg
+  format: device_hdf5
+inputs:
+  probe:           # the SAME DAY's probe-only scan: 26_0929 Scan014 (jet off, 21 shots)
+    from_scan:
+      scan: 14
+      statistic: mean
+measure:
+  kind: haso
+  sensor_config: WFS_HASO4_LIFT_680_8244_gain_enabled.dat
+  reference: probe
+  mask:            # as HasoLift: rows 175:350 centre the plasma channel (row 263 on 26_0929)
+    top: 175
+    bottom: 350
+    left: 10
+    right: 670
+  filters:         # nothing removed (owner ruling 2026-09-29), as HasoLift
+    tilt_x: false
+    tilt_y: false
+    curvature: false
+    astigmatism_0: false
+    astigmatism_45: false
+    others: false
+  wavelength_nm: 800.0
+scan:
+  priority: 10
+  save: true
+figure:
+  colorbar:
+    label: imprint phase (um)
+summaries:
+  - kind: image_grid
+  - kind: average
