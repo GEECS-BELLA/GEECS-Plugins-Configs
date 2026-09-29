@@ -13,9 +13,9 @@ input:
 measure:
   kind: haso
   sensor_config: WFS_HASO4_LIFT_680_8244_gain_enabled.dat
-  mask:
-    top: 125
-    bottom: 300
+  mask:            # rows 175:350 centre the plasma channel (row 263 on 26_0929); columns as before
+    top: 175
+    bottom: 350
     left: 10
     right: 670
   wavelength_nm: 800.0
