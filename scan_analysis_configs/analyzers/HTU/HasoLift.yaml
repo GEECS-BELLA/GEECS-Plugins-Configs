@@ -1,15 +1,37 @@
-schema_version: 2
-name: U_HasoLift
-analyzer:
+schema_version: 3
+device: U_HasoLift
+description: >-
+  HASO4 LIFT wavefront: zonal phase from the sensor's raw pixels through
+  WaveKit (the haso measure, under Wine on the Linux analysis host). Reads
+  the device's capture stack only — run HasoLift_stack on the scan first.
+  Every shot's processed phase, raw phase, intensity, slopes and pupil land
+  in analysis/ScanNNN/U_HasoLift/Array2DScanAnalyzer/U_HasoLift_wavefront.h5.
+input:
+  kind: camera
+  file_tail: .himg
+  format: device_hdf5
+measure:
   kind: haso
-  wavekit_config_file_path: Z:/software/control-all-loasis/HTU/Active Version/GEECS-Plugins/ImageAnalysis/image_analysis/third_party_sdks/wavekit_43/WFS_HASO4_LIFT_680_8244_gain_enabled.dat
-  mask:
-    top: 125
-    bottom: 300
+  sensor_config: WFS_HASO4_LIFT_680_8244_gain_enabled.dat
+  mask:            # rows 175:350 centre the plasma channel (row 263 on 26_0929); columns as before
+    top: 175
+    bottom: 350
     left: 10
     right: 670
+  filters:         # nothing removed (owner ruling 2026-09-29): the stored phase keeps tilt and lensing,
+    tilt_x: false  # a reference subtraction and any filtering can be applied afterwards
+    tilt_y: false
+    curvature: false
+    astigmatism_0: false
+    astigmatism_45: false
+    others: false
+  wavelength_nm: 800.0
 scan:
   priority: 10
-  mode: per_shot
   save: true
-  file_tail: .himg
+figure:
+  colorbar:
+    label: phase (um)
+summaries:
+  - kind: image_grid
+  - kind: average
