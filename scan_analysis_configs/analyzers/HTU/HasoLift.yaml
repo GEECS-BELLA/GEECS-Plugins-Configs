@@ -25,3 +25,6 @@ scan:
 figure:
   colorbar:
     label: phase (um)
+summaries:
+  - kind: image_grid
+  - kind: average
