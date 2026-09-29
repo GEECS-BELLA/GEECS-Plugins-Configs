@@ -1,28 +1,20 @@
 schema_version: 3
 device: UC_HiResMagCam
-description: High resolution magnetic spectrometer camera; bow-tie fit of the
-  dispersed electron beam, per shot. bowtie_x0 is the imaged-energy column; its
-  mean over the finite values (rejected fits are NaN) is the number to read.
+description: High resolution magnetic spectrometer camera; bow-tie fit of the dispersed
+  electron beam, per shot. bowtie_x0 is the imaged-energy column; its mean over the
+  finite values (rejected fits are NaN) is the number to read.
 metadata:
   location: Undulator beamline
   spatial_calibration: 2.217e-05
 input:
   kind: camera
-inputs:
-  camera_background:
-    from_scan:
-      statistic: percentile
-      percentile: 5.0
+  format: device_hdf5
 steps:
-- step: background_frame
-  source: camera_background
-  alignment: samples
 - step: background_constant
-  level: 5
-- step: zero_below
+  level: 75
+- step: clip_below
   level: 0
 - step: median
-  kernel: 3
 measure:
   kind: hi_res_mag_cam
 figure:
