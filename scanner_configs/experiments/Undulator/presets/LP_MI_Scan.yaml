@@ -1,0 +1,28 @@
+schema_version: 1
+name: LP_MI_Scan
+description: ''
+trigger_profile: HTU-NoGas
+background: false
+native_image_save: null
+devices:
+- device: UC_ModeImager
+  save_images: true
+  essential: true
+plan:
+  name: sweep
+  args: []
+  kwargs:
+    shots_per_step: 3
+    acquisition: strict
+    sweep:
+      trajectory:
+        kind: axes
+        combine: zip
+        snake: false
+        axes:
+        - axis: Mode Imager Stage
+          relative: false
+          kind: range
+          start: -25
+          stop: -5
+          num: 30

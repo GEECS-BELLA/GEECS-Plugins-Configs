@@ -1,0 +1,26 @@
+schema_version: 1
+reference: u_bcaveict
+devices:
+  u_bcaveict:
+    offset_s: 0.0
+    scatter_s: 0.0025000572204589844
+    shots: 10
+    geecs_device: U_BCaveICT
+  uc_amp3_ir_input:
+    offset_s: 0.09599990844726564
+    scatter_s: 0.0015001296997070312
+    shots: 10
+    geecs_device: UC_Amp3_IR_input
+  uc_amp4_ir_input:
+    offset_s: 0.05889997482299805
+    scatter_s: 0.0007505416870117188
+    shots: 10
+    geecs_device: UC_Amp4_IR_input
+  uc_modeimager:
+    offset_s: 0.1602998733520508
+    scatter_s: 0.0014996528625488281
+    shots: 10
+    geecs_device: UC_ModeImager
+measured_at: '2026-09-12T22:48:49-07:00'
+trigger_profile: HTU-LaserOFF
+description: ''

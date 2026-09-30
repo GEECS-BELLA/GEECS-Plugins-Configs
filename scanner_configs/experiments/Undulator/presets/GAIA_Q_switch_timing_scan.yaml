@@ -1,0 +1,28 @@
+schema_version: 1
+name: GAIA_Q_switch_timing_scan
+description: 'GAIA Q switch timing scan: GAIA lamp timing at 600us'
+trigger_profile: HTU-NoGas
+background: false
+native_image_save: null
+devices:
+- device: UC_Amp4_IR_output
+  save_images: true
+  essential: true
+plan:
+  name: sweep
+  args: []
+  kwargs:
+    acquisition: strict
+    shots_per_step: 3
+    sweep:
+      trajectory:
+        kind: axes
+        combine: zip
+        snake: false
+        axes:
+        - axis: U_1HzShiftedBox:delay.Channel_A
+          relative: false
+          kind: range
+          start: 0.000684644
+          stop: 0.00068496
+          num: 30
