@@ -17,7 +17,7 @@ steps:
   bounds:
   - - 400
     - 800
-  - - 200
+  - - 500
     - 800
 measure:
   kind: beam

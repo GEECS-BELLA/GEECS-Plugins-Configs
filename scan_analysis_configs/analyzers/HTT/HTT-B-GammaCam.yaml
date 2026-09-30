@@ -1,0 +1,26 @@
+schema_version: 3
+device: HTT-B-GammaCam
+input:
+  kind: camera
+  file_tail: .png
+  format: per_shot_files
+inputs:
+  bkg:
+    from_scan:
+      scan: 13
+steps:
+- step: background_frame
+  source: bkg
+- step: roi
+  bounds:
+  - - 400
+    - 700
+  - - 120
+    - 750
+- step: clip_below
+  level: 0
+measure:
+  kind: beam
+summaries:
+- kind: image_grid
+- kind: average

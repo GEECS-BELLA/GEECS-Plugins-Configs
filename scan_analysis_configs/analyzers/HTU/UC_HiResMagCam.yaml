@@ -17,6 +17,8 @@ steps:
 - step: median
 measure:
   kind: hi_res_mag_cam
+scan:
+  average_frames_first: true
 figure:
   imshow:
     vmin: 0

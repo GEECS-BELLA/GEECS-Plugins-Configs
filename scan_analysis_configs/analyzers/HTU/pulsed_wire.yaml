@@ -1,0 +1,16 @@
+schema_version: 3
+device: pulsewire-picoscope
+input:
+  kind: line
+  file_tail: .tdms
+  format: per_shot_files
+  loading:
+    data_type: tdms_scope
+steps:
+- step: background_constant
+  level: -2
+measure:
+  kind: line
+summaries:
+- kind: waterfall
+- kind: average

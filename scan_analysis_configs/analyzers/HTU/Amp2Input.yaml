@@ -1,5 +1,5 @@
 schema_version: 3
-device: UC_Amp2_IR_Input
+device: UC_Amp2_IR_input
 description: IR mode at the input to amp2
 metadata:
   location: Room 148
