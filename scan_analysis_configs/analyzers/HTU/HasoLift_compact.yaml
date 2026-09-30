@@ -1,0 +1,13 @@
+schema_version: 2
+name: U_HasoLift
+# The one destructive analyzer: verify every frame of U_HasoLift.h5 against
+# the stack and the .himg file on disk, then DELETE the .himg files and
+# leave himg_manifest.json beside the stack. The Portal asks for the scan
+# number before running it; HasoLift_restore rebuilds the files. Its own
+# output name keeps the Analysis tab's listing separate from HasoLift's.
+output_name: HasoLift_compact
+analyzer:
+  kind: himg_compact
+scan:
+  priority: 6
+  file_tail: .himg
