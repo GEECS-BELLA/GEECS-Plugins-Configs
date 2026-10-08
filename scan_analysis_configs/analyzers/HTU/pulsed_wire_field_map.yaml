@@ -21,7 +21,7 @@ steps:
     critical_frequency: 1.5e-3
   - step: roi
     units: axis
-    bounds: [[1.0e-3, 3.6e-3]]
+    bounds: [[1.0e-3, 3.84e-3]]
   - step: derivative
 measure:
   kind: none
