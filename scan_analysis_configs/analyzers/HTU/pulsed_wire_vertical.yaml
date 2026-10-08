@@ -41,6 +41,5 @@ figure:
   colorbar: {label: "y deflection (V)"}
 summaries:
   - kind: waterfall
-    scale: sequential
   - kind: scalar_fit
     scalars: [kick_1, kick_2, kick_3]
