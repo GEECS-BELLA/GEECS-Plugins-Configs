@@ -1,0 +1,36 @@
+schema_version: 3
+device: pulsewire-picoscope
+output_name: pulsewire-picoscope-field-map
+description: >-
+  Pulsed-wire field map, horizontal plane: the time derivative of the
+  lowpassed x deflection (proportional to the local field) per hexapod
+  position, on a diverging scale centred on zero.
+input:
+  kind: line
+  file_tail: .tdms
+  format: per_shot_files
+  loading:
+    data_type: tdms_scope
+    trace_index: 0
+  x_unit: s
+  y_unit: V
+  label: x deflection
+steps:
+  - step: lowpass
+    order: 2
+    critical_frequency: 1.5e-3
+  - step: roi
+    units: axis
+    bounds: [[1.0e-3, 3.6e-3]]
+  - step: derivative
+measure:
+  kind: none
+scan:
+  average_frames_first: true
+figure:
+  fig: {dpi: 150}
+  axes: {xlabel: "time (s)"}
+summaries:
+  - kind: waterfall
+    scale: diverging
+    cmap: RdBu_r

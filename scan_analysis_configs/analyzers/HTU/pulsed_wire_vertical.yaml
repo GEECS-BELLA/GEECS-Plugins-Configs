@@ -1,0 +1,46 @@
+schema_version: 3
+device: pulsewire-picoscope
+output_name: pulsewire-picoscope-vertical
+description: >-
+  Pulsed-wire PMQ triplet, vertical plane (ChB = y wire deflection).
+  Kicks are plateau differences in the drift windows; scalar_fit gives each
+  element's slope and magnetic centre against the hexapod position.
+input:
+  kind: line
+  file_tail: .tdms
+  format: per_shot_files
+  loading:
+    data_type: tdms_scope
+    trace_index: 1
+  x_unit: s
+  y_unit: V
+  label: y deflection
+steps:
+  - step: lowpass
+    order: 2
+    critical_frequency: 1.5e-3
+  - step: roi
+    units: axis
+    bounds: [[1.0e-3, 3.6e-3]]
+measure:
+  kind: pulsed_wire
+  windows:
+    - {start: 1.2e-3, end: 1.7e-3}
+    - {start: 2.05e-3, end: 2.25e-3}
+    - {start: 2.68e-3, end: 2.78e-3}
+    - {start: 3.05e-3, end: 3.4e-3}
+  elements:
+    - {name: PMQ1}
+    - {name: PMQ2}
+    - {name: PMQ3}
+scan:
+  average_frames_first: true
+figure:
+  fig: {dpi: 150}
+  axes: {xlabel: "time (s)", ylabel: "y deflection (V)"}
+  colorbar: {label: "y deflection (V)"}
+summaries:
+  - kind: waterfall
+    scale: sequential
+  - kind: scalar_fit
+    scalars: [kick_1, kick_2, kick_3]
