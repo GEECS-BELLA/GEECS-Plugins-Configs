@@ -1,0 +1,10 @@
+schema_version: 2
+name: CR-Highland-Internal
+description: Highland T564 on its internal DSS trigger while taking data; external rising-edge source (no edges) when OFF
+states:
+  OFF:
+    - {device: DDG-CR-Highland, variable: Trigger.Source, value: Rising}
+  STANDBY:
+    - {device: DDG-CR-Highland, variable: Trigger.Source, value: Internal DSS}
+  SCAN:
+    - {device: DDG-CR-Highland, variable: Trigger.Source, value: Internal DSS}
