@@ -25,16 +25,11 @@ polluting the operator UI. Nothing here is referenced by any preset.
   waiting on PVA coverage for non-scalar device types rather than on a
   missing YAML.
 
-`ebeam_source_opt.yaml`
-: **Dropped** per `Planning/native_bluesky/11_optimization.md` §9 — its
-  objective comes from a LabVIEW TSV trace rather than a frame, which the
-  native measurement vocabulary does not express.
-
 `hexapod_alignment.yaml`, `multi_device_example.yaml`
 : **Dropped** per the same brief. `multi_device_example` was an example, not
   an operational config.
 
-The brief calls for the three dropped files to be deleted outright. They are
+The brief calls for the dropped files to be deleted outright (`ebeam_source_opt.yaml` went with the `bcave_mag_opt` analyzer kind, deleted 2026-10-14; the other two remain). They are
 parked here instead, because hiding them was the immediate need and a move is
 reversible where a delete is a separate decision. Delete them whenever that
 call is made — nothing depends on them.
