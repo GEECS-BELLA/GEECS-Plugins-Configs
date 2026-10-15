@@ -1,43 +1,36 @@
-schema_version: 2
-name: HTT-C23_1_MagSpec1-interpSpec
-analyzer:
-  kind: line_stitcher
-  sibling_devices:
+schema_version: 3
+device: HTT-C23_1_MagSpec1-interpSpec
+description: Example configuration for processing 1D spectral data or lineouts
+input:
+  kind: line
+  file_tail: .tsv
+  loading:
+    data_type: tsv
+  x_unit: MeV
+  label: Charge density vs Energy
+  siblings:
   - HTT-C23_2_MagSpec2-interpSpec
   - HTT-C23_3_MagSpec3-interpSpec
   - HTT-C23_4_MagSpec4-interpSpec
-  output_label: HTT-MagSpecStitcher
-image:
-  type: line
-  description: Example configuration for processing 1D spectral data or lineouts
-  data_loading:
-    data_type: tsv
-  label: Charge density vs Energy
-  x_units: MeV
-  x_scale_factor: 1.0
-  processing_dtype: float64
-  storage_dtype: float32
-  roi:
-    x_min: 4.0
-    x_max: 500.0
-  background:
-    method: constant
-    constant_level: 0.0
-  filtering:
-    method: median
-    kernel_size: 15
-    sigma: 2.0
-  thresholding:
-    method: absolute
-    threshold_value: 0.0
-    clip_below: true
-  pipeline:
-  - background
-  - roi
-  - filtering
-  - thresholding
+steps:
+- step: background_constant
+  level: 0
+- step: roi
+  bounds:
+  - - 4
+    - 500
+  units: axis
+- step: median
+  kernel: 15
+- step: clip_below
+  level: 0
+measure:
+  kind: line
 scan:
   priority: 5
-  mode: per_shot
-  save: true
-  file_tail: .tsv
+figure:
+  fig:
+    dpi: 150
+summaries:
+- kind: waterfall
+- kind: average

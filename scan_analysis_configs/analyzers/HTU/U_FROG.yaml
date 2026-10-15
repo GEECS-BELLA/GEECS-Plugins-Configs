@@ -1,36 +1,32 @@
-schema_version: 2
-name: U_FROG_Grenouille
+schema_version: 3
+device: U_FROG_Grenouille
 output_name: U_FROG_Grenouille-Temporal
-analyzer:
-  kind: frog_retrieval
-  delt: 0.85
-  dellam: -0.085
-  lam0: 400.0
-  N: 512
+description: image of target chamber output port
+metadata:
+  location: '148'
+  notes: none
+  spatial_calibration: 2.44e-05
+input:
+  kind: camera
+  folder: U_FROG_Grenouille-Temporal
+steps:
+- step: zero_below
+  level: 0
+measure:
+  kind: frog
   target_error: 0.0001
-  max_time_seconds: 15.0
-  max_iterations: 1000000000
-image:
-  type: camera
-  description: image of target chamber output port
-  metadata:
-    location: '148'
-    notes: none
-    spatial_calibration: 2.44e-05
-  bit_depth: 16
-  background:
-    method: constant
-    constant_level: 0.0
-  thresholding:
-    method: constant
-    value: 0.0
-    mode: to_zero
-    invert: false
-  pipeline:
-  - background
-  - thresholding
+  max_time_seconds: 15
 scan:
   priority: 1
-  mode: per_shot
   save: false
-  device: U_FROG_Grenouille-Temporal
+figure:
+  imshow:
+    vmin: 0
+  fig:
+    dpi: 150
+summaries:
+- kind: image_grid
+  panel_size:
+  - 6.0
+  - 6.0
+- kind: average

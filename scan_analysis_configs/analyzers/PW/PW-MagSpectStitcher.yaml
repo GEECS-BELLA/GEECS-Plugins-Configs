@@ -1,8 +1,13 @@
-schema_version: 2
-name: CAM-TEA-MagSpecA-interpSpec
-analyzer:
-  kind: line_stitcher
-  sibling_devices:
+schema_version: 3
+device: CAM-TEA-MagSpecA-interpSpec
+description: Example configuration for processing 1D spectral data or lineouts
+input:
+  kind: line
+  file_tail: .txt
+  loading:
+    data_type: tsv
+  label: Charge density vs Energy
+  siblings:
   - CAM-TEA-MagSpecB-interpSpec
   - CAM-TEA-MagSpecC-interpSpec
   - CAM-TEA-MagSpecD-interpSpec
@@ -10,22 +15,14 @@ analyzer:
   - CAM-TEA-MagSpecH-interpSpec
   - CAM-TEA-MagSpecI-interpSpec
   - CAM-TEA-MagSpecJ-interpSpec
-  output_label: PW-MagSpectStitcher
-image:
-  type: line
-  description: Example configuration for processing 1D spectral data or lineouts
-  data_loading:
-    data_type: tsv
-    trace_index: 0
-    x_column: 0
-    y_column: 1
-    auxiliary_columns: {}
-  label: Charge density vs Energy
-  processing_dtype: float64
-  storage_dtype: float32
-  pipeline: []
+steps: []
+measure:
+  kind: line
 scan:
   priority: 1
-  mode: per_shot
-  save: true
-  file_tail: .txt
+figure:
+  fig:
+    dpi: 150
+summaries:
+- kind: waterfall
+- kind: average
