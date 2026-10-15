@@ -1,2 +1,6 @@
-device: ''
-variables: {}
+schema_version: 2
+name: No Device
+# Box-less GEECS scan mode: no shot-control device is written; the announced
+# shot is the only trigger, so only free-running devices take a shot.
+use_scan_mode: true
+states: {}
