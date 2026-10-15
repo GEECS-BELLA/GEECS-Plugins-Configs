@@ -1,0 +1,22 @@
+schema_version: 2
+name: HTU-LaserOFF-ScanMode
+description: HTU-LaserOFF under GEECS scan mode — the DG645 fires one software shot per announced shot
+# Under scan mode the DG645 applies its DB start/end rows on ScanStart/ScanEnd,
+# so those rows must agree with ARMED/STANDBY here (the preflight refuses a
+# mismatch): the Trigger.Source start row must read "Single shot" for this profile.
+use_scan_mode: true
+states:
+  OFF:
+    - {device: U_DG645_ShotControl, variable: Amplitude.Ch AB, value: '0.5'}
+    - {device: U_DG645_ShotControl, variable: Trigger.Source, value: Single shot}
+  STANDBY:
+    - {device: U_DG645_ShotControl, variable: Amplitude.Ch AB, value: '0.5'}
+    - {device: U_DG645_ShotControl, variable: Trigger.Source, value: External rising edges}
+  SCAN:
+    - {device: U_DG645_ShotControl, variable: Amplitude.Ch AB, value: '4.0'}
+    - {device: U_DG645_ShotControl, variable: Trigger.Source, value: Internal}
+  ARMED:
+    - {device: U_DG645_ShotControl, variable: Amplitude.Ch AB, value: '4.0'}
+    - {device: U_DG645_ShotControl, variable: Trigger.Source, value: Single shot}
+  SINGLESHOT:
+    - {device: U_DG645_ShotControl, variable: Trigger.ExecuteSingleShot, value: 'on'}
