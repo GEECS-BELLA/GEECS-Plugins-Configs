@@ -1,13 +1,11 @@
-schema_version: 2
-name: U_HasoLift
-# The one destructive analyzer: verify every frame of U_HasoLift.h5 against
-# the stack and the .himg file on disk, then DELETE the .himg files and
-# leave himg_manifest.json beside the stack. The Portal asks for the scan
-# number before running it; HasoLift_restore rebuilds the files. Its own
-# output name keeps the Analysis tab's listing separate from HasoLift's.
+schema_version: 1
+kind: himg_compact
+device: U_HasoLift
 output_name: HasoLift_compact
-analyzer:
-  kind: himg_compact
+description: 'The one destructive analyzer: verify every frame of U_HasoLift.h5 against
+  the stack and the .himg file on disk, then DELETE the .himg files and leave himg_manifest.json
+  beside the stack. The Portal asks for the scan number before running it; HasoLift_restore
+  rebuilds the files. Its own output name keeps the Analysis tab''s listing separate
+  from HasoLift''s.'
 scan:
   priority: 6
-  file_tail: .himg

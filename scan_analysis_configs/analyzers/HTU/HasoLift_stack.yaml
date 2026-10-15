@@ -1,10 +1,8 @@
-schema_version: 2
-name: U_HasoLift
-# Its own output name so the Analysis tab's artifact listing never shows the
-# HasoLift diagnostic's products under this row (the converter writes none).
+schema_version: 1
+kind: himg_to_stack
+device: U_HasoLift
 output_name: HasoLift_stack
-analyzer:
-  kind: himg_to_stack
+description: Its own output name so the Analysis tab's artifact listing never shows
+  the HasoLift diagnostic's products under this row (the converter writes none).
 scan:
   priority: 5
-  file_tail: .himg

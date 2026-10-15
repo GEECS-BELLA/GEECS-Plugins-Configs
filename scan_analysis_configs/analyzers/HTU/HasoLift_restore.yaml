@@ -1,11 +1,9 @@
-schema_version: 2
-name: U_HasoLift
-# Undo HasoLift_compact: rebuild every .himg from U_HasoLift.h5, byte for
-# byte (each checked against the SHA-256 recorded at conversion), and
-# remove himg_manifest.json. Adds files only.
+schema_version: 1
+kind: himg_restore
+device: U_HasoLift
 output_name: HasoLift_restore
-analyzer:
-  kind: himg_restore
+description: 'Undo HasoLift_compact: rebuild every .himg from U_HasoLift.h5, byte
+  for byte (each checked against the SHA-256 recorded at conversion), and remove himg_manifest.json.
+  Adds files only.'
 scan:
   priority: 6
-  file_tail: .himg
