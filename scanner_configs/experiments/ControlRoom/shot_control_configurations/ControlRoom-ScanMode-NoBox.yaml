@@ -1,0 +1,5 @@
+schema_version: 2
+name: ControlRoom-ScanMode-NoBox
+description: Scan mode without a trigger box; the announced shot is the only trigger.
+use_scan_mode: true
+states: {}
