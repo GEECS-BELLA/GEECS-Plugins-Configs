@@ -1,60 +1,65 @@
-schema_version: 2
-name: HTT-C23_2_MagSpec2
-analyzer:
+schema_version: 3
+device: HTT-C23_2_MagSpec2
+description: High power mode imager
+input:
+  kind: camera
+inputs:
+  camera_background:
+    from_scan:
+      scan: 1
+      statistic: mean
+  camera_table:
+    table: calibrations/HTT/260224DnnVarianCam.txt
+  trajectory_table:
+    table: calibrations/HTT/170925DnnVarianTrj.txt
+  lanex_table:
+    table: calibrations/HTT/250101lanexCalib.txt
+steps:
+- step: background_frame
+  source: camera_background
+  alignment: samples
+- step: background_constant
+  level: 1
+- step: vignette
+  full_width: 1384
+  full_height: 1032
+  y_offset: 320
+  vgnt4: -6.0e-13
+  vgnt2: -7.8e-07
+- step: roi
+  bounds:
+  - - 44
+    - 230
+  - - 369
+    - 1370
+- step: zero_below
+  level: 0
+- step: median
+  kernel: 5
+measure:
   kind: magspec
   calibration:
     kind: dnn_axis
-    camera_calibration_file: data/HTT-MagSpce-Calibrations/260224DnnVarianCam.txt
-    trajectory_calibration_file: data/HTT-MagSpce-Calibrations/170925DnnVarianTrj.txt
     camera_number: 2
     magnetic_field_t: 0.2008
-    lanex_calibration_file: data/HTT-MagSpce-Calibrations/250101lanexCalib.txt
+  camera_table: camera_table
+  trajectory_table: trajectory_table
+  lanex_table: lanex_table
   energy_range:
   - 1.2
   - 1501.3
   num_energy_points: 1000
-image:
-  type: camera
-  description: High power mode imager
-  bit_depth: 16
-  roi:
-    x_min: 369
-    x_max: 1370
-    y_min: 44
-    y_max: 230
-  background:
-    additional_constant: 1.0
-  vignette:
-    method: radial_polynomial
-    full_width: 1384
-    full_height: 1032
-    x_offset: 0
-    y_offset: 320
-    vgnt4: -6.0e-13
-    vgnt2: -7.8e-07
-    vgnt0: 1.0
-    min_model_value: 1.0e-09
-  thresholding:
-    method: constant
-    value: 0.0
-    mode: to_zero
-    invert: false
-  filtering:
-    median_kernel_size: 5
-  transforms:
-    rotation_angle: 0.0
-    flip_horizontal: false
-    flip_vertical: false
-  pipeline:
-  - background
-  - vignette
-  - roi
-  - thresholding
-  - filtering
-  - transforms
+  magnetic_field_column: HTT-MagTeslameter-DTM141 Field
 scan:
   priority: 1
-  mode: per_shot
-  save: true
-  background_source:
-    scan_number: 1
+figure:
+  imshow:
+    vmin: 0
+  fig:
+    dpi: 150
+summaries:
+- kind: image_grid
+  panel_size:
+  - 6.0
+  - 6.0
+- kind: average
