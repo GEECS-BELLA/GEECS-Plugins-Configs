@@ -25,9 +25,9 @@ steps:
 measure:
   kind: pulsed_wire
   windows:
-    - {start: 1.35e-3, end: 1.65e-3}
-    - {start: 1.85e-3, end: 2.02e-3}
-    - {start: 2.25e-3, end: 2.42e-3}
+    - {start: 1.05e-3, end: 1.31e-3}
+    - {start: 1.59e-3, end: 1.71e-3}
+    - {start: 2.13e-3, end: 2.34e-3}
     - {start: 2.70e-3, end: 3.50e-3}
   elements:
     - {name: PMQ1}
