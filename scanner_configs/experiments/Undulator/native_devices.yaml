@@ -1,0 +1,8 @@
+# Devices served by native EPICS IOCs (geecs-epics), not the GEECS DB.
+# Read by the queueserver worker at environment open (GeecsBluesky
+# NATIVE_DEVICES.md). A name here must not also be a DB device.
+schema_version: 1
+devices:
+  ADTEST_CAM1:
+    kind: aravis_camera
+    trigger_source: software
