@@ -6,3 +6,6 @@ devices:
   ADTEST_CAM1:
     kind: aravis_camera
     trigger_source: software
+  UC_VisaEBeam6:
+    kind: aravis_camera
+    trigger_source: line0
