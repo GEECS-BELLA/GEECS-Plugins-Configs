@@ -22,8 +22,11 @@ Corrections go into the screen file (and this table) directly.
   jet timing and the Visa plunger order; two devices it does not have (Grating Cam,
   Blade Height) are TODOs now; one is disabled (ACave Current).
 - **PV names**: `geecs_core.pv_naming.pv_name("Undulator", device, variable)`, the CA
-  gateway's readback name. A setpoint binds the readback PV; its write (to `:SP`) goes
-  through the module once it writes gateway PVs, and is disabled until then.
+  gateway's readback name. A writing widget binds `{device, role}`, the role being the
+  variable named here (`control_center_bindings.py` regenerates those bindings from this
+  table): the device module writes its `:SP` through its gated put. Readouts and lamps
+  stay bare PVs, read only. ACave Current stays a bare PV (drawn disabled) while its
+  device is disabled: the module does not list it.
 - **Confidence**: *high*: the VI string and the label agree, often with an alias or plan;
   *medium*: the device and variable are the VI's, but which control or which side is
   inferred; *low*: a guess the maintainer must confirm; *none*: not bound (a TODO).
@@ -48,7 +51,7 @@ Corrections go into the screen file (and this table) directly.
 
 ## Counts
 
-| Widgets | Writes to DB devices (disabled in this slice) | Readouts | Annotations | Images | Not bound (TODO) |
+| Widgets | Writes to DB devices (through the module; ACave's disabled) | Readouts | Annotations | Images | Not bound (TODO) |
 |---|---|---|---|---|---|
 | 107 | 83 | 12 | 10 | 2 | 5 |
 
