@@ -25,10 +25,19 @@ Corrections go into the screen file (and this table) directly.
   inferred; *low*: a guess the maintainer must confirm; *none*: not bound (a TODO).
 - **Dropped**: the EXIT button (the browser tab is the window); struck-through labels
   (in LabVIEW, "device off": a process fact, no meaning here).
-- **Not drawn** (in the source, not visible on the screenshot): eight `Energy (nJ)`
-  indicators on `U_VacuumGauge AI_mean.Channel 1`, `pockelcellA`/`pockelcellB`
-  (U_GaiaSVEReader), `Jet timing (s)` (U_DG645_ShotControl `Delay.Ch C`), the LED
-  pairs' hidden labels `GSN`/`GSS`.
+- **Not drawn** (in the source, not visible on the screenshot), among others: eight
+  `Energy (nJ)` indicators on `U_VacuumGauge AI_mean.Channel 1`, `pockelcellA`/`pockelcellB`
+  (U_GaiaSVEReader), `Jet timing (s)` (U_DG645_ShotControl `Delay.Ch C`), a second
+  `Amplitude Jet trigger` on U_MRC_TimingBox `Amplitude.Ch AB`, `fire::10`, the hexapod's
+  `Step size` controls, the state booleans (`Jet probe stage tck`, `Wedge enable`,
+  `Phosphor enable`, `Fire Continues Allowed`), the LED pairs' hidden labels `GSN`/`GSS`,
+  and the devices U_PIFinalSteering and U_SSR_2, which no visible control binds.
+- **Layout changes** (the format has no spacer): in **Jet timing** LabVIEW stacks Pressure
+  and Set opening time as full rows above a row of three buttons (Jet Trigger, Jet Enable,
+  Purge) with their indicators (Amplitude, Opening time, auto purge) beneath; here the
+  group has 2 columns, so Pressure sits beside Set opening time and each button sits beside
+  its indicator. In **Misc area** the in/out note moves after the last row. The
+  **Emitspoiler** and **Aline3** buttons, under the Valve Control box in LabVIEW, end it here.
 - **Tones**: the LabVIEW colours as kit tokens: blue → `trace-2`, magenta → `trace-1`,
   green → `trace-3`, cyan → `muted`, salmon → `accent`, yellow → `trace-4`,
   lavender → `slate` (in the bella theme `accent` and `trace-1` are the same red).
@@ -50,6 +59,10 @@ Annotations include the 3 not-bound controls. TODO: MRC Trigger (GAIA control), 
 - **Vacuum**: whether `AI_mean.Channel 0` is BCave, and where the calibrated pressure
   should come from (a gateway derived channel would carry 10^(V−6); the screen never computes).
 - **Blade Height**: `Position.Axis 111` is the VI's string verbatim.
+- **`Amplitude.Ch CD::10` objects** sit beside the constants in the Jet Trigger and MRC
+  cases and before the four dialog cases (both Gaia shutters, Emitspoiler, Aline3). They
+  read as copied labels, not writes; if they are writes, those six controls are multi-step
+  and become TODOs (a screen does not compute).
 
 ## The controls
 
@@ -59,8 +72,8 @@ Annotations include the 3 not-bound controls. TODO: MRC Trigger (GAIA control), 
 |---|---|---|---|---|---|
 | 1 | North shutters | annotation | — | — | VI: free label on the panel |
 | 2 | South shutters | annotation | — | — | VI: free label on the panel |
-| 3 | Gaia stop | flipper | U_148_PLC · `DO.Ch1` → `undulator:u_148_plc:do_ch1`; in/out lamps `undulator:u_148_plc:di_ch1`, `undulator:u_148_plc:di_ch2` | high | VI: label → `DO.Ch1::37`; lamps DI.Ch1/2 by the DO.Ch k ↔ DI.Ch 2k−1 (in), 2k (out) rule, which the action library confirms for DO.Ch1, Ch2, Ch9; insert_gaia_stops sets DO.Ch1+Ch2, checks DI.Ch1+Ch3 (in); which side (North/South) each channel is on is NOT in the source: check |
-| 4 | Gaia stop | flipper | U_148_PLC · `DO.Ch2` → `undulator:u_148_plc:do_ch2`; in/out lamps `undulator:u_148_plc:di_ch3`, `undulator:u_148_plc:di_ch4` | high | VI: label → `DO.Ch2::37`; lamps DI.Ch3/4 by the DO.Ch k ↔ DI.Ch 2k−1 (in), 2k (out) rule, which the action library confirms for DO.Ch1, Ch2, Ch9; which side (North/South) each channel is on is NOT in the source: check |
+| 3 | Gaia stop | flipper | U_148_PLC · `DO.Ch1` → `undulator:u_148_plc:do_ch1`; in/out lamps `undulator:u_148_plc:di_ch1`, `undulator:u_148_plc:di_ch2` | medium | VI: label → `DO.Ch1::37`; lamps DI.Ch1/2 by the DO.Ch k ↔ DI.Ch 2k−1 (in), 2k (out) rule, which the action library confirms for DO.Ch1, Ch2, Ch9; insert_gaia_stops sets DO.Ch1+Ch2, checks DI.Ch1+Ch3 (in); which side (North/South) each channel is on is NOT in the source: check |
+| 4 | Gaia stop | flipper | U_148_PLC · `DO.Ch2` → `undulator:u_148_plc:do_ch2`; in/out lamps `undulator:u_148_plc:di_ch3`, `undulator:u_148_plc:di_ch4` | medium | VI: label → `DO.Ch2::37`; lamps DI.Ch3/4 by the DO.Ch k ↔ DI.Ch 2k−1 (in), 2k (out) rule, which the action library confirms for DO.Ch1, Ch2, Ch9; which side (North/South) each channel is on is NOT in the source: check |
 | 5 | Amp2 | flipper | U_148_PLC · `DO.Ch3` → `undulator:u_148_plc:do_ch3`; in/out lamps `undulator:u_148_plc:di_ch5`, `undulator:u_148_plc:di_ch6` | medium | VI: label → `DO.Ch3::37`; lamps DI.Ch5/6 by the DO.Ch k ↔ DI.Ch 2k−1 (in), 2k (out) rule, which the action library confirms for DO.Ch1, Ch2, Ch9; which side (North/South) each channel is on is NOT in the source: check |
 | 6 | Amp2 | flipper | U_148_PLC · `DO.Ch8` → `undulator:u_148_plc:do_ch8`; in/out lamps `undulator:u_148_plc:di_ch15`, `undulator:u_148_plc:di_ch16` | medium | VI: label → `DO.Ch8::37`; lamps DI.Ch15/16 by the DO.Ch k ↔ DI.Ch 2k−1 (in), 2k (out) rule, which the action library confirms for DO.Ch1, Ch2, Ch9; which side (North/South) each channel is on is NOT in the source: check |
 | 7 | Amp3 | flipper | U_148_PLC · `DO.Ch4` → `undulator:u_148_plc:do_ch4`; in/out lamps `undulator:u_148_plc:di_ch7`, `undulator:u_148_plc:di_ch8` | medium | VI: label → `DO.Ch4::37`; lamps DI.Ch7/8 by the DO.Ch k ↔ DI.Ch 2k−1 (in), 2k (out) rule, which the action library confirms for DO.Ch1, Ch2, Ch9; which side (North/South) each channel is on is NOT in the source: check |
@@ -193,13 +206,13 @@ Annotations include the 3 not-bound controls. TODO: MRC Trigger (GAIA control), 
 | # | Label | Kind | Binding (device · variable → PV) | Confidence | Evidence |
 |---|---|---|---|---|---|
 | 86 | Pressure Control Voltage (V) | setpoint | U_HP_Daq · `AnalogOutput.Channel 1` → `undulator:u_hp_daq:analogoutput_channel_1` | high | VI: `AnalogOutput.Channel 1::8`; alias `Gas Pressure` |
-| 87 | Set opening time (s) | setpoint | U_DG645_ShotControl · `Delay.Ch B` → `undulator:u_dg645_shotcontrol:delay_ch_b` | medium | VI: the visible control has no variable; CheckJetOpeningTime and a hidden `OPening time` control write `Delay.Ch B::10`; alias `jet opening time` targets it |
-| 88 | Jet Trigger | annotation | **TODO**: none chosen | none | VI: no variable; CheckJetTriggerAmp / the event case write `Amplitude.Ch AB::10` (and `Amplitude.Ch CD::10`) with values the VI chooses (the scan-mode configs use 0.5 and 4.0). A screen does not compute: a two-state role or an action plan |
-| 89 | Amplitude Jet trigger | readout | U_DG645_ShotControl · `Amplitude.Ch AB` → `undulator:u_dg645_shotcontrol:amplitude_ch_ab` | high | VI: label → `Amplitude.Ch AB::10`, drawn as an indicator; HTU-LaserOFF-ScanMode sets it |
+| 87 | Set opening time (s) | setpoint | U_DG645_ShotControl · `Delay.Ch B` → `undulator:u_dg645_shotcontrol:delay_ch_b` | medium | VI: the visible control has no variable; state CheckJetOpeningTime handles it; the only `Delay.Ch B::10` strings are the `Opening time (s)` indicator's (an `OPening time` copy among them); alias `jet opening time` targets Delay.Ch B |
+| 88 | Jet Trigger | annotation | **TODO**: none chosen | none | VI: no variable; CheckJetTriggerAmp / the event case write `Amplitude.Ch AB::10` with values the VI chooses (constants 0.5 and 4.0 in the case; the scan-mode configs use the same). A screen does not compute: a two-state role or an action plan |
+| 89 | Amplitude Jet trigger | readout | U_DG645_ShotControl · `Amplitude.Ch AB` → `undulator:u_dg645_shotcontrol:amplitude_ch_ab` | high | VI: label → `Amplitude.Ch AB::10`, drawn as an indicator; HTU-LaserOFF-ScanMode sets it. A twin with the same caption on `Amplitude.Ch AB::30` (U_MRC_TimingBox) is in the heap too; its position puts it under MRC Trigger, hidden |
 | 90 | Jet Enable | annotation | **TODO**: none chosen | none | VI: no variable near the button and none in its event case's strings; not traceable from the source |
 | 91 | Opening time (s) | readout | U_DG645_ShotControl · `Delay.Ch B` → `undulator:u_dg645_shotcontrol:delay_ch_b` | high | VI: label → `Delay.Ch B::10`, drawn as an indicator ("2m" = 2 ms) |
-| 92 | Purge | toggle | U_PLC · `DO.Ch6` → `undulator:u_plc:do_ch6` | medium | VI: label `Purge` → `DO.Ch6::22`; state CheckPurgeValve |
-| 93 | auto purge | toggle | U_PLC · `SoftwareVars.Ch1` → `undulator:u_plc:softwarevars_ch1` | medium | VI: a control labelled `Autopurge` → `SoftwareVars.Ch1::22`, captioned "auto purge" |
+| 92 | Purge | toggle | U_PLC · `DO.Ch6` → `undulator:u_plc:do_ch6` | medium | VI: the visible `purge` button has no variable; its event case writes a hidden control labelled `Purge` → `DO.Ch6::22`; state CheckPurgeValve |
+| 93 | auto purge | toggle | U_PLC · `SoftwareVars.Ch1` → `undulator:u_plc:softwarevars_ch1` | medium | VI: the visible `auto purge` button has no variable; its event case writes a hidden control labelled `Autopurge` → `SoftwareVars.Ch1::22` |
 
 ### Misc area
 
