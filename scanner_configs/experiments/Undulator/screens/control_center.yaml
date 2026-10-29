@@ -16,12 +16,13 @@ groups:
       - {kind: annotation, label: South shutters}
       - {kind: flipper, label: Gaia stop, bind: {pv: "undulator:u_148_plc:do_ch1"}, indicators: [{pv: "undulator:u_148_plc:di_ch1"}, {pv: "undulator:u_148_plc:di_ch2"}]}
       - {kind: flipper, label: Gaia stop, bind: {pv: "undulator:u_148_plc:do_ch2"}, indicators: [{pv: "undulator:u_148_plc:di_ch3"}, {pv: "undulator:u_148_plc:di_ch4"}]}
-      - {kind: flipper, label: Amp2, bind: {pv: "undulator:u_148_plc:do_ch3"}, indicators: [{pv: "undulator:u_148_plc:di_ch5"}, {pv: "undulator:u_148_plc:di_ch6"}]}
+      # left column North, right South: the DB aliases (Gaia Amp2-4 North = DO.Ch8/7/6, South = DO.Ch3/4/5)
       - {kind: flipper, label: Amp2, bind: {pv: "undulator:u_148_plc:do_ch8"}, indicators: [{pv: "undulator:u_148_plc:di_ch15"}, {pv: "undulator:u_148_plc:di_ch16"}]}
-      - {kind: flipper, label: Amp3, bind: {pv: "undulator:u_148_plc:do_ch4"}, indicators: [{pv: "undulator:u_148_plc:di_ch7"}, {pv: "undulator:u_148_plc:di_ch8"}]}
+      - {kind: flipper, label: Amp2, bind: {pv: "undulator:u_148_plc:do_ch3"}, indicators: [{pv: "undulator:u_148_plc:di_ch5"}, {pv: "undulator:u_148_plc:di_ch6"}]}
       - {kind: flipper, label: Amp3, bind: {pv: "undulator:u_148_plc:do_ch7"}, indicators: [{pv: "undulator:u_148_plc:di_ch13"}, {pv: "undulator:u_148_plc:di_ch14"}]}
-      - {kind: flipper, label: Amp4, bind: {pv: "undulator:u_148_plc:do_ch5"}, indicators: [{pv: "undulator:u_148_plc:di_ch9"}, {pv: "undulator:u_148_plc:di_ch10"}]}
+      - {kind: flipper, label: Amp3, bind: {pv: "undulator:u_148_plc:do_ch4"}, indicators: [{pv: "undulator:u_148_plc:di_ch7"}, {pv: "undulator:u_148_plc:di_ch8"}]}
       - {kind: flipper, label: Amp4, bind: {pv: "undulator:u_148_plc:do_ch6"}, indicators: [{pv: "undulator:u_148_plc:di_ch11"}, {pv: "undulator:u_148_plc:di_ch12"}]}
+      - {kind: flipper, label: Amp4, bind: {pv: "undulator:u_148_plc:do_ch5"}, indicators: [{pv: "undulator:u_148_plc:di_ch9"}, {pv: "undulator:u_148_plc:di_ch10"}]}
       - {kind: annotation, label: "MRC Trigger (not bound)"}
       - {kind: setpoint, label: Gaia lamp timing, bind: {pv: "undulator:u_1hzshiftedbox:delay_channel_c"}, precision: 5}
       - {kind: toggle, label: Gaia internal shutter A, bind: {pv: "undulator:u_gaiasvereader:internalshuttera"}, confirm: "Are you sure?"}
@@ -55,7 +56,7 @@ groups:
     tone: trace-4
     columns: 5
     widgets:
-      - {kind: setpoint, label: Grating Cam, bind: {pv: "undulator:u_filterwheel_02:pos_channel0"}}
+      - {kind: annotation, label: "Grating Cam (not bound)"}
       - {kind: toggle, label: OAPin2, bind: {pv: "undulator:u_plc:do_ch1"}}
       - {kind: setpoint, label: Ghost pulsed, bind: {pv: "undulator:u_ghostfilters:pos_channel0"}}
       - {kind: setpoint, label: Probe, bind: {pv: "undulator:u_probefilters:pos_channel0"}}
@@ -118,6 +119,7 @@ groups:
       - {kind: toggle, label: CTR, bind: {pv: "undulator:u_plc:do_ch10"}}
       - {kind: toggle, label: Phos1, bind: {pv: "undulator:u_plc:do_ch4"}}
       - {kind: toggle, label: Aline1, bind: {pv: "undulator:u_plc:do_ch18"}}
+      # the DB aliases U_PLC DO.Ch9 "ALine2", not emit spoiler: check the hardware before its write is enabled
       - {kind: readout, label: emit spoiler, bind: {pv: "undulator:u_plc:do_ch9"}}
       - {kind: readout, label: Aline 3, bind: {pv: "undulator:u_plc:do_ch8"}}
       - {kind: toggle, label: Visa1, bind: {pv: "undulator:u_visaplungers:digitaloutput_channel_7"}}
@@ -142,7 +144,7 @@ groups:
       - {kind: setpoint, label: Jet_Y, bind: {pv: "undulator:u_esp_jetxyz:position_axis_2"}}
       - {kind: setpoint, label: Jet_Z, bind: {pv: "undulator:u_esp_jetxyz:position_axis_3"}}
       - {kind: setpoint, label: Jet Blade, bind: {pv: "undulator:u_modeimageresp:position_axis_2"}}
-      - {kind: setpoint, label: Blade Height, bind: {pv: "undulator:u_bcavepicoserver:position_axis_111"}}
+      - {kind: annotation, label: "Blade Height (not bound)"}
       - {kind: annotation, label: "\"+x\" moves toward parking lot\n\"+y\" moves down\n\"+z\" moves upstream\n\"+\" moves jet blade out of jet\n\"+\" blade height moves away from jet"}
   - title: Jet timing
     at: [2, 3]
@@ -183,6 +185,7 @@ groups:
     columns: 2
     widgets:
       - {kind: setpoint, label: BCave Current, bind: {pv: "undulator:u_bcavemagspecps:current_limit_ch1"}}
+      # U_ACaveMagSpecPS is disabled in the experiment: the gateway serves it once it is re-enabled
       - {kind: setpoint, label: ACave Current, bind: {pv: "undulator:u_acavemagspecps:current"}}
       - {kind: readout, label: BCave Hall probe, bind: {pv: "undulator:u_bcavehallprobe:rawfield"}}
       - {kind: readout, label: ACave Hall probe, bind: {pv: "undulator:u_acavehallprobe:rawfield"}}

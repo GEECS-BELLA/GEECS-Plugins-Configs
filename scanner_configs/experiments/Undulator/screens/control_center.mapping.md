@@ -14,9 +14,13 @@ Corrections go into the screen file (and this table) directly.
   `.aliases` name no devices (the latter holds only the host's address).
 - **Cross-checks**: the configs repo's scan variables (`scan_devices/scan_variables.yaml`),
   action plans (`action_library/actions.yaml`) and `aux_configs/visa_plunger_lookup.yaml`.
-  The GEECS DB was not queried (no lab network from this lane): a variable name is the
-  VI's spelling, except where the action library spells it otherwise (it is the scanner's
-  working spelling; PV names are case-folded anyway).
+  A variable name is the VI's spelling, except where the action library or the DB spells
+  it otherwise (PV names are case-folded anyway).
+- **The GEECS DB** (checked afterwards, read only, 2026-10-29): every binding's device,
+  variable, alias and the experiment's enablement. Its aliases settled the GAIA sides
+  (the first guess had all six amp flippers on the wrong side), the vacuum channels, the
+  jet timing and the Visa plunger order; two devices it does not have (Grating Cam,
+  Blade Height) are TODOs now; one is disabled (ACave Current).
 - **PV names**: `geecs_core.pv_naming.pv_name("Undulator", device, variable)`, the CA
   gateway's readback name. A setpoint binds the readback PV; its write (to `:SP`) goes
   through the module once it writes gateway PVs, and is disabled until then.
@@ -46,23 +50,26 @@ Corrections go into the screen file (and this table) directly.
 
 | Widgets | Writes to DB devices (disabled in this slice) | Readouts | Annotations | Images | Not bound (TODO) |
 |---|---|---|---|---|---|
-| 107 | 85 | 12 | 8 | 2 | 3 |
+| 107 | 83 | 12 | 10 | 2 | 5 |
 
-Annotations include the 3 not-bound controls. TODO: MRC Trigger (GAIA control), Jet Trigger (Jet timing), Jet Enable (Jet timing).
+Annotations include the 5 not-bound controls. TODO: MRC Trigger (GAIA control), Grating Cam (Filters), Blade Height (Jet Stages), Jet Trigger (Jet timing), Jet Enable (Jet timing).
 
 ## Also to check
 
-- **GAIA North/South**: the source puts the stops on DO.Ch1/Ch2 and Amp2–4 on
-  DO.Ch3–5 and DO.Ch6–8, but says nothing of the sides. This screen guesses North =
-  Ch1, 3, 4, 5 and South = Ch2, 8, 7, 6.
-- **The two plunger dialogs**: which dialog guards Emitspoiler and which guards Aline3.
-- **Vacuum**: whether `AI_mean.Channel 0` is BCave, and where the calibrated pressure
-  should come from (a gateway derived channel would carry 10^(V−6); the screen never computes).
-- **Blade Height**: `Position.Axis 111` is the VI's string verbatim.
+- **Emit spoiler on `U_PLC` DO.Ch9** (rows 65, 78): the DB aliases that channel *ALine2*.
+  Check on the hardware which actuator Ch9 drives before its write is enabled.
+- **The two plunger dialogs**: which dialog guards Emitspoiler and which guards Aline3
+  (each warns about the other, consistent with Ch8/Ch9 being the colliding pair).
+- **Grating Cam's wheel and Blade Height's stage**: the VI's devices are not in the DB;
+  name the devices that replaced them.
+- **ACave Current**: `U_ACaveMagSpecPS` is disabled in the experiment; re-enable it for
+  the gateway to serve it.
+- **Vacuum calibration**: the VI shows pressure = 10^(V−6); a gateway derived channel
+  would carry it (the screen never computes), so the screen shows the raw voltage.
 - **`Amplitude.Ch CD::10` objects** sit beside the constants in the Jet Trigger and MRC
-  cases and before the four dialog cases (both Gaia shutters, Emitspoiler, Aline3). They
-  read as copied labels, not writes; if they are writes, those six controls are multi-step
-  and become TODOs (a screen does not compute).
+  cases and before the four dialog cases (both Gaia shutters, Emitspoiler, Aline3). The
+  DB gives `Amplitude.Ch CD` no alias. They read as copied labels, not writes; if they
+  are writes, those six controls are multi-step and become TODOs (a screen does not compute).
 
 ## The controls
 
@@ -72,16 +79,16 @@ Annotations include the 3 not-bound controls. TODO: MRC Trigger (GAIA control), 
 |---|---|---|---|---|---|
 | 1 | North shutters | annotation | — | — | VI: free label on the panel |
 | 2 | South shutters | annotation | — | — | VI: free label on the panel |
-| 3 | Gaia stop | flipper | U_148_PLC · `DO.Ch1` → `undulator:u_148_plc:do_ch1`; in/out lamps `undulator:u_148_plc:di_ch1`, `undulator:u_148_plc:di_ch2` | medium | VI: label → `DO.Ch1::37`; lamps DI.Ch1/2 by the DO.Ch k ↔ DI.Ch 2k−1 (in), 2k (out) rule, which the action library confirms for DO.Ch1, Ch2, Ch9; insert_gaia_stops sets DO.Ch1+Ch2, checks DI.Ch1+Ch3 (in); which side (North/South) each channel is on is NOT in the source: check |
-| 4 | Gaia stop | flipper | U_148_PLC · `DO.Ch2` → `undulator:u_148_plc:do_ch2`; in/out lamps `undulator:u_148_plc:di_ch3`, `undulator:u_148_plc:di_ch4` | medium | VI: label → `DO.Ch2::37`; lamps DI.Ch3/4 by the DO.Ch k ↔ DI.Ch 2k−1 (in), 2k (out) rule, which the action library confirms for DO.Ch1, Ch2, Ch9; which side (North/South) each channel is on is NOT in the source: check |
-| 5 | Amp2 | flipper | U_148_PLC · `DO.Ch3` → `undulator:u_148_plc:do_ch3`; in/out lamps `undulator:u_148_plc:di_ch5`, `undulator:u_148_plc:di_ch6` | medium | VI: label → `DO.Ch3::37`; lamps DI.Ch5/6 by the DO.Ch k ↔ DI.Ch 2k−1 (in), 2k (out) rule, which the action library confirms for DO.Ch1, Ch2, Ch9; which side (North/South) each channel is on is NOT in the source: check |
-| 6 | Amp2 | flipper | U_148_PLC · `DO.Ch8` → `undulator:u_148_plc:do_ch8`; in/out lamps `undulator:u_148_plc:di_ch15`, `undulator:u_148_plc:di_ch16` | medium | VI: label → `DO.Ch8::37`; lamps DI.Ch15/16 by the DO.Ch k ↔ DI.Ch 2k−1 (in), 2k (out) rule, which the action library confirms for DO.Ch1, Ch2, Ch9; which side (North/South) each channel is on is NOT in the source: check |
-| 7 | Amp3 | flipper | U_148_PLC · `DO.Ch4` → `undulator:u_148_plc:do_ch4`; in/out lamps `undulator:u_148_plc:di_ch7`, `undulator:u_148_plc:di_ch8` | medium | VI: label → `DO.Ch4::37`; lamps DI.Ch7/8 by the DO.Ch k ↔ DI.Ch 2k−1 (in), 2k (out) rule, which the action library confirms for DO.Ch1, Ch2, Ch9; which side (North/South) each channel is on is NOT in the source: check |
-| 8 | Amp3 | flipper | U_148_PLC · `DO.Ch7` → `undulator:u_148_plc:do_ch7`; in/out lamps `undulator:u_148_plc:di_ch13`, `undulator:u_148_plc:di_ch14` | medium | VI: label → `DO.Ch7::37`; lamps DI.Ch13/14 by the DO.Ch k ↔ DI.Ch 2k−1 (in), 2k (out) rule, which the action library confirms for DO.Ch1, Ch2, Ch9; which side (North/South) each channel is on is NOT in the source: check |
-| 9 | Amp4 | flipper | U_148_PLC · `DO.Ch5` → `undulator:u_148_plc:do_ch5`; in/out lamps `undulator:u_148_plc:di_ch9`, `undulator:u_148_plc:di_ch10` | medium | VI: label → `DO.Ch5::37`; lamps DI.Ch9/10 by the DO.Ch k ↔ DI.Ch 2k−1 (in), 2k (out) rule, which the action library confirms for DO.Ch1, Ch2, Ch9; which side (North/South) each channel is on is NOT in the source: check |
-| 10 | Amp4 | flipper | U_148_PLC · `DO.Ch6` → `undulator:u_148_plc:do_ch6`; in/out lamps `undulator:u_148_plc:di_ch11`, `undulator:u_148_plc:di_ch12` | medium | VI: label → `DO.Ch6::37`; lamps DI.Ch11/12 by the DO.Ch k ↔ DI.Ch 2k−1 (in), 2k (out) rule, which the action library confirms for DO.Ch1, Ch2, Ch9; which side (North/South) each channel is on is NOT in the source: check |
+| 3 | Gaia stop | flipper | U_148_PLC · `DO.Ch1` → `undulator:u_148_plc:do_ch1`; in/out lamps `undulator:u_148_plc:di_ch1`, `undulator:u_148_plc:di_ch2` | high | VI: label → `DO.Ch1::37`; DB alias *Gaia Stop North*; lamps DI.Ch1/2 by the DO.Ch k ↔ DI.Ch 2k−1 (in), 2k (out) rule, which the action library confirms for DO.Ch1, Ch2, Ch9; insert_gaia_stops sets DO.Ch1+Ch2, checks DI.Ch1+Ch3 (in) |
+| 4 | Gaia stop | flipper | U_148_PLC · `DO.Ch2` → `undulator:u_148_plc:do_ch2`; in/out lamps `undulator:u_148_plc:di_ch3`, `undulator:u_148_plc:di_ch4` | high | VI: label → `DO.Ch2::37`; DB alias *Gaia Stop South*; lamps DI.Ch3/4 by the DO.Ch k ↔ DI.Ch 2k−1 (in), 2k (out) rule, which the action library confirms for DO.Ch1, Ch2, Ch9 |
+| 5 | Amp2 | flipper | U_148_PLC · `DO.Ch8` → `undulator:u_148_plc:do_ch8`; in/out lamps `undulator:u_148_plc:di_ch15`, `undulator:u_148_plc:di_ch16` | high | VI: label → `DO.Ch8::37`; DB alias *Gaia Amp2 North*; lamps DI.Ch15/16 by the DO.Ch k ↔ DI.Ch 2k−1 (in), 2k (out) rule, which the action library confirms for DO.Ch1, Ch2, Ch9 |
+| 6 | Amp2 | flipper | U_148_PLC · `DO.Ch3` → `undulator:u_148_plc:do_ch3`; in/out lamps `undulator:u_148_plc:di_ch5`, `undulator:u_148_plc:di_ch6` | high | VI: label → `DO.Ch3::37`; DB alias *Gaia Amp2 South*; lamps DI.Ch5/6 by the DO.Ch k ↔ DI.Ch 2k−1 (in), 2k (out) rule, which the action library confirms for DO.Ch1, Ch2, Ch9 |
+| 7 | Amp3 | flipper | U_148_PLC · `DO.Ch7` → `undulator:u_148_plc:do_ch7`; in/out lamps `undulator:u_148_plc:di_ch13`, `undulator:u_148_plc:di_ch14` | high | VI: label → `DO.Ch7::37`; DB alias *Gaia Amp3 North*; lamps DI.Ch13/14 by the DO.Ch k ↔ DI.Ch 2k−1 (in), 2k (out) rule, which the action library confirms for DO.Ch1, Ch2, Ch9 |
+| 8 | Amp3 | flipper | U_148_PLC · `DO.Ch4` → `undulator:u_148_plc:do_ch4`; in/out lamps `undulator:u_148_plc:di_ch7`, `undulator:u_148_plc:di_ch8` | high | VI: label → `DO.Ch4::37`; DB alias *Gaia Amp3 South*; lamps DI.Ch7/8 by the DO.Ch k ↔ DI.Ch 2k−1 (in), 2k (out) rule, which the action library confirms for DO.Ch1, Ch2, Ch9 |
+| 9 | Amp4 | flipper | U_148_PLC · `DO.Ch6` → `undulator:u_148_plc:do_ch6`; in/out lamps `undulator:u_148_plc:di_ch11`, `undulator:u_148_plc:di_ch12` | high | VI: label → `DO.Ch6::37`; DB alias *Gaia Amp4 North*; lamps DI.Ch11/12 by the DO.Ch k ↔ DI.Ch 2k−1 (in), 2k (out) rule, which the action library confirms for DO.Ch1, Ch2, Ch9 |
+| 10 | Amp4 | flipper | U_148_PLC · `DO.Ch5` → `undulator:u_148_plc:do_ch5`; in/out lamps `undulator:u_148_plc:di_ch9`, `undulator:u_148_plc:di_ch10` | high | VI: label → `DO.Ch5::37`; DB alias *Gaia Amp4 South*; lamps DI.Ch9/10 by the DO.Ch k ↔ DI.Ch 2k−1 (in), 2k (out) rule, which the action library confirms for DO.Ch1, Ch2, Ch9 |
 | 11 | MRC Trigger | annotation | **TODO**: none chosen | none | VI: the button has no variable; its event case writes `Amplitude.Ch AB::30` (U_MRC_TimingBox) with the values the VI chooses for on/off. A screen does not compute: bind a two-state role (or an action plan) once one exists |
-| 12 | Gaia lamp timing | setpoint | U_1HzShiftedBox · `delay.Channel_C` → `undulator:u_1hzshiftedbox:delay_channel_c` | high | VI: label → `delay.Channel_C::18`; scan alias `Gaia Lamp timing` |
+| 12 | Gaia lamp timing | setpoint | U_1HzShiftedBox · `delay.Channel_C` → `undulator:u_1hzshiftedbox:delay_channel_c` | high | VI: label → `delay.Channel_C::18`; scan alias `Gaia Lamp timing`; DB alias *gaia lamp timing* |
 | 13 | Gaia internal shutter A | toggle | U_GaiaSVEReader · `InternalShutterA` → `undulator:u_gaiasvereader:internalshuttera`; confirm: “Are you sure?” | high | VI: the event case writes `internalshuttera::29` after an "Are you sure" dialog; the action library spells it `InternalShutterA` (1 open, 0 closed) |
 | 14 | Gaia internal shutter B | toggle | U_GaiaSVEReader · `InternalShutterB` → `undulator:u_gaiasvereader:internalshutterb`; confirm: “Are you sure?” | high | as shutter A: `internalshutterb::29`, action library `InternalShutterB` |
 | 15 | Internal Shutter A | readout | U_GaiaSVEReader · `InternalShutterA` → `undulator:u_gaiasvereader:internalshuttera` | medium | VI: a string indicator whose closed/open/unknown word UpdateShutterStatus computes from `internalshuttera::29` (and possibly `pockelcella::29`); the screen shows the variable's own value |
@@ -113,7 +120,7 @@ Annotations include the 3 not-bound controls. TODO: MRC Trigger (GAIA control), 
 
 | # | Label | Kind | Binding (device · variable → PV) | Confidence | Evidence |
 |---|---|---|---|---|---|
-| 29 | Grating Cam | setpoint | U_FilterWheel_02 · `pos.Channel0` → `undulator:u_filterwheel_02:pos_channel0` | high | VI: `pos.Channel0::19`; struck through in the screenshot (device off then; no meaning here) |
+| 29 | Grating Cam | annotation | **TODO**: device not in the DB | none | VI: `pos.Channel0::19` on `U_FilterWheel_02`, which the GEECS DB does not have; of the experiment's enabled FilterWheels devices (U_GhostFilters, U_HASO_Filters, U_LowPowerGhostWFSFilter, U_MI_CoarseFilters, U_MI_FineFilters, U_ProbeFilters) only U_LowPowerGhostWFSFilter is bound nowhere on this screen: name the wheel; struck through in the screenshot |
 | 30 | OAPin2 | toggle | U_PLC · `DO.Ch1` → `undulator:u_plc:do_ch1` | high | VI: `DO.Ch1::22` |
 | 31 | Ghost pulsed | setpoint | U_GhostFilters · `pos.Channel0` → `undulator:u_ghostfilters:pos_channel0` | high | VI: `pos.Channel0::5` |
 | 32 | Probe | setpoint | U_ProbeFilters · `pos.Channel0` → `undulator:u_probefilters:pos_channel0` | high | VI: `pos.Channel0::9` |
@@ -174,21 +181,21 @@ Annotations include the 3 not-bound controls. TODO: MRC Trigger (GAIA control), 
 | 62 | CTR | toggle | U_PLC · `DO.Ch10` → `undulator:u_plc:do_ch10` | high | VI: `DO.Ch10::22` |
 | 63 | Phos1 | toggle | U_PLC · `DO.Ch4` → `undulator:u_plc:do_ch4` | high | VI: `DO.Ch4::22` |
 | 64 | Aline1 | toggle | U_PLC · `DO.Ch18` → `undulator:u_plc:do_ch18` | high | VI: `DO.Ch18::22` |
-| 65 | emit spoiler | readout | U_PLC · `DO.Ch9` → `undulator:u_plc:do_ch9` | medium | VI: `DO.Ch9::22`, drawn greyed (an indicator); the guarded write is the Emitspoiler button below |
-| 66 | Aline 3 | readout | U_PLC · `DO.Ch8` → `undulator:u_plc:do_ch8` | medium | VI: `DO.Ch8::22`, drawn greyed (an indicator); the guarded write is the Aline3 button below |
-| 67 | Visa1 | toggle | U_VisaPlungers · `DigitalOutput.Channel 7` → `undulator:u_visaplungers:digitaloutput_channel_7` | high | VI: `DigitalOutput.Channel 7::25` (the order is reversed); `aux_configs/visa_plunger_lookup.yaml` agrees |
-| 68 | Visa2 | toggle | U_VisaPlungers · `DigitalOutput.Channel 6` → `undulator:u_visaplungers:digitaloutput_channel_6` | high | VI: `DigitalOutput.Channel 6::25` (the order is reversed); `aux_configs/visa_plunger_lookup.yaml` agrees |
-| 69 | Visa3 | toggle | U_VisaPlungers · `DigitalOutput.Channel 5` → `undulator:u_visaplungers:digitaloutput_channel_5` | high | VI: `DigitalOutput.Channel 5::25` (the order is reversed); `aux_configs/visa_plunger_lookup.yaml` agrees |
-| 70 | Visa4 | toggle | U_VisaPlungers · `DigitalOutput.Channel 4` → `undulator:u_visaplungers:digitaloutput_channel_4` | high | VI: `DigitalOutput.Channel 4::25` (the order is reversed); `aux_configs/visa_plunger_lookup.yaml` agrees |
-| 71 | Visa5 | toggle | U_VisaPlungers · `DigitalOutput.Channel 3` → `undulator:u_visaplungers:digitaloutput_channel_3` | high | VI: `DigitalOutput.Channel 3::25`; `visa_plunger_lookup.yaml` agrees |
-| 72 | Visa6 | toggle | U_VisaPlungers · `DigitalOutput.Channel 2` → `undulator:u_visaplungers:digitaloutput_channel_2` | high | VI: `DigitalOutput.Channel 2::25`; `visa_plunger_lookup.yaml` agrees |
-| 73 | Visa7 | toggle | U_VisaPlungers · `DigitalOutput.Channel 1` → `undulator:u_visaplungers:digitaloutput_channel_1` | high | VI: `DigitalOutput.Channel 1::25`; `visa_plunger_lookup.yaml` agrees |
-| 74 | Visa8 | toggle | U_VisaPlungers · `DigitalOutput.Channel 0` → `undulator:u_visaplungers:digitaloutput_channel_0` | high | VI: `DigitalOutput.Channel 0::25`; `visa_plunger_lookup.yaml` agrees |
+| 65 | emit spoiler | readout | U_PLC · `DO.Ch9` → `undulator:u_plc:do_ch9` | low | VI: `DO.Ch9::22`, drawn greyed (an indicator); the guarded write is the Emitspoiler button below; the DB aliases U_PLC `DO.Ch9` *ALine2*, not emit spoiler: the alias is stale or the spoiler is not on Ch9; check on the hardware before its write is enabled |
+| 66 | Aline 3 | readout | U_PLC · `DO.Ch8` → `undulator:u_plc:do_ch8` | high | VI: `DO.Ch8::22`, drawn greyed (an indicator); DB alias *Aline3*; the guarded write is the Aline3 button below |
+| 67 | Visa1 | toggle | U_VisaPlungers · `DigitalOutput.Channel 7` → `undulator:u_visaplungers:digitaloutput_channel_7` | high | VI: `DigitalOutput.Channel 7::25` (the order is reversed); `aux_configs/visa_plunger_lookup.yaml` agrees, and so does the DB alias *VisaPlunger1* |
+| 68 | Visa2 | toggle | U_VisaPlungers · `DigitalOutput.Channel 6` → `undulator:u_visaplungers:digitaloutput_channel_6` | high | VI: `DigitalOutput.Channel 6::25` (the order is reversed); `aux_configs/visa_plunger_lookup.yaml` agrees, and so does the DB alias *VisaPlunger2* |
+| 69 | Visa3 | toggle | U_VisaPlungers · `DigitalOutput.Channel 5` → `undulator:u_visaplungers:digitaloutput_channel_5` | high | VI: `DigitalOutput.Channel 5::25` (the order is reversed); `aux_configs/visa_plunger_lookup.yaml` agrees, and so does the DB alias *VisaPlunger3* |
+| 70 | Visa4 | toggle | U_VisaPlungers · `DigitalOutput.Channel 4` → `undulator:u_visaplungers:digitaloutput_channel_4` | high | VI: `DigitalOutput.Channel 4::25` (the order is reversed); `aux_configs/visa_plunger_lookup.yaml` agrees, and so does the DB alias *VisaPlunger4* |
+| 71 | Visa5 | toggle | U_VisaPlungers · `DigitalOutput.Channel 3` → `undulator:u_visaplungers:digitaloutput_channel_3` | high | VI: `DigitalOutput.Channel 3::25`; `visa_plunger_lookup.yaml` agrees, and so does the DB alias *VisaPlunger5* |
+| 72 | Visa6 | toggle | U_VisaPlungers · `DigitalOutput.Channel 2` → `undulator:u_visaplungers:digitaloutput_channel_2` | high | VI: `DigitalOutput.Channel 2::25`; `visa_plunger_lookup.yaml` agrees, and so does the DB alias *VisaPlunger6* |
+| 73 | Visa7 | toggle | U_VisaPlungers · `DigitalOutput.Channel 1` → `undulator:u_visaplungers:digitaloutput_channel_1` | high | VI: `DigitalOutput.Channel 1::25`; `visa_plunger_lookup.yaml` agrees, and so does the DB alias *VisaPlunger7* |
+| 74 | Visa8 | toggle | U_VisaPlungers · `DigitalOutput.Channel 0` → `undulator:u_visaplungers:digitaloutput_channel_0` | high | VI: `DigitalOutput.Channel 0::25`; `visa_plunger_lookup.yaml` agrees, and so does the DB alias *VisaPlunger8* |
 | 75 | Visa9 | toggle | U_PLC · `DO.Ch19` → `undulator:u_plc:do_ch19` | high | VI: `DO.Ch19::22`; `visa_plunger_lookup.yaml` agrees |
 | 76 | XUV valve | toggle | U_PLC · `DO.Ch20` → `undulator:u_plc:do_ch20` | high | VI: `DO.Ch20::22` |
 | 77 | UV spec mirror | toggle | U_PLC · `DO.Ch21` → `undulator:u_plc:do_ch21` | high | VI: `DO.Ch21::22` |
-| 78 | Emitspoiler | toggle | U_PLC · `DO.Ch9` → `undulator:u_plc:do_ch9`; confirm: “Are you sure? Have you verified Aline3 is out?” | medium | VI: the big button under the group (no variable of its own); its event case writes `DO.Ch9::22` after the dialog "Are you sure? Have you verified Aline3 is out?" (which dialog guards which button is read from the string order and the collision sense: check) |
-| 79 | Aline3 | toggle | U_PLC · `DO.Ch8` → `undulator:u_plc:do_ch8`; confirm: “Are you sure? Have you verified emit spoiler is out?” | medium | VI: the big button under the group; writes `DO.Ch8::22` after "Are you sure? Have you verified emit spoiler is out?" (check, as Emitspoiler) |
+| 78 | Emitspoiler | toggle | U_PLC · `DO.Ch9` → `undulator:u_plc:do_ch9`; confirm: “Are you sure? Have you verified Aline3 is out?” | low | VI: the big button under the group (no variable of its own); its event case writes `DO.Ch9::22` after the dialog "Are you sure? Have you verified Aline3 is out?" (which dialog guards which button is read from the string order and the collision sense: check); the DB aliases U_PLC `DO.Ch9` *ALine2*, not emit spoiler: the alias is stale or the spoiler is not on Ch9; check on the hardware before its write is enabled |
+| 79 | Aline3 | toggle | U_PLC · `DO.Ch8` → `undulator:u_plc:do_ch8`; confirm: “Are you sure? Have you verified emit spoiler is out?” | medium | VI: the big button under the group; writes `DO.Ch8::22` after "Are you sure? Have you verified emit spoiler is out?"; DB alias *Aline3* (check, as Emitspoiler) |
 
 ### Jet Stages
 
@@ -198,7 +205,7 @@ Annotations include the 3 not-bound controls. TODO: MRC Trigger (GAIA control), 
 | 81 | Jet_Y | setpoint | U_ESP_JetXYZ · `Position.Axis 2` → `undulator:u_esp_jetxyz:position_axis_2` | high | VI: `Position.Axis 2::7`; alias `JetY (mm)` |
 | 82 | Jet_Z | setpoint | U_ESP_JetXYZ · `Position.Axis 3` → `undulator:u_esp_jetxyz:position_axis_3` | high | VI: `Position.Axis 3::7`; alias `JetZ (mm)` |
 | 83 | Jet Blade | setpoint | U_ModeImagerESP · `Position.Axis 2` → `undulator:u_modeimageresp:position_axis_2` | high | VI: `Position.Axis 2::6`; alias `Jet Blade` |
-| 84 | Blade Height | setpoint | U_BCavePicoServer · `Position.Axis 111` → `undulator:u_bcavepicoserver:position_axis_111` | low | VI: `Position.Axis 111::13` verbatim (an odd axis name: check it is real); struck through in the screenshot (device off then; no meaning here) |
+| 84 | Blade Height | annotation | **TODO**: device not in the DB | none | VI: `Position.Axis 111::13` on `U_BCavePicoServer`, which the GEECS DB does not have; `Position.Axis 111` is the PicoPadServer type's axis naming (111 = pad 1 axis 1), and the one device of that type left is in another experiment, disabled: name the device; struck through in the screenshot |
 | 85 | "+x" moves toward parking lot / "+y" moves down / "+z" moves upstream / "+" moves jet blade out of jet / "+" blade height moves away from jet | annotation | — | — | VI: free label on the panel |
 
 ### Jet timing
@@ -206,11 +213,11 @@ Annotations include the 3 not-bound controls. TODO: MRC Trigger (GAIA control), 
 | # | Label | Kind | Binding (device · variable → PV) | Confidence | Evidence |
 |---|---|---|---|---|---|
 | 86 | Pressure Control Voltage (V) | setpoint | U_HP_Daq · `AnalogOutput.Channel 1` → `undulator:u_hp_daq:analogoutput_channel_1` | high | VI: `AnalogOutput.Channel 1::8`; alias `Gas Pressure` |
-| 87 | Set opening time (s) | setpoint | U_DG645_ShotControl · `Delay.Ch B` → `undulator:u_dg645_shotcontrol:delay_ch_b` | medium | VI: the visible control has no variable; state CheckJetOpeningTime handles it; the only `Delay.Ch B::10` strings are the `Opening time (s)` indicator's (an `OPening time` copy among them), and CheckJetOpeningTime's diagram writes that `Delay.Ch B::10`; alias `jet opening time` targets Delay.Ch B |
+| 87 | Set opening time (s) | setpoint | U_DG645_ShotControl · `Delay.Ch B` → `undulator:u_dg645_shotcontrol:delay_ch_b` | high | VI: the visible control has no variable; state CheckJetOpeningTime handles it; the only `Delay.Ch B::10` strings are the `Opening time (s)` indicator's (an `OPening time` copy among them), and CheckJetOpeningTime's diagram writes that `Delay.Ch B::10`; alias `jet opening time` targets Delay.Ch B; DB alias *Jet_Opening_Duration* |
 | 88 | Jet Trigger | annotation | **TODO**: none chosen | none | VI: no variable; CheckJetTriggerAmp / the event case write `Amplitude.Ch AB::10` with values the VI chooses (constants 0.5 and 4.0 in the case; the scan-mode configs use the same). A screen does not compute: a two-state role or an action plan |
-| 89 | Amplitude Jet trigger | readout | U_DG645_ShotControl · `Amplitude.Ch AB` → `undulator:u_dg645_shotcontrol:amplitude_ch_ab` | high | VI: label → `Amplitude.Ch AB::10`, drawn as an indicator; HTU-LaserOFF-ScanMode sets it. A twin with the same caption on `Amplitude.Ch AB::30` (U_MRC_TimingBox) is in the heap too: its strings neighbour MRC Trigger's; not on the screenshot |
+| 89 | Amplitude Jet trigger | readout | U_DG645_ShotControl · `Amplitude.Ch AB` → `undulator:u_dg645_shotcontrol:amplitude_ch_ab` | high | VI: label → `Amplitude.Ch AB::10`, drawn as an indicator; HTU-LaserOFF-ScanMode sets it; DB alias *Jet_Trigger_Amplitude* (0.5–5 V). A twin with the same caption on `Amplitude.Ch AB::30` (U_MRC_TimingBox) is in the heap too: its strings neighbour MRC Trigger's; not on the screenshot |
 | 90 | Jet Enable | annotation | **TODO**: none chosen | none | VI: no variable near the button and none in its event case's strings; not traceable from the source |
-| 91 | Opening time (s) | readout | U_DG645_ShotControl · `Delay.Ch B` → `undulator:u_dg645_shotcontrol:delay_ch_b` | high | VI: label → `Delay.Ch B::10`, drawn as an indicator ("2m" = 2 ms) |
+| 91 | Opening time (s) | readout | U_DG645_ShotControl · `Delay.Ch B` → `undulator:u_dg645_shotcontrol:delay_ch_b` | high | VI: label → `Delay.Ch B::10`, drawn as an indicator ("2m" = 2 ms); DB alias *Jet_Opening_Duration* |
 | 92 | Purge | toggle | U_PLC · `DO.Ch6` → `undulator:u_plc:do_ch6` | medium | VI: the visible `Purge` button has no variable; its event case writes a hidden control `purge` → `DO.Ch6::22`; state CheckPurgeValve |
 | 93 | auto purge | toggle | U_PLC · `SoftwareVars.Ch1` → `undulator:u_plc:softwarevars_ch1` | medium | VI: the visible `auto purge` button has no variable; its event case writes a hidden control labelled `Autopurge` → `SoftwareVars.Ch1::22` |
 
@@ -230,15 +237,15 @@ Annotations include the 3 not-bound controls. TODO: MRC Trigger (GAIA control), 
 
 | # | Label | Kind | Binding (device · variable → PV) | Confidence | Evidence |
 |---|---|---|---|---|---|
-| 101 | BCavePressure | readout | U_VacuumGauge · `AI_mean.Channel 0` → `undulator:u_vacuumgauge:ai_mean_channel_0` | low | VI: `AI_mean.Channel 0::27`; B ↔ Ch0 from the string order in both heaps. The VI shows pressure = 10^(V−6) (`pressure calibration.vi`); the screen shows the raw voltage |
-| 102 | ACavePressure | readout | U_VacuumGauge · `AI_mean.Channel 1` → `undulator:u_vacuumgauge:ai_mean_channel_1` | low | VI: `AI_mean.Channel 1::27`; as BCavePressure |
+| 101 | BCavePressure | readout | U_VacuumGauge · `AI_mean.Channel 0` → `undulator:u_vacuumgauge:ai_mean_channel_0` | high | VI: `AI_mean.Channel 0::27`; DB alias *B-cave*. The VI shows pressure = 10^(V−6) (`pressure calibration.vi`); the screen shows the raw voltage |
+| 102 | ACavePressure | readout | U_VacuumGauge · `AI_mean.Channel 1` → `undulator:u_vacuumgauge:ai_mean_channel_1` | high | VI: `AI_mean.Channel 1::27`; DB alias *A-Cave*; the raw voltage, as BCavePressure |
 
 ### Mag Specs
 
 | # | Label | Kind | Binding (device · variable → PV) | Confidence | Evidence |
 |---|---|---|---|---|---|
 | 103 | BCave Current | setpoint | U_BCaveMagSpecPS · `Current_Limit.Ch1` → `undulator:u_bcavemagspecps:current_limit_ch1` | high | VI: `Current_Limit.Ch1::33`; alias `BCaveMagSepecCurrent` |
-| 104 | ACave Current | setpoint | U_ACaveMagSpecPS · `Current` → `undulator:u_acavemagspecps:current` | high | VI: `Current::34`; struck through in the screenshot (device off then; no meaning here) |
-| 105 | BCave Hall probe | readout | U_BCaveHallProbe · `Rawfield` → `undulator:u_bcavehallprobe:rawfield` | high | VI: `Rawfield::31`, drawn greyed |
-| 106 | ACave Hall probe | readout | U_ACaveHallProbe · `Rawfield` → `undulator:u_acavehallprobe:rawfield` | high | VI: `Rawfield::32`, drawn greyed |
+| 104 | ACave Current | setpoint | U_ACaveMagSpecPS · `Current` → `undulator:u_acavemagspecps:current` | high | VI: `Current::34`; struck through in the screenshot (device off then; no meaning here); the device is disabled in the experiment (`expt_device.enabled = no`), so the gateway does not serve it and it reads `unreachable` until it is re-enabled |
+| 105 | BCave Hall probe | readout | U_BCaveHallProbe · `RawField` → `undulator:u_bcavehallprobe:rawfield` | high | VI: `Rawfield::31`, drawn greyed; the DB spells it `RawField` (the PV is case-folded) |
+| 106 | ACave Hall probe | readout | U_ACaveHallProbe · `RawField` → `undulator:u_acavehallprobe:rawfield` | high | VI: `Rawfield::32`, drawn greyed; the DB spells it `RawField` (the PV is case-folded) |
 | 107 | BCave Trim Current | setpoint | U_EMQTripletBipolar · `Current_Limit.Ch4` → `undulator:u_emqtripletbipolar:current_limit_ch4` | high | VI: `Current_Limit.Ch4::35` |
