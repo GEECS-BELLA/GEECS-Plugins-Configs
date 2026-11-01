@@ -1,10 +1,41 @@
 # Who may write what through the GeecsCanopy device module (GEECS-Schemas
-# OperatorPolicy); default deny. No grants yet: every put is refused (403 policy)
-# until operators are named here. Shape of a grant (GeecsCanopy/DEPLOYMENT.md 3a):
+# OperatorPolicy); default deny. The allow list, hazard confirm, run lock and
+# bounds apply regardless of a grant. Shape (GeecsCanopy/DEPLOYMENT.md 3a):
 #   grants:
 #     - operators: [A. Operator]
 #       devices: [U_148_PLC]          # or families: [<DB device type>]
 #       roles: [DO.Ch1]               # empty: every role the device allows
 schema_version: 1
-grants: []
+grants:
+  # The maintainer, on every device the Control Center screen binds (the
+  # devices listed in screens/control_center.yaml) and on the native cameras.
+  - operators: [Sam Barber]
+    devices:
+      - U_148_PLC
+      - U_1HzShiftedBox
+      - U_BCaveMagSpecPS
+      - U_CompAerotech
+      - U_DG645_ShotControl
+      - U_EMQTripletBipolar
+      - U_ESP302_01
+      - U_ESP302_02
+      - U_ESP_JetXYZ
+      - U_GaiaSVEReader
+      - U_GhostFilters
+      - U_HASO_Filters
+      - U_HP_Daq
+      - U_Hexapod
+      - U_MI_CoarseFilters
+      - U_MI_FineFilters
+      - U_ModeImagerESP
+      - U_PLC
+      - U_ProbeCamStage
+      - U_ProbeFilters
+      - U_TCAlignStages
+      - U_TRAServer01
+      - U_TRAServer03
+      - U_VisaPlungers
+      - U_Zaber
+  - operators: [Sam Barber]
+    families: [ad_camera_chain]
 hazards: []
