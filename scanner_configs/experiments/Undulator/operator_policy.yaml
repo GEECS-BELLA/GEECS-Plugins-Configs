@@ -1,0 +1,10 @@
+# Who may write what through the GeecsCanopy device module (GEECS-Schemas
+# OperatorPolicy); default deny. No grants yet: every put is refused (403 policy)
+# until operators are named here. Shape of a grant (GeecsCanopy/DEPLOYMENT.md 3a):
+#   grants:
+#     - operators: [A. Operator]
+#       devices: [U_148_PLC]          # or families: [<DB device type>]
+#       roles: [DO.Ch1]               # empty: every role the device allows
+schema_version: 1
+grants: []
+hazards: []

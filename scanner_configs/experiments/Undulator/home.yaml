@@ -1,0 +1,8 @@
+# The Control Room's launcher (GEECS-Schemas HomeLayout, read by GeecsControlRoom's
+# home page). Screens are the stems of files in screens/; the links' URLs are the
+# deployment's settings (GEECS_CONTROL_ROOM_<LINK>_URL), never this file's.
+schema_version: 1
+areas:
+  - title: HTU
+    screens: [control_center]
+links: [scanner, portal, logbook]
