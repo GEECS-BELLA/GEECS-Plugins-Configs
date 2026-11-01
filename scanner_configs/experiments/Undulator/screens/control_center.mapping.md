@@ -27,6 +27,12 @@ Corrections go into the screen file (and this table) directly.
   table): the device module writes its `:SP` through its gated put. Readouts and lamps
   stay bare PVs, read only. ACave Current stays a bare PV (drawn disabled) while its
   device is disabled: the module does not list it.
+- **Kinds the DB's types decide**: a LabVIEW convention is the screen's word, never a
+  DB edit. A boolean the VI keeps as a number (the Gaia internal shutters: an SVE's
+  1/0, 99 when unknown) is a toggle with `values: {on: 1, off: 0}`; a choice the VI
+  drew as a number box (the filter wheels' `pos.Channel0`, a DB choice) is a `select`
+  of the positions the gateway serves. The bindings script carries a row's kind and
+  `values` into the screen.
 - **Confidence**: *high*: the VI string and the label agree, often with an alias or plan;
   *medium*: the device and variable are the VI's, but which control or which side is
   inferred; *low*: a guess the maintainer must confirm; *none*: not bound (a TODO).
@@ -92,8 +98,8 @@ Annotations include the 5 not-bound controls. TODO: MRC Trigger (GAIA control), 
 | 10 | Amp4 | flipper | U_148_PLC · `DO.Ch5` → `undulator:u_148_plc:do_ch5`; in/out lamps `undulator:u_148_plc:di_ch9`, `undulator:u_148_plc:di_ch10` | high | VI: label → `DO.Ch5::37`; DB alias *Gaia Amp4 South*; lamps DI.Ch9/10 by the DO.Ch k ↔ DI.Ch 2k−1 (in), 2k (out) rule, which the action library confirms for DO.Ch1, Ch2, Ch9 |
 | 11 | MRC Trigger | annotation | **TODO**: none chosen | none | VI: the button has no variable; its event case writes `Amplitude.Ch AB::30` (U_MRC_TimingBox) with the values the VI chooses for on/off. A screen does not compute: bind a two-state role (or an action plan) once one exists |
 | 12 | Gaia lamp timing | setpoint | U_1HzShiftedBox · `delay.Channel_C` → `undulator:u_1hzshiftedbox:delay_channel_c` | high | VI: label → `delay.Channel_C::18`; scan alias `Gaia Lamp timing`; DB alias *gaia lamp timing* |
-| 13 | Gaia internal shutter A | toggle | U_GaiaSVEReader · `InternalShutterA` → `undulator:u_gaiasvereader:internalshuttera`; confirm: “Are you sure?” | high | VI: the event case writes `internalshuttera::29` after an "Are you sure" dialog; the action library spells it `InternalShutterA` (1 open, 0 closed) |
-| 14 | Gaia internal shutter B | toggle | U_GaiaSVEReader · `InternalShutterB` → `undulator:u_gaiasvereader:internalshutterb`; confirm: “Are you sure?” | high | as shutter A: `internalshutterb::29`, action library `InternalShutterB` |
+| 13 | Gaia internal shutter A | toggle | U_GaiaSVEReader · `InternalShutterA` → `undulator:u_gaiasvereader:internalshuttera`; values: {on: 1, off: 0}; confirm: “Are you sure?” | high | VI: the event case writes `internalshuttera::29` after an "Are you sure" dialog; the action library spells it `InternalShutterA` (1 open, 0 closed) |
+| 14 | Gaia internal shutter B | toggle | U_GaiaSVEReader · `InternalShutterB` → `undulator:u_gaiasvereader:internalshutterb`; values: {on: 1, off: 0}; confirm: “Are you sure?” | high | as shutter A: `internalshutterb::29`, action library `InternalShutterB` |
 | 15 | Internal Shutter A | readout | U_GaiaSVEReader · `InternalShutterA` → `undulator:u_gaiasvereader:internalshuttera` | medium | VI: a string indicator whose closed/open/unknown word UpdateShutterStatus computes from `internalshuttera::29` (and possibly `pockelcella::29`); the screen shows the variable's own value |
 | 16 | Internal Shutter B | readout | U_GaiaSVEReader · `InternalShutterB` → `undulator:u_gaiasvereader:internalshutterb` | medium | as shutter A (`internalshutterb::29`, `PockelCellB::29`) |
 
@@ -125,9 +131,9 @@ Annotations include the 5 not-bound controls. TODO: MRC Trigger (GAIA control), 
 |---|---|---|---|---|---|
 | 29 | Grating Cam | annotation | **TODO**: device not in the DB | none | VI: `pos.Channel0::19` on `U_FilterWheel_02`, which the GEECS DB does not have; of the experiment's enabled FilterWheels devices (U_GhostFilters, U_HASO_Filters, U_LowPowerGhostWFSFilter, U_MI_CoarseFilters, U_MI_FineFilters, U_ProbeFilters) only U_LowPowerGhostWFSFilter is bound nowhere on this screen: name the wheel; struck through in the screenshot |
 | 30 | OAPin2 | toggle | U_PLC · `DO.Ch1` → `undulator:u_plc:do_ch1` | high | VI: `DO.Ch1::22` |
-| 31 | Ghost pulsed | setpoint | U_GhostFilters · `pos.Channel0` → `undulator:u_ghostfilters:pos_channel0` | high | VI: `pos.Channel0::5` |
-| 32 | Probe | setpoint | U_ProbeFilters · `pos.Channel0` → `undulator:u_probefilters:pos_channel0` | high | VI: `pos.Channel0::9` |
-| 33 | HASO | setpoint | U_HASO_Filters · `pos.Channel0` → `undulator:u_haso_filters:pos_channel0` | high | VI: `pos.Channel0::14` |
+| 31 | Ghost pulsed | select | U_GhostFilters · `pos.Channel0` → `undulator:u_ghostfilters:pos_channel0` | high | VI: `pos.Channel0::5` |
+| 32 | Probe | select | U_ProbeFilters · `pos.Channel0` → `undulator:u_probefilters:pos_channel0` | high | VI: `pos.Channel0::9` |
+| 33 | HASO | select | U_HASO_Filters · `pos.Channel0` → `undulator:u_haso_filters:pos_channel0` | high | VI: `pos.Channel0::14` |
 
 ### B-Cave Alignment
 
@@ -146,8 +152,8 @@ Annotations include the 5 not-bound controls. TODO: MRC Trigger (GAIA control), 
 
 | # | Label | Kind | Binding (device · variable → PV) | Confidence | Evidence |
 |---|---|---|---|---|---|
-| 42 | Coarse Filters | setpoint | U_MI_CoarseFilters · `pos.Channel0` → `undulator:u_mi_coarsefilters:pos_channel0` | high | VI: `pos.Channel0::15` |
-| 43 | Fine Filters | setpoint | U_MI_FineFilters · `pos.Channel0` → `undulator:u_mi_finefilters:pos_channel0` | high | VI: `pos.Channel0::28` |
+| 42 | Coarse Filters | select | U_MI_CoarseFilters · `pos.Channel0` → `undulator:u_mi_coarsefilters:pos_channel0` | high | VI: `pos.Channel0::15` |
+| 43 | Fine Filters | select | U_MI_FineFilters · `pos.Channel0` → `undulator:u_mi_finefilters:pos_channel0` | high | VI: `pos.Channel0::28` |
 | 44 | Position | setpoint | U_ModeImagerESP · `Position.Axis 1` → `undulator:u_modeimageresp:position_axis_1` | high | VI: `Position.Axis 1::6`; alias `Mode Imager Stage` |
 
 ### Compressor
