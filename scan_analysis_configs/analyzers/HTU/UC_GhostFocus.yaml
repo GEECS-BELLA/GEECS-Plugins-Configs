@@ -27,3 +27,5 @@ summaries:
   - 6.0
   - 6.0
 - kind: average
+scan:
+  workers: 8
