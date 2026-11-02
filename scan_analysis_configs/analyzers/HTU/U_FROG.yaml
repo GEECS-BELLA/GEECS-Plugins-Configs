@@ -18,6 +18,7 @@ measure:
   max_time_seconds: 15
 scan:
   priority: 1
+  workers: 24
   save: false
 figure:
   imshow:

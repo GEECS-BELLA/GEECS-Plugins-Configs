@@ -28,6 +28,7 @@ measure:
   wavelength_nm: 800.0
 scan:
   priority: 10
+  workers: 12
   save: true
 figure:
   colorbar:
