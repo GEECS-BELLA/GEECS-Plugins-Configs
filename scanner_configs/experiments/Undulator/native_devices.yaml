@@ -21,3 +21,15 @@ devices:
   UC_UndulatorRad2:
     kind: aravis_camera
     trigger_source: line1
+  UC_VisaEBeam1:
+    kind: aravis_camera
+    trigger_source: line0
+  UC_VisaEBeam2:
+    kind: aravis_camera
+    trigger_source: line0
+  UC_VisaEBeam3:
+    kind: aravis_camera
+    trigger_source: line0
+  UC_VisaEBeam4:
+    kind: aravis_camera
+    trigger_source: line0

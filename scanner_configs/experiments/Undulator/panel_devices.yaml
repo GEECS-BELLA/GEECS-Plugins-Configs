@@ -24,3 +24,15 @@ devices:
   UC_UndulatorRad2:
     family: ad_camera_chain
     ioc: uc-undulatorrad2
+  UC_VisaEBeam1:
+    family: ad_camera_chain
+    ioc: uc-visaebeam1
+  UC_VisaEBeam2:
+    family: ad_camera_chain
+    ioc: uc-visaebeam2
+  UC_VisaEBeam3:
+    family: ad_camera_chain
+    ioc: uc-visaebeam3
+  UC_VisaEBeam4:
+    family: ad_camera_chain
+    ioc: uc-visaebeam4
