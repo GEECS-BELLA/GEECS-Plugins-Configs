@@ -9,3 +9,18 @@ devices:
   UC_VisaEBeam6:
     kind: aravis_camera
     trigger_source: line0
+  UC_VisaEBeam5:
+    kind: aravis_camera
+    trigger_source: line0
+  UC_VisaEBeam7:
+    kind: aravis_camera
+    trigger_source: line0
+  UC_VisaEBeam8:
+    kind: aravis_camera
+    trigger_source: line0
+  UC_Visa9Spec:
+    kind: aravis_camera
+    trigger_source: line1
+  UC_UndulatorRad2:
+    kind: aravis_camera
+    trigger_source: line1

@@ -12,3 +12,18 @@ devices:
   UC_VisaEBeam6:
     family: ad_camera_chain
     ioc: uc-visaebeam6
+  UC_VisaEBeam5:
+    family: ad_camera_chain
+    ioc: uc-visaebeam5
+  UC_VisaEBeam7:
+    family: ad_camera_chain
+    ioc: uc-visaebeam7
+  UC_VisaEBeam8:
+    family: ad_camera_chain
+    ioc: uc-visaebeam8
+  UC_Visa9Spec:
+    family: ad_camera_chain
+    ioc: uc-visa9spec
+  UC_UndulatorRad2:
+    family: ad_camera_chain
+    ioc: uc-undulatorrad2
