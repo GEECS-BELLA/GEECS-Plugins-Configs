@@ -6,9 +6,6 @@
 # by that IOC's devIocStats heartbeat.
 schema_version: 1
 devices:
-  ADTEST_CAM1:
-    family: ad_camera_chain
-    ioc: adtest-cam1
   UC_VisaEBeam6:
     family: ad_camera_chain
     ioc: uc-visaebeam6

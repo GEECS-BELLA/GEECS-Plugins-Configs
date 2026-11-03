@@ -3,9 +3,6 @@
 # NATIVE_DEVICES.md). A name here must not also be a DB device.
 schema_version: 1
 devices:
-  ADTEST_CAM1:
-    kind: aravis_camera
-    trigger_source: software
   UC_VisaEBeam6:
     kind: aravis_camera
     trigger_source: line0
