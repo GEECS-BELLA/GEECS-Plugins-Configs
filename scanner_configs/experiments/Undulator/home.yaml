@@ -5,4 +5,7 @@ schema_version: 1
 areas:
   - title: HTU
     screens: [control_center]
+device_pages:
+  - title: Cameras
+    families: [ad_camera_chain]
 links: [scanner, portal, logbook]
