@@ -36,3 +36,36 @@ devices:
   UC_VisaEBeam4:
     family: ad_camera_chain
     ioc: uc-visaebeam4
+  # The ten VISA steering supplies (CAEN Easy-Drivers), one native IOC each:
+  # family easydriver, prefix <experiment>:<device>:. Not in native_devices.yaml:
+  # the scan worker has no kind for a setpoint device yet.
+  U_VS1H:
+    family: easydriver
+    ioc: u-vs1h
+  U_VS1V:
+    family: easydriver
+    ioc: u-vs1v
+  U_VS2H:
+    family: easydriver
+    ioc: u-vs2h
+  U_VS2V:
+    family: easydriver
+    ioc: u-vs2v
+  U_VS3H:
+    family: easydriver
+    ioc: u-vs3h
+  U_VS3V:
+    family: easydriver
+    ioc: u-vs3v
+  U_VS4H:
+    family: easydriver
+    ioc: u-vs4h
+  U_VS4V:
+    family: easydriver
+    ioc: u-vs4v
+  U_VS5H:
+    family: easydriver
+    ioc: u-vs5h
+  U_VS5V:
+    family: easydriver
+    ioc: u-vs5v
