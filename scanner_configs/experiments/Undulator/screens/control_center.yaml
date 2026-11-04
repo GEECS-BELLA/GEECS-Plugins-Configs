@@ -27,8 +27,8 @@ groups:
       - {kind: flipper, label: Amp4, bind: {device: U_148_PLC, role: "DO.Ch5"}, indicators: [{pv: "undulator:u_148_plc:di_ch9"}, {pv: "undulator:u_148_plc:di_ch10"}]}
       - {kind: annotation, label: "MRC Trigger (not bound)"}
       - {kind: setpoint, label: Gaia lamp timing, bind: {device: U_1HzShiftedBox, role: "delay.Channel_C"}, precision: 5}
-      - {kind: toggle, label: Gaia internal shutter A, bind: {device: U_GaiaSVEReader, role: "InternalShutterA"}, confirm: "Are you sure?"}
-      - {kind: toggle, label: Gaia internal shutter B, bind: {device: U_GaiaSVEReader, role: "InternalShutterB"}, confirm: "Are you sure?"}
+      - {kind: toggle, label: Gaia internal shutter A, bind: {device: U_GaiaSVEReader, role: "InternalShutterA"}, values: {on: 1, off: 0}, confirm: "Are you sure?"}
+      - {kind: toggle, label: Gaia internal shutter B, bind: {device: U_GaiaSVEReader, role: "InternalShutterB"}, values: {on: 1, off: 0}, confirm: "Are you sure?"}
       - {kind: readout, label: Internal Shutter A, bind: {pv: "undulator:u_gaiasvereader:internalshuttera"}}
       - {kind: readout, label: Internal Shutter B, bind: {pv: "undulator:u_gaiasvereader:internalshutterb"}}
   - title: 148 TRA motors
@@ -60,9 +60,9 @@ groups:
     widgets:
       - {kind: annotation, label: "Grating Cam (not bound)"}
       - {kind: toggle, label: OAPin2, bind: {device: U_PLC, role: "DO.Ch1"}}
-      - {kind: setpoint, label: Ghost pulsed, bind: {device: U_GhostFilters, role: "pos.Channel0"}}
-      - {kind: setpoint, label: Probe, bind: {device: U_ProbeFilters, role: "pos.Channel0"}}
-      - {kind: setpoint, label: HASO, bind: {device: U_HASO_Filters, role: "pos.Channel0"}}
+      - {kind: select, label: Ghost pulsed, bind: {device: U_GhostFilters, role: "pos.Channel0"}}
+      - {kind: select, label: Probe, bind: {device: U_ProbeFilters, role: "pos.Channel0"}}
+      - {kind: select, label: HASO, bind: {device: U_HASO_Filters, role: "pos.Channel0"}}
   - title: B-Cave Alignment
     at: [1, 2]
     tone: trace-1
@@ -81,8 +81,8 @@ groups:
     tone: muted
     columns: 3
     widgets:
-      - {kind: setpoint, label: Coarse Filters, bind: {device: U_MI_CoarseFilters, role: "pos.Channel0"}}
-      - {kind: setpoint, label: Fine Filters, bind: {device: U_MI_FineFilters, role: "pos.Channel0"}}
+      - {kind: select, label: Coarse Filters, bind: {device: U_MI_CoarseFilters, role: "pos.Channel0"}}
+      - {kind: select, label: Fine Filters, bind: {device: U_MI_FineFilters, role: "pos.Channel0"}}
       - {kind: setpoint, label: Position, bind: {device: U_ModeImagerESP, role: "Position.Axis 1"}}
   - title: Compressor
     at: [3, 2]
