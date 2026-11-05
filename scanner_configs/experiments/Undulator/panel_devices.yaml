@@ -1,0 +1,71 @@
+# Per-device panel data for the devices native_devices.yaml lists (GEECS-Schemas
+# PanelDevices): each one's family and what differs from it on this device. Read by
+# GeecsCanopy's directory and device module, joined to native_devices.yaml by device
+# name; the scan worker never reads it. `ioc` is the IOC_NAME in the camera host's
+# compose file (geecs-epics services/undulator/cameras/): the module judges freshness
+# by that IOC's devIocStats heartbeat.
+schema_version: 1
+devices:
+  UC_VisaEBeam6:
+    family: ad_camera_chain
+    ioc: uc-visaebeam6
+  UC_VisaEBeam5:
+    family: ad_camera_chain
+    ioc: uc-visaebeam5
+  UC_VisaEBeam7:
+    family: ad_camera_chain
+    ioc: uc-visaebeam7
+  UC_VisaEBeam8:
+    family: ad_camera_chain
+    ioc: uc-visaebeam8
+  UC_Visa9Spec:
+    family: ad_camera_chain
+    ioc: uc-visa9spec
+  UC_UndulatorRad2:
+    family: ad_camera_chain
+    ioc: uc-undulatorrad2
+  UC_VisaEBeam1:
+    family: ad_camera_chain
+    ioc: uc-visaebeam1
+  UC_VisaEBeam2:
+    family: ad_camera_chain
+    ioc: uc-visaebeam2
+  UC_VisaEBeam3:
+    family: ad_camera_chain
+    ioc: uc-visaebeam3
+  UC_VisaEBeam4:
+    family: ad_camera_chain
+    ioc: uc-visaebeam4
+  # The ten VISA steering supplies (CAEN Easy-Drivers), one native IOC each:
+  # family easydriver, prefix <experiment>:<device>:. Not in native_devices.yaml:
+  # the scan worker has no kind for a setpoint device yet.
+  U_VS1H:
+    family: easydriver
+    ioc: u-vs1h
+  U_VS1V:
+    family: easydriver
+    ioc: u-vs1v
+  U_VS2H:
+    family: easydriver
+    ioc: u-vs2h
+  U_VS2V:
+    family: easydriver
+    ioc: u-vs2v
+  U_VS3H:
+    family: easydriver
+    ioc: u-vs3h
+  U_VS3V:
+    family: easydriver
+    ioc: u-vs3v
+  U_VS4H:
+    family: easydriver
+    ioc: u-vs4h
+  U_VS4V:
+    family: easydriver
+    ioc: u-vs4v
+  U_VS5H:
+    family: easydriver
+    ioc: u-vs5h
+  U_VS5V:
+    family: easydriver
+    ioc: u-vs5v

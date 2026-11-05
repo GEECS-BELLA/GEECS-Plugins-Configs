@@ -3,6 +3,95 @@
 # NATIVE_DEVICES.md). A name here must not also be a DB device.
 schema_version: 1
 devices:
-  ADTEST_CAM1:
+  UC_VisaEBeam6:
     kind: aravis_camera
-    trigger_source: software
+    trigger_source: line0
+  UC_VisaEBeam5:
+    kind: aravis_camera
+    trigger_source: line0
+  UC_VisaEBeam7:
+    kind: aravis_camera
+    trigger_source: line0
+  UC_VisaEBeam8:
+    kind: aravis_camera
+    trigger_source: line0
+  UC_Visa9Spec:
+    kind: aravis_camera
+    trigger_source: line1
+  UC_UndulatorRad2:
+    kind: aravis_camera
+    trigger_source: line1
+  UC_VisaEBeam1:
+    kind: aravis_camera
+    trigger_source: line0
+  UC_VisaEBeam2:
+    kind: aravis_camera
+    trigger_source: line0
+  UC_VisaEBeam3:
+    kind: aravis_camera
+    trigger_source: line0
+  UC_VisaEBeam4:
+    kind: aravis_camera
+    trigger_source: line0
+  # The VISA steering supplies (CAEN Easy-Driver, family easydriver): each
+  # set confirmed on the current readback within 5 mA.
+  U_VS1H:
+    kind: setpoint_device
+    settables:
+      current: {tolerance: 0.005, timeout: 10}
+    readbacks: [voltage]
+    status: [fault, interlock]
+  U_VS1V:
+    kind: setpoint_device
+    settables:
+      current: {tolerance: 0.005, timeout: 10}
+    readbacks: [voltage]
+    status: [fault, interlock]
+  U_VS2H:
+    kind: setpoint_device
+    settables:
+      current: {tolerance: 0.005, timeout: 10}
+    readbacks: [voltage]
+    status: [fault, interlock]
+  U_VS2V:
+    kind: setpoint_device
+    settables:
+      current: {tolerance: 0.005, timeout: 10}
+    readbacks: [voltage]
+    status: [fault, interlock]
+  U_VS3H:
+    kind: setpoint_device
+    settables:
+      current: {tolerance: 0.005, timeout: 10}
+    readbacks: [voltage]
+    status: [fault, interlock]
+  U_VS3V:
+    kind: setpoint_device
+    settables:
+      current: {tolerance: 0.005, timeout: 10}
+    readbacks: [voltage]
+    status: [fault, interlock]
+  U_VS4H:
+    kind: setpoint_device
+    settables:
+      current: {tolerance: 0.005, timeout: 10}
+    readbacks: [voltage]
+    status: [fault, interlock]
+  U_VS4V:
+    kind: setpoint_device
+    settables:
+      current: {tolerance: 0.005, timeout: 10}
+    readbacks: [voltage]
+    status: [fault, interlock]
+  U_VS5H:
+    kind: setpoint_device
+    settables:
+      current: {tolerance: 0.005, timeout: 10}
+    readbacks: [voltage]
+    status: [fault, interlock]
+  U_VS5V:
+    kind: setpoint_device
+    settables:
+      current: {tolerance: 0.005, timeout: 10}
+    readbacks: [voltage]
+    status: [fault, interlock]
