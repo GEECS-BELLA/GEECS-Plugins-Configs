@@ -23,3 +23,26 @@ columns:
   inputs:
     x: Stage2 Density
   expr: 33.4/sqrt(x)
+- name: 2BL timing delay [fs]
+  inputs:
+    a: STAGE-2BL-Compressor Position.Axis 4 Alias:Comp-2BL-delay [mm]
+  expr: ((a-1.195)*2*10**(-3))/(3*10**8) * 10**(15)
+  description: 2BL ahead of 1BL is defined as positive
+- name: windmill
+  inputs:
+    x: HEX-PL1-3 ypos
+  cases:
+  - when: 10 <= x <=15
+    label: IN
+  otherwise: OUT
+  description: Is windmill in beam path?
+- name: 2BL ghost centroid y [um]
+  inputs:
+    x: MCD-2BL-ESPBTL3 Position.Axis 3 Alias:F3M6 Vertical
+  expr: -6990.8-8093.98*x
+  description: Location of the vertical component of 2BL ghost centroid. 9.9 um/pix
+- name: 2BL ghost centroid x [um]
+  inputs:
+    x: MCD-2BL-ESPBTL2 Position.Axis 3 Alias:F3M6 Horizontal
+  expr: -14226*x+1104
+  description: Location of the horizontal component of 2BL ghost centroid. 9.9 um/pix

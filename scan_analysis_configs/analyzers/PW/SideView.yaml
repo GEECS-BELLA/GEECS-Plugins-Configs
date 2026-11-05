@@ -1,0 +1,12 @@
+schema_version: 3
+device: SideView
+input:
+  kind: camera
+steps: []
+measure:
+  kind: beam
+  enabled_stats:
+  - y_fwhm
+summaries:
+- kind: image_grid
+- kind: average
