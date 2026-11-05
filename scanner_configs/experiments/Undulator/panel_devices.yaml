@@ -69,3 +69,8 @@ devices:
   U_VS5V:
     family: easydriver
     ioc: u-vs5v
+  picotest1:
+    family: scope_contract
+    prefix: "undulator:picotest1:"
+    ioc: picotest1
+    note: "the bench PicoScope (the scope contract's reference instance); not migrated: the GEECS DB still owns the scope it serves"
