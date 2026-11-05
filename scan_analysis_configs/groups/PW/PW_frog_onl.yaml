@@ -2,6 +2,7 @@ schema_version: 1
 name: PW_frog_onl
 analyzers:
 - ref: PW_FROG
-  enabled: false
 - ref: PW-MagSpectStitcher
-- ref: CAM-1BL-M2Near
+  enabled: false
+- ref: Staging_Scalars
+  enabled: false

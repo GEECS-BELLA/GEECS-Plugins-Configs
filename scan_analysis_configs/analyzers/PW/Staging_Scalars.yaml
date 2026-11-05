@@ -1,0 +1,25 @@
+schema_version: 1
+kind: scalar_columns
+columns:
+- name: APL
+  inputs:
+    x: STAGE-PL1-3AxisNewmark Position.Stage A Alias:APL (49=out)
+  cases:
+  - when: 0<x<40
+    label: in
+  otherwise: out
+- name: Discharge
+  inputs:
+    x: DDG-AA-SRS2 Delay.Ch B
+  cases:
+  - when: x>0
+    label: 'On'
+  otherwise: 'Off'
+- name: Stage2 Density
+  inputs:
+    x: PRC-PL1-HighPressure Pressure.device 1 Alias:Back_High500 pressure
+  expr: (x/125)*0.67
+- name: Stage2 Lambda_p
+  inputs:
+    x: Stage2 Density
+  expr: 33.4/sqrt(x)
