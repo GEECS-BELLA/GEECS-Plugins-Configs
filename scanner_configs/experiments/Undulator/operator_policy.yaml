@@ -38,4 +38,8 @@ grants:
       - U_Zaber
   - operators: [Sam Barber]
     families: [ad_camera_chain]
+  # The bench array detectors on the trace page (the PicoScope, the Thorlabs CCT
+  # spectrometer): every role their families allow, 2026-11-05.
+  - operators: [Sam Barber]
+    families: [scope_contract, spectrometer_contract]
 hazards: []
