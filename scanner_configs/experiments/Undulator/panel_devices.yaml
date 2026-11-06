@@ -74,3 +74,8 @@ devices:
     prefix: "undulator:picotest1:"
     ioc: picotest1
     note: "the bench PicoScope (the scope contract's reference instance); not migrated: the GEECS DB still owns the scope it serves"
+  ccttest1:
+    family: spectrometer_contract
+    prefix: "undulator:ccttest1:"
+    ioc: ccttest1
+    note: "the bench Thorlabs CCT spectrometer (the spectrometer contract's reference instance); the first use of this hardware: no GEECS device yet"
