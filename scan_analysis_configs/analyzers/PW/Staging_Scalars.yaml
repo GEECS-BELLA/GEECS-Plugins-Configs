@@ -19,7 +19,7 @@ columns:
   inputs:
     x: PRC-PL1-HighPressure Pressure.device 1 Alias:Back_High500 pressure
   expr: (x/125)*0.67
-- name: Stage2 Lambda_p
+- name: Stage2 Lambda_p (um)
   inputs:
     x: Stage2 Density
   expr: 33.4/sqrt(x)
