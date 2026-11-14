@@ -39,7 +39,9 @@ grants:
   - operators: [Sam Barber]
     families: [ad_camera_chain]
   # The bench array detectors on the trace page (the PicoScope, the Thorlabs CCT
-  # spectrometer): every role their families allow, 2026-11-05.
-  - operators: [Sam Barber]
+  # spectrometer): every role their families allow, 2026-11-05. Every operator
+  # who gives a name since 2026-11-14 (the maintainer; the journal records the
+  # name). The star is quoted and stands alone: it is not a pattern.
+  - operators: ["*"]
     families: [scope_contract, spectrometer_contract]
 hazards: []
