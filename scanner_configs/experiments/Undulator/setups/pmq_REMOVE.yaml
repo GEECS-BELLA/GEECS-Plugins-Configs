@@ -1,0 +1,9 @@
+schema_version: 1
+name: pmq_REMOVE
+steps:
+- do: apply
+  setup: Amp4_DUMP_HP
+- do: set
+  device: U_Hexapod
+  variable: ypos
+  value: -22

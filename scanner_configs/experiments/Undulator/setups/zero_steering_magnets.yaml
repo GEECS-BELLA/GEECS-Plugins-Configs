@@ -1,0 +1,35 @@
+schema_version: 1
+name: zero_steering_magnets
+steps:
+- do: set
+  device: U_S1H
+  variable: Current
+  value: 0
+- do: set
+  device: U_S1V
+  variable: Current
+  value: 0
+- do: set
+  device: U_S2H
+  variable: Current
+  value: 0
+- do: set
+  device: U_S2V
+  variable: Current
+  value: 0
+- do: set
+  device: U_S3H
+  variable: Current
+  value: 0
+- do: set
+  device: U_S3V
+  variable: Current
+  value: 0
+- do: set
+  device: U_S4H
+  variable: Current
+  value: 0
+- do: set
+  device: U_S4V
+  variable: Current
+  value: 0

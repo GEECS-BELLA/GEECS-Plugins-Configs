@@ -1,0 +1,19 @@
+schema_version: 1
+name: zero_chicane_magnets
+steps:
+- do: set
+  device: U_ChicaneInner
+  variable: Current
+  value: 0
+- do: set
+  device: U_ChicaneInner
+  variable: Current
+  value: 0
+- do: set
+  device: U_ChicaneOuter
+  variable: Enable_Output
+  value: 'off'
+- do: set
+  device: U_ChicaneInner
+  variable: Enable_Output
+  value: 'off'

@@ -1,0 +1,19 @@
+schema_version: 1
+name: experiment_CLOSEOUT
+steps:
+- do: apply
+  setup: closeout_dump_gaia
+- do: apply
+  setup: zero_steering_magnets
+- do: apply
+  setup: zero_visa_magnets
+- do: apply
+  setup: zero_emq_magnets
+- do: apply
+  setup: zero_pressure_voltage
+- do: apply
+  setup: zero_chicane_magnets
+- do: apply
+  setup: closeout_pmq_REMOVE
+- do: apply
+  setup: zero_magspec_currents

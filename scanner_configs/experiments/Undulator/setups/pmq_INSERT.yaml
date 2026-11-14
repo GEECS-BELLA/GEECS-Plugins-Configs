@@ -1,0 +1,11 @@
+schema_version: 1
+name: pmq_INSERT
+steps:
+- do: apply
+  setup: Amp4_DUMP_HP
+- do: set
+  device: U_Hexapod
+  variable: ypos
+  value: 17.95
+- do: apply
+  setup: Amp4_SEND_HP_TO_TARGET

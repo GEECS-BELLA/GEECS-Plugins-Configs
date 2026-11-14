@@ -1,0 +1,43 @@
+schema_version: 1
+name: remove_visa_plungers
+steps:
+- do: set
+  device: U_VisaPlungers
+  variable: DigitalOutput.Channel 0
+  value: 'off'
+- do: set
+  device: U_VisaPlungers
+  variable: DigitalOutput.Channel 1
+  value: 'off'
+- do: set
+  device: U_VisaPlungers
+  variable: DigitalOutput.Channel 2
+  value: 'off'
+- do: set
+  device: U_VisaPlungers
+  variable: DigitalOutput.Channel 3
+  value: 'off'
+- do: set
+  device: U_VisaPlungers
+  variable: DigitalOutput.Channel 4
+  value: 'off'
+- do: set
+  device: U_VisaPlungers
+  variable: DigitalOutput.Channel 5
+  value: 'off'
+- do: set
+  device: U_VisaPlungers
+  variable: DigitalOutput.Channel 6
+  value: 'off'
+- do: set
+  device: U_VisaPlungers
+  variable: DigitalOutput.Channel 7
+  value: 'off'
+- do: set
+  device: U_VisaPlungers
+  variable: DigitalOutput.Channel 7
+  value: 'off'
+- do: set
+  device: U_PLC
+  variable: DO.Ch19
+  value: 'off'

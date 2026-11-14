@@ -1,0 +1,13 @@
+schema_version: 1
+name: s1h_exercise
+steps:
+- do: set
+  device: U_S1H
+  variable: Current
+  value: 1.0
+- do: wait
+  seconds: 3.0
+- do: set
+  device: U_S1H
+  variable: Current
+  value: 0.0

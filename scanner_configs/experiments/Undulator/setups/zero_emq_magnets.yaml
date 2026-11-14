@@ -1,0 +1,27 @@
+schema_version: 1
+name: zero_emq_magnets
+steps:
+- do: set
+  device: U_EMQTripletBipolar
+  variable: Current_Limit.Ch1
+  value: 0
+- do: set
+  device: U_EMQTripletBipolar
+  variable: Current_Limit.Ch2
+  value: 0
+- do: set
+  device: U_EMQTripletBipolar
+  variable: Current_Limit.Ch3
+  value: 0
+- do: set
+  device: U_EMQTripletBipolar
+  variable: Enable_Output.Ch1
+  value: 'off'
+- do: set
+  device: U_EMQTripletBipolar
+  variable: Enable_Output.Ch2
+  value: 'off'
+- do: set
+  device: U_EMQTripletBipolar
+  variable: Enable_Output.Ch3
+  value: 'off'

@@ -1,0 +1,15 @@
+schema_version: 1
+name: Quad-In_Long300
+steps:
+- do: set
+  device: HTT-B-Zaber_Chain-B
+  variable: Position.Ch4
+  value: 30
+- do: set
+  device: HTT-B-Zaber_Chain-B
+  variable: Disable.Ch5
+  value: 300
+- do: set
+  device: HTT-B-Zaber_Chain-B
+  variable: Position.Ch6
+  value: 15

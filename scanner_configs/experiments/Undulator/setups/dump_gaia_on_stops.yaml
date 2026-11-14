@@ -1,0 +1,9 @@
+schema_version: 1
+name: dump_gaia_on_stops
+steps:
+- do: apply
+  setup: close_gaia_internal_shutters
+- do: apply
+  setup: insert_gaia_stops
+- do: apply
+  setup: open_gaia_internal_shutters

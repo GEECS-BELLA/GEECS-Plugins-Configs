@@ -1,0 +1,43 @@
+schema_version: 1
+name: zero_visa_magnets
+steps:
+- do: set
+  device: U_VS1H
+  variable: Current
+  value: 0
+- do: set
+  device: U_VS1V
+  variable: Current
+  value: 0
+- do: set
+  device: U_VS2H
+  variable: Current
+  value: 0
+- do: set
+  device: U_VS2V
+  variable: Current
+  value: 0
+- do: set
+  device: U_VS3H
+  variable: Current
+  value: 0
+- do: set
+  device: U_VS3V
+  variable: Current
+  value: 0
+- do: set
+  device: U_VS4H
+  variable: Current
+  value: 0
+- do: set
+  device: U_VS4V
+  variable: Current
+  value: 0
+- do: set
+  device: U_VS5H
+  variable: Current
+  value: 0
+- do: set
+  device: U_VS5V
+  variable: Current
+  value: 0

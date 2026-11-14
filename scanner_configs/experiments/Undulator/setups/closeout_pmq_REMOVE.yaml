@@ -1,0 +1,7 @@
+schema_version: 1
+name: closeout_pmq_REMOVE
+steps:
+- do: set
+  device: U_Hexapod
+  variable: ypos
+  value: -22
