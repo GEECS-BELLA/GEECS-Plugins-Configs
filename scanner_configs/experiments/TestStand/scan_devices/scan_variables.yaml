@@ -1,2 +1,6 @@
 schema_version: 1
-variables: {}
+variables:
+  Bench delay B:
+    target: pulsewire-DG645:Delay.Ch B
+    kind: setpoint
+    description: The bench DG645's channel B delay (s).
