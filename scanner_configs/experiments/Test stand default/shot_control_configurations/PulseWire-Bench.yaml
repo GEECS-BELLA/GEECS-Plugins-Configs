@@ -1,0 +1,13 @@
+device: pulsewire-DG645
+variables:
+  Trigger.ExecuteSingleShot:
+    ARMED: ''
+    'OFF': ''
+    SCAN: ''
+    SINGLESHOT: 'on'
+    STANDBY: ''
+  Trigger.Source:
+    ARMED: Single shot
+    'OFF': Single shot
+    SCAN: Internal
+    STANDBY: Internal

@@ -1,0 +1,9 @@
+schema_version: 1
+trigger_profile: null
+native_image_save: true
+actions:
+  setup: []
+  closeout: []
+apply_db_scan_defaults: true
+background_telemetry: true
+description: ''
