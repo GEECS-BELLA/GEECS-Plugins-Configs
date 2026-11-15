@@ -3,4 +3,4 @@ trigger_profile: null
 native_image_save: true
 apply_db_scan_defaults: true
 background_telemetry: true
-description: The pulsed-wire bench (instance PulsedWire).
+description: The pulsed-wire bench, served as the experiment instance PulsedWire.
