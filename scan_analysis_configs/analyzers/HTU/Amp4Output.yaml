@@ -7,6 +7,7 @@ metadata:
   spatial_calibration: 2.44e-05
 input:
   kind: camera
+  format: device_hdf5
 steps:
 - step: background_constant
   level: 90

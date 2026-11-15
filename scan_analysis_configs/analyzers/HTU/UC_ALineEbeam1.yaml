@@ -1,0 +1,22 @@
+schema_version: 3
+device: UC_ALineEbeam1
+input:
+  kind: camera
+  format: device_hdf5
+inputs:
+  bkg:
+    from_scan:
+      scan: 3
+steps:
+- step: background_frame
+  source: bkg
+- step: background_constant
+  level: 10
+- step: clip_below
+  level: 0
+- step: median
+measure:
+  kind: beam
+summaries:
+- kind: image_grid
+- kind: average

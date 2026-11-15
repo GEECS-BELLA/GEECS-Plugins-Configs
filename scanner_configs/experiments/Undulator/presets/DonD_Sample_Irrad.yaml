@@ -1,0 +1,23 @@
+schema_version: 1
+name: DonD_Sample_Irrad
+description: 229Th Irradiation
+trigger_profile: HTU-Normal
+background: false
+native_image_save: null
+background_telemetry: null
+devices:
+- device: U_BCaveICT
+  save_images: true
+  required: true
+- device: UC_Dond_LaserMonitor
+  save_images: true
+  required: true
+- device: UC_DonD_Sample_ACave
+  save_images: true
+  required: true
+plan:
+  name: count
+  args: []
+  kwargs:
+    acquisition: strict
+    num: 1200

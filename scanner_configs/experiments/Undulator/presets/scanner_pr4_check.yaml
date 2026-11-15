@@ -1,0 +1,16 @@
+schema_version: 1
+name: scanner_pr4_check
+description: "web scanner PR 4 acceptance: strict count 5, Amp4 input, HTU-LaserOFF\
+  \ \u2014 saved from the scanner API"
+trigger_profile: HTU-LaserOFF
+background: false
+devices:
+- device: UC_Amp4_IR_input
+  save_images: true
+  required: true
+plan:
+  name: count
+  args: []
+  kwargs:
+    num: 5
+    acquisition: strict

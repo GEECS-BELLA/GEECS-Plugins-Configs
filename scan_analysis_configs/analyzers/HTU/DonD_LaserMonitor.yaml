@@ -1,0 +1,22 @@
+schema_version: 3
+device: UC_Dond_LaserMonitor
+description: Camera for monitoring laser leakage
+input:
+  kind: camera
+  format: device_hdf5
+steps:
+- step: roi
+  bounds:
+  - - 220
+    - 600
+  - - 0
+    - 200
+- step: zero_below
+  level: 5
+- step: gaussian
+  sigma: 3
+measure:
+  kind: beam
+summaries:
+- kind: image_grid
+- kind: average

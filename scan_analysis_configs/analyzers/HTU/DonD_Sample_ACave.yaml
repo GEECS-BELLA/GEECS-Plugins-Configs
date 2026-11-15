@@ -1,0 +1,21 @@
+schema_version: 3
+device: UC_DonD_Sample_ACave
+description: Beam profiler in A-Cave at DonD end station. Fast LANEX
+input:
+  kind: camera
+  format: device_hdf5
+steps:
+- step: roi
+  bounds:
+  - - 0
+    - 1230
+  - - 0
+    - 1620
+- step: background_constant
+  level: 25
+- step: median
+measure:
+  kind: beam
+summaries:
+- kind: image_grid
+- kind: average

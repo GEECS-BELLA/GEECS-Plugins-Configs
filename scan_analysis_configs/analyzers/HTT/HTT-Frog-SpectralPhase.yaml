@@ -1,0 +1,14 @@
+schema_version: 3
+device: HTT-Frog-SpectralPhase
+input:
+  kind: line
+  folder: HTT-FROG-Temporal
+  file_tail: _retrieved_lineouts.tsv
+  loading:
+    data_type: tsv
+    y_column: 5
+steps: []
+measure:
+  kind: frog_spectral_phase
+summaries:
+- kind: average

@@ -7,9 +7,9 @@ steps:
 - step: roi
   bounds:
   - - 200
+    - 300
+  - - 200
     - 400
-  - - 300
-    - 500
 - step: background_constant
   level: 80
 - step: clip_below

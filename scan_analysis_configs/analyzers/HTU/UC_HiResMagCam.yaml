@@ -15,10 +15,14 @@ steps:
 - step: clip_below
   level: 0
 - step: median
+- step: roi
+  bounds:
+  - - 50
+    - 350
+  - - 638
+    - 640
 measure:
-  kind: hi_res_mag_cam
-scan:
-  average_frames_first: true
+  kind: beam
 figure:
   imshow:
     vmin: 0

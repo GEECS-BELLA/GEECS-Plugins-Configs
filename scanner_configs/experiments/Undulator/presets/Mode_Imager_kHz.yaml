@@ -1,0 +1,29 @@
+schema_version: 1
+name: Mode_Imager_kHz
+description: kHz Mode Imager Scan
+trigger_profile: HTU-NoGas
+background: false
+native_image_save: null
+background_telemetry: null
+devices:
+- device: UC_ModeImager
+  save_images: true
+  required: true
+plan:
+  name: sweep
+  args: []
+  kwargs:
+    acquisition: strict
+    shots_per_step: 4
+    sweep:
+      trajectory:
+        kind: axes
+        combine: zip
+        snake: false
+        axes:
+        - axis: Mode Imager Stage
+          relative: false
+          kind: range
+          start: -8
+          stop: -25
+          num: 18

@@ -1,45 +1,56 @@
 schema_version: 3
 device: pulsewire-picoscope
 output_name: pulsewire-picoscope-horizontal
-description: >-
-  Pulsed-wire PMQ triplet, horizontal plane (ChA = x wire deflection).
-  Kicks are plateau differences in the drift windows; scalar_fit gives each
-  element's slope and magnetic centre against the hexapod position.
+description: Pulsed-wire PMQ triplet, horizontal plane (ChA = x wire deflection).
+  Kicks are plateau differences in the drift windows; scalar_fit gives each element's
+  slope and magnetic centre against the hexapod position.
 input:
   kind: line
   file_tail: .tdms
   format: per_shot_files
   loading:
     data_type: tdms_scope
-    trace_index: 0
   x_unit: s
   y_unit: V
   label: x deflection
 steps:
-  - step: lowpass
-    order: 2
-    critical_frequency: 1.5e-3
-  - step: roi
-    units: axis
-    bounds: [[1.0e-3, 3.84e-3]]
+- step: lowpass
+  critical_frequency: 0.0015
+- step: roi
+  bounds:
+  - - 0.001
+    - 0.00384
+  units: axis
 measure:
   kind: pulsed_wire
   windows:
-    - {start: 1.05e-3, end: 1.31e-3}
-    - {start: 1.59e-3, end: 1.71e-3}
-    - {start: 2.13e-3, end: 2.34e-3}
-    - {start: 2.70e-3, end: 3.50e-3}
+  - start: 0.00105
+    end: 0.00131
+  - start: 0.00159
+    end: 0.00171
+  - start: 0.00213
+    end: 0.00234
+  - start: 0.0027
+    end: 0.0035
   elements:
-    - {name: PMQ1}
-    - {name: PMQ2}
-    - {name: PMQ3}
+  - name: PMQ1
+  - name: PMQ2
+  - name: PMQ3
 scan:
   average_frames_first: true
 figure:
-  fig: {dpi: 150}
-  axes: {xlabel: "time (s)", ylabel: "x deflection (V)"}
-  colorbar: {label: "x deflection (V)"}
+  colorbar:
+    label: x deflection (V)
+  axes:
+    xlabel: time (s)
+    ylabel: x deflection (V)
+  fig:
+    dpi: 150
 summaries:
-  - kind: waterfall
-  - kind: scalar_fit
-    scalars: [kick_1, kick_2, kick_3]
+- kind: waterfall
+- kind: scalar_fit
+  scalars:
+  - kick_1
+  - kick_2
+  - kick_3
+  model: linear

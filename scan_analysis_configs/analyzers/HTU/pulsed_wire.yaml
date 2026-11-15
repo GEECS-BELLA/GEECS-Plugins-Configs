@@ -6,11 +6,15 @@ input:
   format: per_shot_files
   loading:
     data_type: tdms_scope
+    trace_index: 1
+    y_column: 0
 steps:
 - step: background_constant
-  level: -2
+  level: -0.075
 measure:
   kind: line
+scan:
+  average_frames_first: true
 summaries:
 - kind: waterfall
 - kind: average

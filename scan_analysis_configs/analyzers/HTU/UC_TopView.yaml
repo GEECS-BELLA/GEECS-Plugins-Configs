@@ -7,15 +7,16 @@ metadata:
   spatial_calibration: 2.44e-05
 input:
   kind: camera
+  format: device_hdf5
 steps:
 - step: background_constant
   level: 5
 - step: roi
   bounds:
-  - - 350
-    - 600
-  - - 10
-    - 750
+  - - 400
+    - 530
+  - - 200
+    - 700
 - step: median
 measure:
   kind: beam

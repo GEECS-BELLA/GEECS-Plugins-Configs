@@ -1,0 +1,29 @@
+schema_version: 1
+name: DonD_MagSpec
+description: No scan on magspec
+trigger_profile: HTU-Normal
+background: false
+native_image_save: null
+background_telemetry: null
+devices:
+- device: UC_BCaveMagSpecCam2
+  save_images: true
+  required: true
+- device: UC_BCaveMagSpecCam3
+  save_images: true
+  required: true
+- device: UC_BCaveMagSpecCam1
+  save_images: true
+  required: true
+- device: U_BCaveICT
+  save_images: true
+  required: true
+- device: UC_Dond_LaserMonitor
+  save_images: true
+  required: true
+plan:
+  name: count
+  args: []
+  kwargs:
+    acquisition: strict
+    num: 200

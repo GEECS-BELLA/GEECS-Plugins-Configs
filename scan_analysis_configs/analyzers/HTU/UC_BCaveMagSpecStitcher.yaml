@@ -14,6 +14,10 @@ input:
 steps: []
 measure:
   kind: line
+figure:
+  axes:
+    xlabel: Energy [MeV]
+    ylabel: Spectral Density [A.U.]
 summaries:
 - kind: waterfall
 - kind: average

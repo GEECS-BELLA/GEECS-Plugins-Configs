@@ -1,0 +1,23 @@
+schema_version: 3
+device: UC_DiagnosticsPhosphor
+description: Check for signal on the UC diagnostics phosphor
+input:
+  kind: camera
+  format: device_hdf5
+steps:
+- step: background_constant
+  level: 25
+- step: roi
+  bounds:
+  - - 0
+    - 1288
+  - - 50
+    - 1288
+- step: median
+- step: zero_below
+  level: 0
+measure:
+  kind: beam
+summaries:
+- kind: image_grid
+- kind: average
