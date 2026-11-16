@@ -1,0 +1,13 @@
+schema_version: 3
+device: SPEC-PL1-Thorlabs
+input:
+  kind: line
+  file_tail: .txt
+  loading:
+    data_type: tsv
+    trace_index: 1
+    x_trace_index: 0
+steps: []
+measure:
+  kind: spectral_interferometry
+summaries: []
