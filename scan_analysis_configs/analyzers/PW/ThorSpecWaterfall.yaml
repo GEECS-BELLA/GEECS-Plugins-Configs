@@ -1,0 +1,21 @@
+schema_version: 3
+device: SPEC-PL1-Thorlabs
+input:
+  kind: line
+  file_tail: .txt
+  loading:
+    data_type: tsv
+steps:
+- step: roi
+  bounds: [[740, 860]]
+  units: axis
+measure:
+  kind: none
+figure:
+  axes:
+    xlabel: Wavelength (nm)
+  colorbar:
+    label: Intensity
+summaries:
+- kind: waterfall
+- kind: average
