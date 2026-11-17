@@ -10,4 +10,6 @@ input:
 steps: []
 measure:
   kind: spectral_interferometry
+  reference_wavelength_nm: 795.0
+  fit_range_nm: [783.0, 807.0]
 summaries: []
