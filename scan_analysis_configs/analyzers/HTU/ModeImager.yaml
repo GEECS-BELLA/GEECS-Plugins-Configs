@@ -16,10 +16,10 @@ steps:
 - step: median
 - step: roi
   bounds:
-  - - 350
-    - 550
-  - - 580
-    - 780
+  - - 200
+    - 400
+  - - 725
+    - 925
 measure:
   kind: beam
 scan:
