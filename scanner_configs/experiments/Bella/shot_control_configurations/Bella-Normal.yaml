@@ -1,0 +1,21 @@
+schema_version: 2
+name: Bella-Normal
+description: Bella normal operation, modelled on Undulator's HTU-Normal — PLACEHOLDER device name, not yet usable for a scan
+# PLACEHOLDER_DG645_ShotControl stands in for Bella's shot-control delay
+# generator: replace it with the real GEECS device name, and check the
+# variables and values against that device, before a scan names this profile.
+states:
+  OFF:
+    - {device: PLACEHOLDER_DG645_ShotControl, variable: Amplitude.Ch AB, value: '0.5'}
+    - {device: PLACEHOLDER_DG645_ShotControl, variable: Trigger.Source, value: Single shot external rising edges}
+  STANDBY:
+    - {device: PLACEHOLDER_DG645_ShotControl, variable: Amplitude.Ch AB, value: '0.5'}
+    - {device: PLACEHOLDER_DG645_ShotControl, variable: Trigger.Source, value: External rising edges}
+  SCAN:
+    - {device: PLACEHOLDER_DG645_ShotControl, variable: Amplitude.Ch AB, value: '4.0'}
+    - {device: PLACEHOLDER_DG645_ShotControl, variable: Trigger.Source, value: External rising edges}
+  ARMED:
+    - {device: PLACEHOLDER_DG645_ShotControl, variable: Amplitude.Ch AB, value: '4.0'}
+    - {device: PLACEHOLDER_DG645_ShotControl, variable: Trigger.Source, value: Single shot external rising edges}
+  SINGLESHOT:
+    - {device: PLACEHOLDER_DG645_ShotControl, variable: Trigger.ExecuteSingleShot, value: 'on'}
