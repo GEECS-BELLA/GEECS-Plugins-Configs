@@ -6,16 +6,12 @@ description: Bella normal operation, modelled on Undulator's HTU-Normal — PLAC
 # variables and values against that device, before a scan names this profile.
 states:
   OFF:
-    - {device: PLACEHOLDER_DG645_ShotControl, variable: Amplitude.Ch AB, value: '0.5'}
-    - {device: PLACEHOLDER_DG645_ShotControl, variable: Trigger.Source, value: Single shot external rising edges}
+    - {device: DDG-AA-ShotCntrl, variable: Trigger.Source, value: Single shot external rising edges}
   STANDBY:
-    - {device: PLACEHOLDER_DG645_ShotControl, variable: Amplitude.Ch AB, value: '0.5'}
-    - {device: PLACEHOLDER_DG645_ShotControl, variable: Trigger.Source, value: External rising edges}
+    - {device: DDG-AA-ShotCntrl, variable: Trigger.Source, value: External rising edges}
   SCAN:
-    - {device: PLACEHOLDER_DG645_ShotControl, variable: Amplitude.Ch AB, value: '4.0'}
-    - {device: PLACEHOLDER_DG645_ShotControl, variable: Trigger.Source, value: External rising edges}
+    - {device: DDG-AA-ShotCntrl, variable: Trigger.Source, value: External rising edges}
   ARMED:
-    - {device: PLACEHOLDER_DG645_ShotControl, variable: Amplitude.Ch AB, value: '4.0'}
-    - {device: PLACEHOLDER_DG645_ShotControl, variable: Trigger.Source, value: Single shot external rising edges}
+    - {device: DDG-AA-ShotCntrl, variable: Trigger.Source, value: Single shot external rising edges}
   SINGLESHOT:
-    - {device: PLACEHOLDER_DG645_ShotControl, variable: Trigger.ExecuteSingleShot, value: 'on'}
+    - {device: DDG-AA-ShotCntrl, variable: Trigger.ExecuteSingleShot, value: 'on'}
