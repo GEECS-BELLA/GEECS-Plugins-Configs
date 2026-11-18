@@ -1,17 +1,24 @@
 schema_version: 2
 name: Bella-Normal
-description: Bella normal operation, modelled on Undulator's HTU-Normal — PLACEHOLDER device name, not yet usable for a scan
-# PLACEHOLDER_DG645_ShotControl stands in for Bella's shot-control delay
-# generator: replace it with the real GEECS device name, and check the
-# variables and values against that device, before a scan names this profile.
+description: >-
+  Bella normal operation on DDG-AA-ShotCntrl, modelled on Undulator's
+  HTU-Normal. Output GH (the camera trigger) is gated by its amplitude:
+  5 V while armed or scanning, 0.5 V (below the camera's threshold) otherwise.
+  These match the device's own scan-boundary rows in the GEECS DB
+  (expt_device_variable), which it applies only in GEECS scan mode;
+  this profile runs strict mode, so it writes them itself.
 states:
-  OFF:
+  'OFF':
     - {device: DDG-AA-ShotCntrl, variable: Trigger.Source, value: Single shot external rising edges}
+    - {device: DDG-AA-ShotCntrl, variable: Amplitude.Ch GH, value: '0.5'}
   STANDBY:
     - {device: DDG-AA-ShotCntrl, variable: Trigger.Source, value: External rising edges}
+    - {device: DDG-AA-ShotCntrl, variable: Amplitude.Ch GH, value: '0.5'}
   SCAN:
     - {device: DDG-AA-ShotCntrl, variable: Trigger.Source, value: External rising edges}
+    - {device: DDG-AA-ShotCntrl, variable: Amplitude.Ch GH, value: '5'}
   ARMED:
     - {device: DDG-AA-ShotCntrl, variable: Trigger.Source, value: Single shot external rising edges}
+    - {device: DDG-AA-ShotCntrl, variable: Amplitude.Ch GH, value: '5'}
   SINGLESHOT:
     - {device: DDG-AA-ShotCntrl, variable: Trigger.ExecuteSingleShot, value: 'on'}
