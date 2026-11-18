@@ -18,8 +18,8 @@ steps:
   bounds:
   - - 200
     - 400
-  - - 725
-    - 925
+  - - 525
+    - 725
 measure:
   kind: beam
 scan:
@@ -32,6 +32,6 @@ figure:
 summaries:
 - kind: image_grid
   panel_size:
-  - 6.0
-  - 6.0
+  - 6
+  - 6
 - kind: average
