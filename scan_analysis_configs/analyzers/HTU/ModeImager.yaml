@@ -16,7 +16,7 @@ steps:
 - step: median
 - step: roi
   bounds:
-  - - 200
+  - - 180
     - 400
   - - 525
     - 725
