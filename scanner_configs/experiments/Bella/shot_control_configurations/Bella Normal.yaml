@@ -1,1 +1,18 @@
-{}
+schema_version: 2
+name: Bella Normal
+description: >-
+  DDG-AA-ShotCntrl free-running on external edges between scans; during a scan
+  it passes only the shots the scanner fires, each synced to the next external
+  edge. Strict mode (no GEECS scan mode). Modelled on HTU-NoGas; Bella's scheme
+  varies by experiment, so add a profile per scheme rather than editing this one.
+states:
+  'OFF':
+    - {device: DDG-AA-ShotCntrl, variable: Trigger.Source, value: Single shot external rising edges}
+  STANDBY:
+    - {device: DDG-AA-ShotCntrl, variable: Trigger.Source, value: External rising edges}
+  SCAN:
+    - {device: DDG-AA-ShotCntrl, variable: Trigger.Source, value: External rising edges}
+  ARMED:
+    - {device: DDG-AA-ShotCntrl, variable: Trigger.Source, value: Single shot external rising edges}
+  SINGLESHOT:
+    - {device: DDG-AA-ShotCntrl, variable: Trigger.ExecuteSingleShot, value: 'on'}
