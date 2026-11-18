@@ -11,11 +11,7 @@ input:
     data_type: pva_stack
   siblings:
   - UC_BCaveMagSpecCam2-interpSpec
-steps:
-- step: roi
-  bounds:
-  - - 50
-    - 150
+steps: []
 measure:
   kind: line
 figure:
