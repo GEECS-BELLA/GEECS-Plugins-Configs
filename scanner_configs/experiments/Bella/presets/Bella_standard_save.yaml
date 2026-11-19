@@ -1,0 +1,35 @@
+schema_version: 1
+name: Bella_standard_save
+description: >-
+  The devices Master Control saves in a Bella scan: the expt_device_variable
+  rows with set=yes that switch save on at scan start (read from the GEECS
+  DB 2026-11-18). Only CAM-2BL-F3M7 is required; the rest record every shot
+  they catch without holding a shot. Every other logged scalar is in the
+  rows through background telemetry. Load it, then pick Count / Sweep and
+  edit the plan on the page.
+trigger_profile: Bella-Normal
+background: false
+native_image_save: null
+background_telemetry: null
+devices:
+- device: CAM-2BL-F3M7
+  save_images: true
+  required: true
+- device: CAM-2BL-Aegeaon
+  save_images: true
+  required: false
+- device: CAM-HPD-CCD
+  save_images: true
+  required: false
+- device: SPEC-PL1-Thorlabs
+  save_images: true
+  required: false
+- device: SPEC-PL1-ThorlabsNew
+  save_images: true
+  required: false
+plan:
+  name: count
+  args: []
+  kwargs:
+    acquisition: strict
+    num: 10
