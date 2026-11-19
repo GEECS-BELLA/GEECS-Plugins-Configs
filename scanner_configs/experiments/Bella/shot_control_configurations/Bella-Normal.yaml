@@ -4,9 +4,12 @@ description: >-
   Bella normal operation on DDG-AA-ShotCntrl, modelled on Undulator's
   HTU-Normal. Output GH (the camera trigger) is gated by its amplitude:
   5 V while armed or scanning, 0.5 V (below the camera's threshold) otherwise.
-  These match the device's own scan-boundary rows in the GEECS DB
-  (expt_device_variable), which it applies only in GEECS scan mode;
-  this profile runs strict mode, so it writes them itself.
+  Runs in GEECS scan mode: every enabled Bella device applies its own
+  scan-boundary rows from the GEECS DB (expt_device_variable, set=yes) on
+  ScanStart/ScanEnd, so the DB decides which devices save and trigger.
+  ARMED/STANDBY here must agree with DDG-AA-ShotCntrl's own start/end rows
+  (the preflight refuses a mismatch); edit both together.
+use_scan_mode: true
 states:
   'OFF':
     - {device: DDG-AA-ShotCntrl, variable: Trigger.Source, value: Single shot external rising edges}
