@@ -26,10 +26,10 @@ devices:
   save_images: true
   required: true
 - device: CAM-2BL-Aegeaon
-  save_images: true
-  required: true
+  save_images: false
+  required: false
 - device: CAM-2BL-Aegeaon-Subscriber
-  save_images: true
+  save_images: false
   required: false
 - device: CAM-2BL-F3M2
   save_images: false
@@ -56,8 +56,8 @@ devices:
   save_images: true
   required: true
 - device: CAM-PL1-TapeDrivePointing
-  save_images: true
-  required: true
+  save_images: false
+  required: false
 - device: CAM-PL1-TapeMonSubscriber
   save_images: false
   required: false
