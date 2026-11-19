@@ -38,8 +38,8 @@ devices:
   save_images: false
   required: false
 - device: CAM-2BL-F3M2
-  save_images: true
-  required: true
+  save_images: false
+  required: false
 - device: CAM-2BL-F3M3
   save_images: true
   required: true
