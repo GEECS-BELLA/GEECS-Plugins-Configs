@@ -18,7 +18,7 @@ states:
     - {device: DDG-AA-ShotCntrl, variable: Trigger.Source, value: External rising edges}
     - {device: DDG-AA-ShotCntrl, variable: Amplitude.Ch GH, value: '0.5'}
   SCAN:
-    - {device: DDG-AA-ShotCntrl, variable: Trigger.Source, value: External rising edges}
+    - {device: DDG-AA-ShotCntrl, variable: Trigger.Source, value: Single shot external rising edges}
     - {device: DDG-AA-ShotCntrl, variable: Amplitude.Ch GH, value: '5'}
   ARMED:
     - {device: DDG-AA-ShotCntrl, variable: Trigger.Source, value: Single shot external rising edges}
