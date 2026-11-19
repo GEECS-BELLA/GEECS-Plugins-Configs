@@ -1,12 +1,13 @@
 schema_version: 1
 name: Bella_standard_save
 description: >-
-  The devices Master Control saves in a Bella scan: the expt_device_variable
-  rows with set=yes that switch save on at scan start (read from the GEECS
-  DB 2026-11-18). Only CAM-2BL-F3M7 is required; the rest record every shot
-  they catch without holding a shot. Every other logged scalar is in the
-  rows through background telemetry. Load it, then pick Count / Sweep and
-  edit the plan on the page.
+  Every device enabled in Bella that has a save variable in the GEECS DB
+  (expt_device_variable, read 2026-11-18), the trigger box DDG-AA-ShotCntrl
+  excepted. Only CAM-2BL-F3M7 is required; the rest record every shot they
+  catch without holding one. A device disabled in the experiment since must
+  be removed from the table after loading (the worker refuses a run naming a
+  device it does not serve). Load it, then pick Count / Sweep and edit the
+  plan on the page.
 trigger_profile: Bella-Normal
 background: false
 native_image_save: null
@@ -15,16 +16,85 @@ devices:
 - device: CAM-2BL-F3M7
   save_images: true
   required: true
+- device: CAM-1BL-DM
+  save_images: true
+  required: false
+- device: CAM-1BL-Ghost
+  save_images: true
+  required: false
+- device: CAM-1BL-M1
+  save_images: true
+  required: false
+- device: CAM-1BL-M5
+  save_images: true
+  required: false
 - device: CAM-2BL-Aegeaon
+  save_images: true
+  required: false
+- device: CAM-2BL-Aegeaon-Subscriber
+  save_images: true
+  required: false
+- device: CAM-2BL-DM
+  save_images: true
+  required: false
+- device: CAM-2BL-F3M2
+  save_images: true
+  required: false
+- device: CAM-2BL-F3M3
+  save_images: true
+  required: false
+- device: CAM-2BL-F3M5
+  save_images: true
+  required: false
+- device: CAM-2BL-GHOST
+  save_images: true
+  required: false
+- device: CAM-2BL-M2A
   save_images: true
   required: false
 - device: CAM-HPD-CCD
   save_images: true
   required: false
-- device: SPEC-PL1-Thorlabs
+- device: CAM-HPD-HolyWedge
   save_images: true
   required: false
-- device: SPEC-PL1-ThorlabsNew
+- device: CAM-HPD-M3Near
+  save_images: true
+  required: false
+- device: CAM-PL1-TapeDrivePointing
+  save_images: true
+  required: false
+- device: CAM-PL1-TapeMonSubscriber
+  save_images: true
+  required: false
+- device: CAM-PL1-TapeTargetSubscriber
+  save_images: true
+  required: false
+- device: CAM-PL1-Tapetarget_view
+  save_images: true
+  required: false
+- device: DAQ-AA-1
+  save_images: true
+  required: false
+- device: DAQ-AA-2
+  save_images: true
+  required: false
+- device: DAQ-AA-3
+  save_images: true
+  required: false
+- device: FW-1BL-BTL
+  save_images: true
+  required: false
+- device: FW-BELLA-General
+  save_images: true
+  required: false
+- device: SCOPE-AA-LeCroy8254M
+  save_images: true
+  required: false
+- device: SPEC-AA-Hamamastsu
+  save_images: true
+  required: false
+- device: WFS-1BL-Ghost-HASO
   save_images: true
   required: false
 plan:
