@@ -17,74 +17,71 @@ devices:
   save_images: true
   required: true
 - device: CAM-1BL-DM
-  save_images: true
+  save_images: false
   required: false
 - device: CAM-1BL-Ghost
   save_images: true
-  required: false
+  required: true
 - device: CAM-1BL-M1
   save_images: true
-  required: false
+  required: true
 - device: CAM-1BL-M5
   save_images: true
-  required: false
+  required: true
 - device: CAM-2BL-Aegeaon
   save_images: true
-  required: false
+  required: true
 - device: CAM-2BL-Aegeaon-Subscriber
   save_images: true
   required: false
 - device: CAM-2BL-DM
-  save_images: true
+  save_images: false
   required: false
 - device: CAM-2BL-F3M2
   save_images: true
-  required: false
+  required: true
 - device: CAM-2BL-F3M3
   save_images: true
-  required: false
+  required: true
 - device: CAM-2BL-F3M5
   save_images: true
-  required: false
+  required: true
 - device: CAM-2BL-GHOST
   save_images: true
-  required: false
+  required: true
 - device: CAM-2BL-M2A
   save_images: true
-  required: false
+  required: true
 - device: CAM-HPD-CCD
   save_images: true
-  required: false
+  required: true
 - device: CAM-HPD-HolyWedge
   save_images: true
-  required: false
+  required: true
 - device: CAM-HPD-M3Near
   save_images: true
-  required: false
+  required: true
 - device: CAM-PL1-TapeDrivePointing
   save_images: true
-  required: false
+  required: true
 - device: CAM-PL1-TapeMonSubscriber
-  save_images: true
+  save_images: false
   required: false
 - device: CAM-PL1-TapeTargetSubscriber
-  save_images: true
+  save_images: false
   required: false
 - device: CAM-PL1-Tapetarget_view
-  save_images: true
+  save_images: false
   required: false
 - device: DAQ-AA-1
   save_images: true
-  required: false
+  required: true
 - device: DAQ-AA-2
   save_images: true
-  required: false
+  required: true
 - device: DAQ-AA-3
   save_images: true
-  required: false
-- device: FW-1BL-BTL
-  save_images: true
-  required: false
+  required: true
 - device: FW-BELLA-General
   save_images: true
   required: false
