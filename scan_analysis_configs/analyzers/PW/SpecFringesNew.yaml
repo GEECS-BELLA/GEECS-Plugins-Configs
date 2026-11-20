@@ -1,0 +1,13 @@
+schema_version: 3
+device: SPEC-PL1-ThorlabsNew
+input:
+  kind: line
+  file_tail: .csv
+  loading:
+    data_type: thorlabs_fts
+steps: []
+measure:
+  kind: spectral_interferometry
+  reference_wavelength_nm: 795.0
+  fit_range_nm: [783.0, 807.0]
+summaries: []
